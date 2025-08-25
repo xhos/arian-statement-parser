@@ -1,0 +1,21 @@
+{pkgs, ... }:
+{
+  packages = with pkgs; [
+    buf
+    ruff
+  ];
+  languages.go.enable = true;
+  languages.python.enable = true;
+  languages.python.uv.enable = true;
+  dotenv.enable = true;
+  scripts.bump-proto.exec = ''
+  git -C proto fetch origin
+  git -C proto checkout main
+  git -C proto pull --ff-only
+  git add proto
+  git commit -m "⬆️ bump proto files"
+  git push
+'';
+
+  env.UV_CACHE_DIR = ".uv-cache";
+}

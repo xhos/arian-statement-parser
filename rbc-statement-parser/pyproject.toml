@@ -1,0 +1,17 @@
+[project]
+name = "rbc-statement-parser"
+version = "0.1.0"
+description = "RBC statement parser"
+requires-python = ">=3.13"
+dependencies = [
+    "pymupdf",
+    "beautifulsoup4",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+]
+
+[tool.ruff]
+indent-width = 2
