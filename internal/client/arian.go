@@ -90,6 +90,42 @@ func (c *Client) GetAccounts(userID string) ([]*pb.Account, error) {
 	return resp.Accounts, nil
 }
 
+func (c *Client) CreateAccount(userID, accountName, bank string, accountType pb.AccountType) (*pb.Account, error) {
+	ctx := c.withAuth(context.Background())
+
+	req := &pb.CreateAccountRequest{
+		UserId: userID,
+		Name:   accountName,
+		Bank:   bank,
+		Type:   accountType,
+	}
+
+	resp, err := c.accountClient.CreateAccount(ctx, req)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create account: %w", err)
+	}
+
+	c.log.Info("successfully created account", "account_name", accountName, "account_type", accountType, "account_id", resp.Account.Id)
+	return resp.Account, nil
+}
+
+func (c *Client) ListTransactions(userID string, limit int32) ([]*pb.Transaction, error) {
+	ctx := c.withAuth(context.Background())
+
+	req := &pb.ListTransactionsRequest{
+		UserId: userID,
+		Limit:  &limit,
+	}
+
+	resp, err := c.txClient.ListTransactions(ctx, req)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list transactions: %w", err)
+	}
+
+	c.log.Info("successfully fetched transactions", "count", len(resp.Transactions))
+	return resp.Transactions, nil
+}
+
 func (c *Client) CreateTransaction(userID string, tx *domain.Transaction) error {
 	ctx := c.withAuth(context.Background())
 

@@ -59,36 +59,35 @@ def extract_account_info(file_path: str) -> dict:
   
   filename = os.path.basename(file_path)
   
-  # Pattern to extract account type and number
-  # Examples: "Daily Statement-3878", "ION Statement-3802", "ION_2B Statement-9165"
-  patterns = [
-    r"(Daily|Savings|Student|Chequing)\s+Statement-(\d+)",
-    r"(ION|ION_2B)\s+Statement-(\d+)",
-  ]
+  # Simple logic: if filename contains 'visa' anywhere, it's a visa statement
+  # Otherwise, determine type from first word
+  if 'visa' in filename.lower():
+    account_type = "visa"
+  else:
+    # Extract first word to determine account type
+    first_word = filename.split()[0].lower()
+    
+    # Map first word to account types
+    type_mapping = {
+      "daily": "chequing",
+      "savings": "savings", 
+      "student": "chequing",
+      "chequing": "chequing",
+    }
+    
+    account_type = type_mapping.get(first_word, "chequing")  # Default to chequing
   
-  for pattern in patterns:
-    match = re.search(pattern, filename, re.IGNORECASE)
-    if match:
-      account_type = match.group(1).lower()
-      account_number = match.group(2)
-      
-      # Map to account types
-      type_mapping = {
-        "daily": "chequing",
-        "savings": "savings", 
-        "student": "chequing",
-        "chequing": "chequing",
-        "ion": "visa",
-        "ion_2b": "visa"
-      }
-      
-      return {
-        "account_number": account_number,
-        "account_type": type_mapping.get(account_type, "unknown"),
-        "raw_type": account_type
-      }
+  # Extract account number - it's simply the first word before the first space
+  account_number = filename.split()[0] if filename.split() else None
   
-  return {"account_number": None, "account_type": "unknown", "raw_type": None}
+  # Debug print to stderr so it doesn't break JSON parsing  
+  print(f"DEBUG: filename='{filename}', account_number='{account_number}', account_type='{account_type}'", file=sys.stderr)
+  
+  return {
+    "account_number": account_number,
+    "account_type": account_type,
+    "raw_type": filename.split()[0] if filename.split() else None
+  }
 
 
 def parse_pdf(file_path: str, categories: dict, excludes: list) -> list:
@@ -101,10 +100,11 @@ def parse_pdf(file_path: str, categories: dict, excludes: list) -> list:
   else:
     return []
   
-  # Add account info to each transaction
+  # Add account info and source file to each transaction
   for tx in transactions:
     tx["account_number"] = account_info["account_number"] 
     tx["account_type"] = account_info["account_type"]
+    tx["source_file"] = file_path
   
   return transactions
 

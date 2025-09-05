@@ -22,4 +22,5 @@ type Transaction struct {
 	// Account matching info from statement filename
 	StatementAccountNumber *string
 	StatementAccountType   string
+	SourceFilePath         string
 }

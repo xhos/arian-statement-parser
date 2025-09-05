@@ -19,6 +19,7 @@ type PythonTransaction struct {
 	PostingDate   string  `json:"posting_date"`
 	AccountNumber *string `json:"account_number"`
 	AccountType   string  `json:"account_type"`
+	SourceFile    string  `json:"source_file"`
 }
 
 type FileResult struct {
@@ -102,6 +103,7 @@ func (p *PythonParser) parseJSONOutput(output string) (*ParseResult, []*domain.T
 			TxDesc:                 pt.Description,
 			StatementAccountNumber: pt.AccountNumber,
 			StatementAccountType:   pt.AccountType,
+			SourceFilePath:         pt.SourceFile,
 		}
 		
 		transactions = append(transactions, tx)
