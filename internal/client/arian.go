@@ -37,7 +37,7 @@ func NewClient(arianURL, _, authToken string) (*Client, error) {
 	} else {
 		creds = insecure.NewCredentials()
 	}
-	
+
 	conn, err := grpc.NewClient(arianURL, grpc.WithTransportCredentials(creds))
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to gRPC server: %w", err)

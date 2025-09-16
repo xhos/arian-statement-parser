@@ -54,7 +54,7 @@ func (p *PythonParser) ParseStatements(pdfPath string, configPath string) (*Pars
 	// Build command args with JSON format
 	args := []string{"run", "python", "main.py", "../" + pdfPath, "--format", "json"}
 	if configPath != "" {
-		args = append(args, "--config", "../" + configPath)
+		args = append(args, "--config", "../"+configPath)
 	}
 
 	// Execute Python script with uv from the rbc-statement-parser directory
@@ -71,20 +71,20 @@ func (p *PythonParser) ParseStatements(pdfPath string, configPath string) (*Pars
 
 func (p *PythonParser) parseJSONOutput(output string) (*ParseResult, []*domain.Transaction, error) {
 	var result ParseResult
-	
+
 	if err := json.Unmarshal([]byte(output), &result); err != nil {
 		return nil, nil, fmt.Errorf("failed to parse JSON output: %w", err)
 	}
-	
+
 	var transactions []*domain.Transaction
-	
+
 	for _, pt := range result.Transactions {
 		// Parse date
 		txDate, err := time.Parse("2006-01-02T15:04:05", pt.Date)
 		if err != nil {
 			return nil, nil, fmt.Errorf("failed to parse date %s: %w", pt.Date, err)
 		}
-		
+
 		// Determine direction and make amount positive
 		var direction domain.Direction
 		amount := pt.Amount
@@ -94,7 +94,7 @@ func (p *PythonParser) parseJSONOutput(output string) (*ParseResult, []*domain.T
 		} else {
 			direction = domain.In
 		}
-		
+
 		tx := &domain.Transaction{
 			TxDate:                 txDate,
 			TxAmount:               amount,
@@ -105,9 +105,9 @@ func (p *PythonParser) parseJSONOutput(output string) (*ParseResult, []*domain.T
 			StatementAccountType:   pt.AccountType,
 			SourceFilePath:         pt.SourceFile,
 		}
-		
+
 		transactions = append(transactions, tx)
 	}
-	
+
 	return &result, transactions, nil
 }

@@ -71,13 +71,13 @@ func findMatchingAccount(accounts []*pb.Account, accountNumber *string, accountT
 
 func extractAccountName(filePath string) string {
 	fileName := filepath.Base(filePath)
-	
+
 	// Extract first word from filename (e.g., "Daily" from "Daily Statement-3878 2024-04-12.pdf")
 	words := strings.Fields(fileName)
 	if len(words) > 0 {
 		return words[0]
 	}
-	
+
 	return "Unknown"
 }
 
@@ -220,7 +220,7 @@ func main() {
 		} else {
 			// Create new account with correct type
 			accountName := extractAccountName(tx.SourceFilePath)
-			
+
 			var accountType pb.AccountType
 			switch tx.StatementAccountType {
 			case "visa":
@@ -232,7 +232,7 @@ func main() {
 			default:
 				accountType = pb.AccountType_ACCOUNT_UNSPECIFIED
 			}
-			
+
 			fmt.Printf("  → Creating new account: %s (%s) at RBC\n", accountName, tx.StatementAccountType)
 			newAccount, err := arianClient.CreateAccount(userID, accountName, "RBC", accountType) // TODO: Support multiple banks instead of hardcoding RBC
 			if err != nil {
@@ -241,12 +241,10 @@ func main() {
 					fmt.Printf("  → Account already exists, refreshing account list...\n")
 					accounts, err = arianClient.GetAccounts(userID)
 					if err != nil {
-						fmt.Printf("  Error refreshing accounts: %v\n", err)
-						unmatchedCount++
-						continue
+						log.Fatalf("Failed to refresh accounts after duplicate key error: %v", err)
 					}
 					// Debug: show what we have after refresh
-					fmt.Printf("  → After refresh, looking for account number='%s', type='%s'\n", 
+					fmt.Printf("  → After refresh, looking for account number='%s', type='%s'\n",
 						func() string {
 							if tx.StatementAccountNumber != nil {
 								return *tx.StatementAccountNumber
@@ -257,7 +255,7 @@ func main() {
 					for _, acc := range accounts {
 						fmt.Printf("    - '%s' (type: %s)\n", acc.Name, acc.Type)
 					}
-					
+
 					// Try matching again with refreshed list
 					matchedAccount := findMatchingAccount(accounts, tx.StatementAccountNumber, tx.StatementAccountType)
 					if matchedAccount != nil {
@@ -271,9 +269,7 @@ func main() {
 						continue
 					}
 				} else {
-					fmt.Printf("  Error creating account: %v\n", err)
-					unmatchedCount++
-					continue
+					log.Fatalf("Failed to create account: %v", err)
 				}
 			} else {
 				tx.AccountID = int(newAccount.Id)
