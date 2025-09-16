@@ -19,6 +19,8 @@
   
   scripts.run.exec = "go run cmd/main.go";
 
+  scripts.regen.exec = "rm -rf ./internal/gen; buf generate";
+
   dotenv.enable = true;
 
   env.UV_CACHE_DIR = ".uv-cache";
