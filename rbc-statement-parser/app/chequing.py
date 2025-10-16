@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from .entities import Transaction
 from .utils import match_category, parse_float, read_pdf, should_exclude
 
-PAT_FILE_PATH = r"(chequing statement|daily statement|savings statement|student statement)"
+PAT_FILE_PATH = r"(chequing|daily|savings|student)"
 PAT_MONTH_SHORT = r"jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec"
 PAT_MONTH_LONG = r"january|february|march|april|may|june|july|august|september|october|november|december"
 PAT_DAY = r"\d{1,2}"
@@ -18,7 +18,21 @@ PAT_AMOUNT = r"-?\$?[\d,]+\.\d{2}"
 
 
 def is_chequing(file_path: str) -> bool:
-  return bool(re.search(PAT_FILE_PATH, file_path, re.IGNORECASE))
+  """Check if file is a chequing/savings statement by reading PDF content"""
+  from .utils import read_pdf
+
+  # First check filename for quick detection
+  if re.search(PAT_FILE_PATH, file_path, re.IGNORECASE):
+    return True
+
+  # Fall back to PDF content detection
+  try:
+    pdf_text = read_pdf(file_path)[:2000]
+    # Both chequing and savings use the same parsing logic
+    return ("personal banking account statement" in pdf_text.lower() or
+            "personal savings account statement" in pdf_text.lower())
+  except:
+    return False
 
 
 def extract_start_date(pdf: str) -> datetime | None:

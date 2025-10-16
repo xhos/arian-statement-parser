@@ -19,8 +19,9 @@ type Transaction struct {
 	TxDesc      string
 	Merchant    string
 	UserNotes   string
-	// Account matching info from statement filename
+	// Account matching info from statement
 	StatementAccountNumber *string
 	StatementAccountType   string
+	StatementAccountName   string
 	SourceFilePath         string
 }

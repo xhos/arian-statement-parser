@@ -41,6 +41,9 @@
           uv
           golangci-lint
 
+          protoc-gen-go-grpc
+          protoc-gen-go
+
           (writeShellScriptBin "regen" ''
             rm -rf internal/gen/
             ${buf}/bin/buf generate

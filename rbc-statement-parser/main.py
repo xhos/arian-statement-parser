@@ -53,40 +53,110 @@ def parse_args() -> tuple[list, dict, str, str]:
   return (files, config, args.out, args.format)
 
 
-def extract_account_info(file_path: str) -> dict:
-  """Extract account information from filename"""
+def extract_account_from_pdf(file_path: str) -> dict:
+  """Auto-detect account type, number, and name from PDF content"""
+  from app.utils import read_pdf
   import re
-  
+
+  result = {
+    "type": None,
+    "number": None,
+    "name": None
+  }
+
+  try:
+    # Read first page of PDF to check header
+    pdf_text = read_pdf(file_path)[:3000]  # First 3000 chars should contain all header info
+
+    # Detect account type
+    if "personal savings account statement" in pdf_text.lower():
+      result["type"] = "savings"
+    elif "personal banking account statement" in pdf_text.lower():
+      result["type"] = "chequing"
+    elif "visa" in pdf_text.lower() or "credit card" in pdf_text.lower():
+      result["type"] = "visa"
+
+    # Extract account number (for chequing/savings)
+    if match := re.search(r'account number[:\s]+([0-9-]+)', pdf_text, re.IGNORECASE):
+      result["number"] = match.group(1)
+
+    # Extract account name (for chequing/savings)
+    # Look for lines like "RBC Advantage Banking 05172-5163878" or "RBC High Interest eSavingsTM 05172-5162458"
+    if match := re.search(r'(RBC [^\n]+?)\s+\d{5}-\d{7}', pdf_text, re.IGNORECASE):
+      account_name = match.group(1).strip()
+      # Clean up the name
+      account_name = re.sub(r'TM$', '', account_name)  # Remove trailing TM
+      result["name"] = account_name
+
+    # For VISA, extract last 4 digits
+    if result["type"] == "visa":
+      if match := re.search(r'(\d{4})\s+\d{2}\*\*\s+\*\*\*\*\s+(\d{4})', pdf_text):
+        result["number"] = match.group(2)  # Last 4 digits
+      # For VISA, we could use card type as name, but let's keep it simple
+      result["name"] = "VISA"
+
+  except Exception:
+    pass
+
+  return result
+
+
+def extract_account_info(file_path: str) -> dict:
+  """Extract account information from filename and PDF content"""
+  import re
+
   filename = os.path.basename(file_path)
-  
-  # Simple logic: if filename contains 'visa' anywhere, it's a visa statement
-  # Otherwise, determine type from first word
-  if 'visa' in filename.lower():
-    account_type = "visa"
-  else:
-    # Extract first word to determine account type
-    first_word = filename.split()[0].lower()
-    
-    # Map first word to account types
-    type_mapping = {
-      "daily": "chequing",
-      "savings": "savings", 
-      "student": "chequing",
-      "chequing": "chequing",
-    }
-    
-    account_type = type_mapping.get(first_word, "chequing")  # Default to chequing
-  
-  # Extract account number - it's simply the first word before the first space
-  account_number = filename.split()[0] if filename.split() else None
-  
-  # Debug print to stderr so it doesn't break JSON parsing  
-  print(f"DEBUG: filename='{filename}', account_number='{account_number}', account_type='{account_type}'", file=sys.stderr)
-  
+
+  # First, try to auto-detect from PDF content
+  pdf_info = extract_account_from_pdf(file_path)
+
+  account_type = pdf_info["type"]
+  account_number = pdf_info["number"]
+  account_name = pdf_info["name"]
+
+  # If auto-detection fails, fall back to filename
+  if not account_type:
+    if 'visa' in filename.lower():
+      account_type = "visa"
+    else:
+      # Extract first word to determine account type
+      first_word = filename.split()[0].lower() if filename.split() else ""
+
+      # Map first word to account types
+      type_mapping = {
+        "daily": "chequing",
+        "savings": "savings",
+        "student": "chequing",
+        "chequing": "chequing",
+      }
+
+      account_type = type_mapping.get(first_word, "chequing")  # Default to chequing
+
+  # If we didn't get account number from PDF, try filename
+  # For VISA, extract last 4 digits from filename if present
+  if not account_number:
+    if account_type == "visa":
+      # Look for 4-digit number at the start of filename
+      if match := re.search(r'^(\d{4})', filename):
+        account_number = match.group(1)
+    else:
+      # For chequing/savings, use first word of filename as identifier
+      account_number = filename.split()[0] if filename.split() else None
+
+  # If we didn't get account name from PDF, use a default based on type
+  if not account_name:
+    if account_type == "visa":
+      account_name = f"VISA {account_number}" if account_number else "VISA"
+    elif account_type == "savings":
+      account_name = "Savings"
+    else:
+      account_name = "Chequing"
+
+
   return {
     "account_number": account_number,
     "account_type": account_type,
-    "raw_type": filename.split()[0] if filename.split() else None
+    "account_name": account_name
   }
 
 
@@ -102,8 +172,9 @@ def parse_pdf(file_path: str, categories: dict, excludes: list) -> list:
   
   # Add account info and source file to each transaction
   for tx in transactions:
-    tx["account_number"] = account_info["account_number"] 
+    tx["account_number"] = account_info["account_number"]
     tx["account_type"] = account_info["account_type"]
+    tx["account_name"] = account_info["account_name"]
     tx["source_file"] = file_path
   
   return transactions

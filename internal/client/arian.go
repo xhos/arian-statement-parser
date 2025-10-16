@@ -157,13 +157,13 @@ func (c *Client) CreateTransaction(userID string, tx *domain.Transaction) error 
 	if err != nil {
 		// check for duplicate transaction (conflict)
 		if grpcStatus := status.Code(err); grpcStatus == codes.AlreadyExists {
-			c.log.Info("skipping duplicate transaction", "email_id", tx.EmailID)
+			c.log.Info("skipping duplicate transaction")
 			return nil // not a fatal error, just a duplicate
 		}
 		return fmt.Errorf("failed to create transaction: %w", err)
 	}
 
-	c.log.Info("transaction created successfully", "email_id", tx.EmailID, "tx_id", resp.Transaction.Id)
+	c.log.Info("transaction created successfully", "tx_id", resp.Transaction.Id)
 	return nil
 }
 

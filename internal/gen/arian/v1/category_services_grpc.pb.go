@@ -19,23 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CategoryService_ListCategories_FullMethodName               = "/arian.v1.CategoryService/ListCategories"
-	CategoryService_ListCategoriesWithUsage_FullMethodName      = "/arian.v1.CategoryService/ListCategoriesWithUsage"
-	CategoryService_ListCategoriesForUser_FullMethodName        = "/arian.v1.CategoryService/ListCategoriesForUser"
-	CategoryService_GetCategory_FullMethodName                  = "/arian.v1.CategoryService/GetCategory"
-	CategoryService_GetCategoryBySlug_FullMethodName            = "/arian.v1.CategoryService/GetCategoryBySlug"
-	CategoryService_GetCategoryWithStats_FullMethodName         = "/arian.v1.CategoryService/GetCategoryWithStats"
-	CategoryService_CreateCategory_FullMethodName               = "/arian.v1.CategoryService/CreateCategory"
-	CategoryService_BulkCreateCategories_FullMethodName         = "/arian.v1.CategoryService/BulkCreateCategories"
-	CategoryService_UpdateCategory_FullMethodName               = "/arian.v1.CategoryService/UpdateCategory"
-	CategoryService_DeleteCategory_FullMethodName               = "/arian.v1.CategoryService/DeleteCategory"
-	CategoryService_DeleteUnusedCategories_FullMethodName       = "/arian.v1.CategoryService/DeleteUnusedCategories"
-	CategoryService_GetCategoryUsageStats_FullMethodName        = "/arian.v1.CategoryService/GetCategoryUsageStats"
-	CategoryService_GetCategoriesWithStats_FullMethodName       = "/arian.v1.CategoryService/GetCategoriesWithStats"
-	CategoryService_SearchCategories_FullMethodName             = "/arian.v1.CategoryService/SearchCategories"
-	CategoryService_ListCategorySlugs_FullMethodName            = "/arian.v1.CategoryService/ListCategorySlugs"
-	CategoryService_GetMostUsedCategoriesForUser_FullMethodName = "/arian.v1.CategoryService/GetMostUsedCategoriesForUser"
-	CategoryService_GetUnusedCategories_FullMethodName          = "/arian.v1.CategoryService/GetUnusedCategories"
+	CategoryService_ListCategories_FullMethodName    = "/arian.v1.CategoryService/ListCategories"
+	CategoryService_GetCategory_FullMethodName       = "/arian.v1.CategoryService/GetCategory"
+	CategoryService_GetCategoryBySlug_FullMethodName = "/arian.v1.CategoryService/GetCategoryBySlug"
+	CategoryService_CreateCategory_FullMethodName    = "/arian.v1.CategoryService/CreateCategory"
+	CategoryService_UpdateCategory_FullMethodName    = "/arian.v1.CategoryService/UpdateCategory"
+	CategoryService_DeleteCategory_FullMethodName    = "/arian.v1.CategoryService/DeleteCategory"
+	CategoryService_ListCategorySlugs_FullMethodName = "/arian.v1.CategoryService/ListCategorySlugs"
 )
 
 // CategoryServiceClient is the client API for CategoryService service.
@@ -43,22 +33,12 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CategoryServiceClient interface {
 	ListCategories(ctx context.Context, in *ListCategoriesRequest, opts ...grpc.CallOption) (*ListCategoriesResponse, error)
-	ListCategoriesWithUsage(ctx context.Context, in *ListCategoriesWithUsageRequest, opts ...grpc.CallOption) (*ListCategoriesWithUsageResponse, error)
-	ListCategoriesForUser(ctx context.Context, in *ListCategoriesForUserRequest, opts ...grpc.CallOption) (*ListCategoriesForUserResponse, error)
 	GetCategory(ctx context.Context, in *GetCategoryRequest, opts ...grpc.CallOption) (*GetCategoryResponse, error)
 	GetCategoryBySlug(ctx context.Context, in *GetCategoryBySlugRequest, opts ...grpc.CallOption) (*GetCategoryBySlugResponse, error)
-	GetCategoryWithStats(ctx context.Context, in *GetCategoryWithStatsRequest, opts ...grpc.CallOption) (*GetCategoryWithStatsResponse, error)
 	CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error)
-	BulkCreateCategories(ctx context.Context, in *BulkCreateCategoriesRequest, opts ...grpc.CallOption) (*BulkCreateCategoriesResponse, error)
 	UpdateCategory(ctx context.Context, in *UpdateCategoryRequest, opts ...grpc.CallOption) (*UpdateCategoryResponse, error)
 	DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...grpc.CallOption) (*DeleteCategoryResponse, error)
-	DeleteUnusedCategories(ctx context.Context, in *DeleteUnusedCategoriesRequest, opts ...grpc.CallOption) (*DeleteUnusedCategoriesResponse, error)
-	GetCategoryUsageStats(ctx context.Context, in *GetCategoryUsageStatsRequest, opts ...grpc.CallOption) (*GetCategoryUsageStatsResponse, error)
-	GetCategoriesWithStats(ctx context.Context, in *GetCategoriesWithStatsRequest, opts ...grpc.CallOption) (*GetCategoriesWithStatsResponse, error)
-	SearchCategories(ctx context.Context, in *SearchCategoriesRequest, opts ...grpc.CallOption) (*SearchCategoriesResponse, error)
 	ListCategorySlugs(ctx context.Context, in *ListCategorySlugsRequest, opts ...grpc.CallOption) (*ListCategorySlugsResponse, error)
-	GetMostUsedCategoriesForUser(ctx context.Context, in *GetMostUsedCategoriesForUserRequest, opts ...grpc.CallOption) (*GetMostUsedCategoriesForUserResponse, error)
-	GetUnusedCategories(ctx context.Context, in *GetUnusedCategoriesRequest, opts ...grpc.CallOption) (*GetUnusedCategoriesResponse, error)
 }
 
 type categoryServiceClient struct {
@@ -73,26 +53,6 @@ func (c *categoryServiceClient) ListCategories(ctx context.Context, in *ListCate
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListCategoriesResponse)
 	err := c.cc.Invoke(ctx, CategoryService_ListCategories_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) ListCategoriesWithUsage(ctx context.Context, in *ListCategoriesWithUsageRequest, opts ...grpc.CallOption) (*ListCategoriesWithUsageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCategoriesWithUsageResponse)
-	err := c.cc.Invoke(ctx, CategoryService_ListCategoriesWithUsage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) ListCategoriesForUser(ctx context.Context, in *ListCategoriesForUserRequest, opts ...grpc.CallOption) (*ListCategoriesForUserResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListCategoriesForUserResponse)
-	err := c.cc.Invoke(ctx, CategoryService_ListCategoriesForUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,30 +79,10 @@ func (c *categoryServiceClient) GetCategoryBySlug(ctx context.Context, in *GetCa
 	return out, nil
 }
 
-func (c *categoryServiceClient) GetCategoryWithStats(ctx context.Context, in *GetCategoryWithStatsRequest, opts ...grpc.CallOption) (*GetCategoryWithStatsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCategoryWithStatsResponse)
-	err := c.cc.Invoke(ctx, CategoryService_GetCategoryWithStats_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *categoryServiceClient) CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateCategoryResponse)
 	err := c.cc.Invoke(ctx, CategoryService_CreateCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) BulkCreateCategories(ctx context.Context, in *BulkCreateCategoriesRequest, opts ...grpc.CallOption) (*BulkCreateCategoriesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BulkCreateCategoriesResponse)
-	err := c.cc.Invoke(ctx, CategoryService_BulkCreateCategories_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -169,70 +109,10 @@ func (c *categoryServiceClient) DeleteCategory(ctx context.Context, in *DeleteCa
 	return out, nil
 }
 
-func (c *categoryServiceClient) DeleteUnusedCategories(ctx context.Context, in *DeleteUnusedCategoriesRequest, opts ...grpc.CallOption) (*DeleteUnusedCategoriesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteUnusedCategoriesResponse)
-	err := c.cc.Invoke(ctx, CategoryService_DeleteUnusedCategories_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) GetCategoryUsageStats(ctx context.Context, in *GetCategoryUsageStatsRequest, opts ...grpc.CallOption) (*GetCategoryUsageStatsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCategoryUsageStatsResponse)
-	err := c.cc.Invoke(ctx, CategoryService_GetCategoryUsageStats_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) GetCategoriesWithStats(ctx context.Context, in *GetCategoriesWithStatsRequest, opts ...grpc.CallOption) (*GetCategoriesWithStatsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCategoriesWithStatsResponse)
-	err := c.cc.Invoke(ctx, CategoryService_GetCategoriesWithStats_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) SearchCategories(ctx context.Context, in *SearchCategoriesRequest, opts ...grpc.CallOption) (*SearchCategoriesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchCategoriesResponse)
-	err := c.cc.Invoke(ctx, CategoryService_SearchCategories_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *categoryServiceClient) ListCategorySlugs(ctx context.Context, in *ListCategorySlugsRequest, opts ...grpc.CallOption) (*ListCategorySlugsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListCategorySlugsResponse)
 	err := c.cc.Invoke(ctx, CategoryService_ListCategorySlugs_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) GetMostUsedCategoriesForUser(ctx context.Context, in *GetMostUsedCategoriesForUserRequest, opts ...grpc.CallOption) (*GetMostUsedCategoriesForUserResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMostUsedCategoriesForUserResponse)
-	err := c.cc.Invoke(ctx, CategoryService_GetMostUsedCategoriesForUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *categoryServiceClient) GetUnusedCategories(ctx context.Context, in *GetUnusedCategoriesRequest, opts ...grpc.CallOption) (*GetUnusedCategoriesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUnusedCategoriesResponse)
-	err := c.cc.Invoke(ctx, CategoryService_GetUnusedCategories_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -244,22 +124,12 @@ func (c *categoryServiceClient) GetUnusedCategories(ctx context.Context, in *Get
 // for forward compatibility.
 type CategoryServiceServer interface {
 	ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error)
-	ListCategoriesWithUsage(context.Context, *ListCategoriesWithUsageRequest) (*ListCategoriesWithUsageResponse, error)
-	ListCategoriesForUser(context.Context, *ListCategoriesForUserRequest) (*ListCategoriesForUserResponse, error)
 	GetCategory(context.Context, *GetCategoryRequest) (*GetCategoryResponse, error)
 	GetCategoryBySlug(context.Context, *GetCategoryBySlugRequest) (*GetCategoryBySlugResponse, error)
-	GetCategoryWithStats(context.Context, *GetCategoryWithStatsRequest) (*GetCategoryWithStatsResponse, error)
 	CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error)
-	BulkCreateCategories(context.Context, *BulkCreateCategoriesRequest) (*BulkCreateCategoriesResponse, error)
 	UpdateCategory(context.Context, *UpdateCategoryRequest) (*UpdateCategoryResponse, error)
 	DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error)
-	DeleteUnusedCategories(context.Context, *DeleteUnusedCategoriesRequest) (*DeleteUnusedCategoriesResponse, error)
-	GetCategoryUsageStats(context.Context, *GetCategoryUsageStatsRequest) (*GetCategoryUsageStatsResponse, error)
-	GetCategoriesWithStats(context.Context, *GetCategoriesWithStatsRequest) (*GetCategoriesWithStatsResponse, error)
-	SearchCategories(context.Context, *SearchCategoriesRequest) (*SearchCategoriesResponse, error)
 	ListCategorySlugs(context.Context, *ListCategorySlugsRequest) (*ListCategorySlugsResponse, error)
-	GetMostUsedCategoriesForUser(context.Context, *GetMostUsedCategoriesForUserRequest) (*GetMostUsedCategoriesForUserResponse, error)
-	GetUnusedCategories(context.Context, *GetUnusedCategoriesRequest) (*GetUnusedCategoriesResponse, error)
 }
 
 // UnimplementedCategoryServiceServer should be embedded to have
@@ -272,26 +142,14 @@ type UnimplementedCategoryServiceServer struct{}
 func (UnimplementedCategoryServiceServer) ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCategories not implemented")
 }
-func (UnimplementedCategoryServiceServer) ListCategoriesWithUsage(context.Context, *ListCategoriesWithUsageRequest) (*ListCategoriesWithUsageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCategoriesWithUsage not implemented")
-}
-func (UnimplementedCategoryServiceServer) ListCategoriesForUser(context.Context, *ListCategoriesForUserRequest) (*ListCategoriesForUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCategoriesForUser not implemented")
-}
 func (UnimplementedCategoryServiceServer) GetCategory(context.Context, *GetCategoryRequest) (*GetCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategory not implemented")
 }
 func (UnimplementedCategoryServiceServer) GetCategoryBySlug(context.Context, *GetCategoryBySlugRequest) (*GetCategoryBySlugResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryBySlug not implemented")
 }
-func (UnimplementedCategoryServiceServer) GetCategoryWithStats(context.Context, *GetCategoryWithStatsRequest) (*GetCategoryWithStatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryWithStats not implemented")
-}
 func (UnimplementedCategoryServiceServer) CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCategory not implemented")
-}
-func (UnimplementedCategoryServiceServer) BulkCreateCategories(context.Context, *BulkCreateCategoriesRequest) (*BulkCreateCategoriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BulkCreateCategories not implemented")
 }
 func (UnimplementedCategoryServiceServer) UpdateCategory(context.Context, *UpdateCategoryRequest) (*UpdateCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCategory not implemented")
@@ -299,26 +157,8 @@ func (UnimplementedCategoryServiceServer) UpdateCategory(context.Context, *Updat
 func (UnimplementedCategoryServiceServer) DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCategory not implemented")
 }
-func (UnimplementedCategoryServiceServer) DeleteUnusedCategories(context.Context, *DeleteUnusedCategoriesRequest) (*DeleteUnusedCategoriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUnusedCategories not implemented")
-}
-func (UnimplementedCategoryServiceServer) GetCategoryUsageStats(context.Context, *GetCategoryUsageStatsRequest) (*GetCategoryUsageStatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryUsageStats not implemented")
-}
-func (UnimplementedCategoryServiceServer) GetCategoriesWithStats(context.Context, *GetCategoriesWithStatsRequest) (*GetCategoriesWithStatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCategoriesWithStats not implemented")
-}
-func (UnimplementedCategoryServiceServer) SearchCategories(context.Context, *SearchCategoriesRequest) (*SearchCategoriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SearchCategories not implemented")
-}
 func (UnimplementedCategoryServiceServer) ListCategorySlugs(context.Context, *ListCategorySlugsRequest) (*ListCategorySlugsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCategorySlugs not implemented")
-}
-func (UnimplementedCategoryServiceServer) GetMostUsedCategoriesForUser(context.Context, *GetMostUsedCategoriesForUserRequest) (*GetMostUsedCategoriesForUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMostUsedCategoriesForUser not implemented")
-}
-func (UnimplementedCategoryServiceServer) GetUnusedCategories(context.Context, *GetUnusedCategoriesRequest) (*GetUnusedCategoriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedCategories not implemented")
 }
 func (UnimplementedCategoryServiceServer) testEmbeddedByValue() {}
 
@@ -354,42 +194,6 @@ func _CategoryService_ListCategories_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CategoryServiceServer).ListCategories(ctx, req.(*ListCategoriesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_ListCategoriesWithUsage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCategoriesWithUsageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).ListCategoriesWithUsage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_ListCategoriesWithUsage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).ListCategoriesWithUsage(ctx, req.(*ListCategoriesWithUsageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_ListCategoriesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCategoriesForUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).ListCategoriesForUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_ListCategoriesForUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).ListCategoriesForUser(ctx, req.(*ListCategoriesForUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -430,24 +234,6 @@ func _CategoryService_GetCategoryBySlug_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CategoryService_GetCategoryWithStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCategoryWithStatsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).GetCategoryWithStats(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_GetCategoryWithStats_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).GetCategoryWithStats(ctx, req.(*GetCategoryWithStatsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CategoryService_CreateCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateCategoryRequest)
 	if err := dec(in); err != nil {
@@ -462,24 +248,6 @@ func _CategoryService_CreateCategory_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CategoryServiceServer).CreateCategory(ctx, req.(*CreateCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_BulkCreateCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BulkCreateCategoriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).BulkCreateCategories(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_BulkCreateCategories_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).BulkCreateCategories(ctx, req.(*BulkCreateCategoriesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -520,78 +288,6 @@ func _CategoryService_DeleteCategory_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CategoryService_DeleteUnusedCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteUnusedCategoriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).DeleteUnusedCategories(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_DeleteUnusedCategories_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).DeleteUnusedCategories(ctx, req.(*DeleteUnusedCategoriesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_GetCategoryUsageStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCategoryUsageStatsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).GetCategoryUsageStats(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_GetCategoryUsageStats_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).GetCategoryUsageStats(ctx, req.(*GetCategoryUsageStatsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_GetCategoriesWithStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCategoriesWithStatsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).GetCategoriesWithStats(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_GetCategoriesWithStats_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).GetCategoriesWithStats(ctx, req.(*GetCategoriesWithStatsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_SearchCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchCategoriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).SearchCategories(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_SearchCategories_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).SearchCategories(ctx, req.(*SearchCategoriesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CategoryService_ListCategorySlugs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListCategorySlugsRequest)
 	if err := dec(in); err != nil {
@@ -610,42 +306,6 @@ func _CategoryService_ListCategorySlugs_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CategoryService_GetMostUsedCategoriesForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMostUsedCategoriesForUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).GetMostUsedCategoriesForUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_GetMostUsedCategoriesForUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).GetMostUsedCategoriesForUser(ctx, req.(*GetMostUsedCategoriesForUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CategoryService_GetUnusedCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUnusedCategoriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServiceServer).GetUnusedCategories(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CategoryService_GetUnusedCategories_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServiceServer).GetUnusedCategories(ctx, req.(*GetUnusedCategoriesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CategoryService_ServiceDesc is the grpc.ServiceDesc for CategoryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -658,14 +318,6 @@ var CategoryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CategoryService_ListCategories_Handler,
 		},
 		{
-			MethodName: "ListCategoriesWithUsage",
-			Handler:    _CategoryService_ListCategoriesWithUsage_Handler,
-		},
-		{
-			MethodName: "ListCategoriesForUser",
-			Handler:    _CategoryService_ListCategoriesForUser_Handler,
-		},
-		{
 			MethodName: "GetCategory",
 			Handler:    _CategoryService_GetCategory_Handler,
 		},
@@ -674,16 +326,8 @@ var CategoryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CategoryService_GetCategoryBySlug_Handler,
 		},
 		{
-			MethodName: "GetCategoryWithStats",
-			Handler:    _CategoryService_GetCategoryWithStats_Handler,
-		},
-		{
 			MethodName: "CreateCategory",
 			Handler:    _CategoryService_CreateCategory_Handler,
-		},
-		{
-			MethodName: "BulkCreateCategories",
-			Handler:    _CategoryService_BulkCreateCategories_Handler,
 		},
 		{
 			MethodName: "UpdateCategory",
@@ -694,32 +338,8 @@ var CategoryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CategoryService_DeleteCategory_Handler,
 		},
 		{
-			MethodName: "DeleteUnusedCategories",
-			Handler:    _CategoryService_DeleteUnusedCategories_Handler,
-		},
-		{
-			MethodName: "GetCategoryUsageStats",
-			Handler:    _CategoryService_GetCategoryUsageStats_Handler,
-		},
-		{
-			MethodName: "GetCategoriesWithStats",
-			Handler:    _CategoryService_GetCategoriesWithStats_Handler,
-		},
-		{
-			MethodName: "SearchCategories",
-			Handler:    _CategoryService_SearchCategories_Handler,
-		},
-		{
 			MethodName: "ListCategorySlugs",
 			Handler:    _CategoryService_ListCategorySlugs_Handler,
-		},
-		{
-			MethodName: "GetMostUsedCategoriesForUser",
-			Handler:    _CategoryService_GetMostUsedCategoriesForUser_Handler,
-		},
-		{
-			MethodName: "GetUnusedCategories",
-			Handler:    _CategoryService_GetUnusedCategories_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
