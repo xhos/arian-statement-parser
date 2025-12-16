@@ -7,10 +7,12 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"arian-statement-parser/internal/client"
 	pb "arian-statement-parser/internal/gen/arian/v1"
+	"arian-statement-parser/internal/mapping"
 	"arian-statement-parser/internal/parser"
 
 	"github.com/joho/godotenv"
@@ -125,8 +127,15 @@ func main() {
 		log.Fatalf("get accounts failed: %v", err)
 	}
 
+	// Initialize mapping store
+	mappingStore, err := mapping.NewStore()
+	if err != nil {
+		log.Fatalf("failed to initialize mapping store: %v", err)
+	}
+
 	var successCount, errorCount int
 	accountMatchStats := make(map[string]int)
+	askedMappings := make(map[string]bool) // Track which accounts we've already asked about
 
 	for i, tx := range transactions {
 		var accountName string
@@ -136,29 +145,98 @@ func main() {
 			accountName = "Unknown"
 		}
 
-		matchedAccount := findMatchingAccount(accounts, accountName, tx.StatementAccountType)
+		var matchedAccount *pb.Account
+
+		// First, check if we have a saved mapping for this statement account
+		mappingKey := accountName + "|" + tx.StatementAccountType
+		savedMapping := mappingStore.FindMapping(accountName, tx.StatementAccountType)
+
+		if savedMapping != nil {
+			// Use the saved mapping
+			savedAccountID, _ := strconv.ParseInt(savedMapping.ArianAccountID, 10, 64)
+			for _, account := range accounts {
+				if account.Id == savedAccountID {
+					matchedAccount = account
+					break
+				}
+			}
+			if matchedAccount == nil {
+				log.Printf("WARN: saved mapping for '%s' points to non-existent account, will re-prompt", accountName)
+			}
+		}
+
+		// If no saved mapping or account not found, try to match by name and type
+		if matchedAccount == nil {
+			matchedAccount = findMatchingAccount(accounts, accountName, tx.StatementAccountType)
+		}
+
+		// If still no match, prompt the user (but only once per unique account)
+		if matchedAccount == nil && !askedMappings[mappingKey] {
+			askedMappings[mappingKey] = true
+
+			selectedAccountID, isNewAccount, err := mapping.PromptForAccountMapping(accountName, tx.StatementAccountType, accounts)
+			if err != nil {
+				log.Fatalf("mapping prompt failed: %v", err)
+			}
+
+			if isNewAccount {
+				// Create new account
+				accountType := convertToAccountType(tx.StatementAccountType)
+				newAccount, err := arianClient.CreateAccount(userID, accountName, "RBC", accountType)
+				if err != nil {
+					log.Fatalf("create account failed: %v", err)
+				}
+				matchedAccount = newAccount
+				accounts = append(accounts, newAccount)
+
+				// Save mapping
+				err = mappingStore.AddMapping(mapping.AccountMapping{
+					StatementAccountNumber: accountName,
+					StatementAccountType:   tx.StatementAccountType,
+					ArianAccountID:         strconv.FormatInt(newAccount.Id, 10),
+					ArianAccountName:       newAccount.Name,
+				})
+				if err != nil {
+					log.Printf("WARN: failed to save mapping: %v", err)
+				}
+			} else {
+				// Use selected existing account
+				selectedAccountIDInt, _ := strconv.ParseInt(selectedAccountID, 10, 64)
+				for _, account := range accounts {
+					if account.Id == selectedAccountIDInt {
+						matchedAccount = account
+						break
+					}
+				}
+
+				if matchedAccount == nil {
+					log.Fatalf("selected account not found")
+				}
+
+				// Save mapping
+				err = mappingStore.AddMapping(mapping.AccountMapping{
+					StatementAccountNumber: accountName,
+					StatementAccountType:   tx.StatementAccountType,
+					ArianAccountID:         strconv.FormatInt(matchedAccount.Id, 10),
+					ArianAccountName:       matchedAccount.Name,
+				})
+				if err != nil {
+					log.Printf("WARN: failed to save mapping: %v", err)
+				}
+
+				// Warn if types don't match
+				expectedType := convertToAccountType(tx.StatementAccountType)
+				if matchedAccount.Type != expectedType {
+					log.Printf("WARN: account '%s' type mismatch - statement expects %s but account is %s (continuing anyway)", accountName, expectedType, matchedAccount.Type)
+				}
+			}
+		}
+
 		if matchedAccount != nil {
 			tx.AccountID = int(matchedAccount.Id)
 			accountMatchStats[accountName]++
 		} else {
-			accountType := convertToAccountType(tx.StatementAccountType)
-			newAccount, err := arianClient.CreateAccount(userID, accountName, "RBC", accountType)
-			if err != nil {
-				if strings.Contains(err.Error(), "duplicate key value") {
-					accounts, _ = arianClient.GetAccounts(userID)
-					matchedAccount = findMatchingAccount(accounts, accountName, tx.StatementAccountType)
-					if matchedAccount == nil {
-						log.Fatalf("account '%s' exists but cant match", accountName)
-					}
-					tx.AccountID = int(matchedAccount.Id)
-				} else {
-					log.Fatalf("create account failed: %v", err)
-				}
-			} else {
-				tx.AccountID = int(newAccount.Id)
-				accounts = append(accounts, newAccount)
-			}
-			accountMatchStats[accountName]++
+			log.Fatalf("no account found for transaction (this shouldn't happen)")
 		}
 
 		if err := arianClient.CreateTransaction(userID, tx); err != nil {
