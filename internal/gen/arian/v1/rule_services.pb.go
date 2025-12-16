@@ -454,7 +454,6 @@ func (x *UpdateRuleRequest) GetApplyToExisting() bool {
 
 type UpdateRuleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Rule          *Rule                  `protobuf:"bytes,1,opt,name=rule,proto3" json:"rule,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -487,13 +486,6 @@ func (x *UpdateRuleResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateRuleResponse.ProtoReflect.Descriptor instead.
 func (*UpdateRuleResponse) Descriptor() ([]byte, []int) {
 	return file_arian_v1_rule_services_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *UpdateRuleResponse) GetRule() *Rule {
-	if x != nil {
-		return x.Rule
-	}
-	return nil
 }
 
 type DeleteRuleRequest struct {
@@ -810,9 +802,8 @@ const file_arian_v1_rule_services_proto_rawDesc = "" +
 	"_is_activeB\x11\n" +
 	"\x0f_priority_orderB\v\n" +
 	"\t_merchantB\x14\n" +
-	"\x12_apply_to_existing\"8\n" +
-	"\x12UpdateRuleResponse\x12\"\n" +
-	"\x04rule\x18\x01 \x01(\v2\x0e.arian.v1.RuleR\x04rule\"Y\n" +
+	"\x12_apply_to_existing\"\x14\n" +
+	"\x12UpdateRuleResponse\"Y\n" +
 	"\x11DeleteRuleRequest\x12!\n" +
 	"\arule_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06ruleId\x12!\n" +
 	"\auser_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\"9\n" +
@@ -880,27 +871,26 @@ var file_arian_v1_rule_services_proto_depIdxs = []int32{
 	13, // 3: arian.v1.CreateRuleResponse.rule:type_name -> arian.v1.Rule
 	15, // 4: arian.v1.UpdateRuleRequest.update_mask:type_name -> google.protobuf.FieldMask
 	14, // 5: arian.v1.UpdateRuleRequest.conditions:type_name -> google.protobuf.Struct
-	13, // 6: arian.v1.UpdateRuleResponse.rule:type_name -> arian.v1.Rule
-	14, // 7: arian.v1.ValidateRuleRequest.conditions:type_name -> google.protobuf.Struct
-	11, // 8: arian.v1.ValidateRuleResponse.errors:type_name -> arian.v1.ValidationError
-	14, // 9: arian.v1.ValidateRuleResponse.normalized_conditions:type_name -> google.protobuf.Struct
-	0,  // 10: arian.v1.RuleService.ListRules:input_type -> arian.v1.ListRulesRequest
-	2,  // 11: arian.v1.RuleService.GetRule:input_type -> arian.v1.GetRuleRequest
-	4,  // 12: arian.v1.RuleService.CreateRule:input_type -> arian.v1.CreateRuleRequest
-	6,  // 13: arian.v1.RuleService.UpdateRule:input_type -> arian.v1.UpdateRuleRequest
-	8,  // 14: arian.v1.RuleService.DeleteRule:input_type -> arian.v1.DeleteRuleRequest
-	10, // 15: arian.v1.RuleService.ValidateRule:input_type -> arian.v1.ValidateRuleRequest
-	1,  // 16: arian.v1.RuleService.ListRules:output_type -> arian.v1.ListRulesResponse
-	3,  // 17: arian.v1.RuleService.GetRule:output_type -> arian.v1.GetRuleResponse
-	5,  // 18: arian.v1.RuleService.CreateRule:output_type -> arian.v1.CreateRuleResponse
-	7,  // 19: arian.v1.RuleService.UpdateRule:output_type -> arian.v1.UpdateRuleResponse
-	9,  // 20: arian.v1.RuleService.DeleteRule:output_type -> arian.v1.DeleteRuleResponse
-	12, // 21: arian.v1.RuleService.ValidateRule:output_type -> arian.v1.ValidateRuleResponse
-	16, // [16:22] is the sub-list for method output_type
-	10, // [10:16] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	14, // 6: arian.v1.ValidateRuleRequest.conditions:type_name -> google.protobuf.Struct
+	11, // 7: arian.v1.ValidateRuleResponse.errors:type_name -> arian.v1.ValidationError
+	14, // 8: arian.v1.ValidateRuleResponse.normalized_conditions:type_name -> google.protobuf.Struct
+	0,  // 9: arian.v1.RuleService.ListRules:input_type -> arian.v1.ListRulesRequest
+	2,  // 10: arian.v1.RuleService.GetRule:input_type -> arian.v1.GetRuleRequest
+	4,  // 11: arian.v1.RuleService.CreateRule:input_type -> arian.v1.CreateRuleRequest
+	6,  // 12: arian.v1.RuleService.UpdateRule:input_type -> arian.v1.UpdateRuleRequest
+	8,  // 13: arian.v1.RuleService.DeleteRule:input_type -> arian.v1.DeleteRuleRequest
+	10, // 14: arian.v1.RuleService.ValidateRule:input_type -> arian.v1.ValidateRuleRequest
+	1,  // 15: arian.v1.RuleService.ListRules:output_type -> arian.v1.ListRulesResponse
+	3,  // 16: arian.v1.RuleService.GetRule:output_type -> arian.v1.GetRuleResponse
+	5,  // 17: arian.v1.RuleService.CreateRule:output_type -> arian.v1.CreateRuleResponse
+	7,  // 18: arian.v1.RuleService.UpdateRule:output_type -> arian.v1.UpdateRuleResponse
+	9,  // 19: arian.v1.RuleService.DeleteRule:output_type -> arian.v1.DeleteRuleResponse
+	12, // 20: arian.v1.RuleService.ValidateRule:output_type -> arian.v1.ValidateRuleResponse
+	15, // [15:21] is the sub-list for method output_type
+	9,  // [9:15] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_arian_v1_rule_services_proto_init() }

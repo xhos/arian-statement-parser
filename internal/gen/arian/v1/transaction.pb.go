@@ -43,18 +43,14 @@ type Transaction struct {
 	UserNotes           *string `protobuf:"bytes,12,opt,name=user_notes,json=userNotes,proto3,oneof" json:"user_notes,omitempty"`
 	// balance after this tx
 	BalanceAfter *money.Money `protobuf:"bytes,13,opt,name=balance_after,json=balanceAfter,proto3,oneof" json:"balance_after,omitempty"`
-	// AI suggestions
-	Suggestions []string `protobuf:"bytes,14,rep,name=suggestions,proto3" json:"suggestions,omitempty"`
-	// receipt linkage
-	ReceiptId *int64 `protobuf:"varint,15,opt,name=receipt_id,json=receiptId,proto3,oneof" json:"receipt_id,omitempty"`
 	// FX details
-	ForeignAmount *money.Money           `protobuf:"bytes,16,opt,name=foreign_amount,json=foreignAmount,proto3,oneof" json:"foreign_amount,omitempty"`
-	ExchangeRate  *float64               `protobuf:"fixed64,17,opt,name=exchange_rate,json=exchangeRate,proto3,oneof" json:"exchange_rate,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	ForeignAmount *money.Money           `protobuf:"bytes,14,opt,name=foreign_amount,json=foreignAmount,proto3,oneof" json:"foreign_amount,omitempty"`
+	ExchangeRate  *float64               `protobuf:"fixed64,15,opt,name=exchange_rate,json=exchangeRate,proto3,oneof" json:"exchange_rate,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// additional fields for API responses
-	Category      *Category `protobuf:"bytes,20,opt,name=category,proto3,oneof" json:"category,omitempty"`
-	AccountName   *string   `protobuf:"bytes,21,opt,name=account_name,json=accountName,proto3,oneof" json:"account_name,omitempty"`
+	Category      *Category `protobuf:"bytes,18,opt,name=category,proto3,oneof" json:"category,omitempty"`
+	AccountName   *string   `protobuf:"bytes,19,opt,name=account_name,json=accountName,proto3,oneof" json:"account_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -178,20 +174,6 @@ func (x *Transaction) GetBalanceAfter() *money.Money {
 		return x.BalanceAfter
 	}
 	return nil
-}
-
-func (x *Transaction) GetSuggestions() []string {
-	if x != nil {
-		return x.Suggestions
-	}
-	return nil
-}
-
-func (x *Transaction) GetReceiptId() int64 {
-	if x != nil && x.ReceiptId != nil {
-		return *x.ReceiptId
-	}
-	return 0
 }
 
 func (x *Transaction) GetForeignAmount() *money.Money {
@@ -352,7 +334,7 @@ var File_arian_v1_transaction_proto protoreflect.FileDescriptor
 
 const file_arian_v1_transaction_proto_rawDesc = "" +
 	"\n" +
-	"\x1aarian/v1/transaction.proto\x12\barian.v1\x1a\x17arian/v1/category.proto\x1a\x14arian/v1/enums.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/type/money.proto\"\xa8\t\n" +
+	"\x1aarian/v1/transaction.proto\x12\barian.v1\x1a\x17arian/v1/category.proto\x1a\x14arian/v1/enums.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/type/money.proto\"\xd3\b\n" +
 	"\vTransaction\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x123\n" +
 	"\atx_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x06txDate\x12/\n" +
@@ -370,26 +352,21 @@ const file_arian_v1_transaction_proto_rawDesc = "" +
 	"\x15merchant_manually_set\x18\v \x01(\bR\x13merchantManuallySet\x12,\n" +
 	"\n" +
 	"user_notes\x18\f \x01(\tB\b\xbaH\x05r\x03\x18\xe8\aH\x04R\tuserNotes\x88\x01\x01\x12<\n" +
-	"\rbalance_after\x18\r \x01(\v2\x12.google.type.MoneyH\x05R\fbalanceAfter\x88\x01\x01\x12 \n" +
-	"\vsuggestions\x18\x0e \x03(\tR\vsuggestions\x12\"\n" +
+	"\rbalance_after\x18\r \x01(\v2\x12.google.type.MoneyH\x05R\fbalanceAfter\x88\x01\x01\x12>\n" +
+	"\x0eforeign_amount\x18\x0e \x01(\v2\x12.google.type.MoneyH\x06R\rforeignAmount\x88\x01\x01\x12A\n" +
+	"\rexchange_rate\x18\x0f \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00@\x8f@!\x00\x00\x00\x00\x00\x00\x00\x00H\aR\fexchangeRate\x88\x01\x01\x129\n" +
 	"\n" +
-	"receipt_id\x18\x0f \x01(\x03H\x06R\treceiptId\x88\x01\x01\x12>\n" +
-	"\x0eforeign_amount\x18\x10 \x01(\v2\x12.google.type.MoneyH\aR\rforeignAmount\x88\x01\x01\x12A\n" +
-	"\rexchange_rate\x18\x11 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00@\x8f@!\x00\x00\x00\x00\x00\x00\x00\x00H\bR\fexchangeRate\x88\x01\x01\x129\n" +
+	"created_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"created_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
-	"\n" +
-	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
-	"\bcategory\x18\x14 \x01(\v2\x12.arian.v1.CategoryH\tR\bcategory\x88\x01\x01\x12&\n" +
-	"\faccount_name\x18\x15 \x01(\tH\n" +
-	"R\vaccountName\x88\x01\x01B\v\n" +
+	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
+	"\bcategory\x18\x12 \x01(\v2\x12.arian.v1.CategoryH\bR\bcategory\x88\x01\x01\x12&\n" +
+	"\faccount_name\x18\x13 \x01(\tH\tR\vaccountName\x88\x01\x01B\v\n" +
 	"\t_email_idB\x0e\n" +
 	"\f_descriptionB\x0e\n" +
 	"\f_category_idB\v\n" +
 	"\t_merchantB\r\n" +
 	"\v_user_notesB\x10\n" +
-	"\x0e_balance_afterB\r\n" +
-	"\v_receipt_idB\x11\n" +
+	"\x0e_balance_afterB\x11\n" +
 	"\x0f_foreign_amountB\x10\n" +
 	"\x0e_exchange_rateB\v\n" +
 	"\t_categoryB\x0f\n" +

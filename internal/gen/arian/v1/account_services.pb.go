@@ -480,7 +480,6 @@ func (x *UpdateAccountRequest) GetColors() []string {
 
 type UpdateAccountResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Account       *Account               `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -513,13 +512,6 @@ func (x *UpdateAccountResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateAccountResponse.ProtoReflect.Descriptor instead.
 func (*UpdateAccountResponse) Descriptor() ([]byte, []int) {
 	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *UpdateAccountResponse) GetAccount() *Account {
-	if x != nil {
-		return x.Account
-	}
-	return nil
 }
 
 type DeleteAccountRequest struct {
@@ -618,454 +610,6 @@ func (x *DeleteAccountResponse) GetAffectedRows() int64 {
 	return 0
 }
 
-type SetAccountAnchorRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Balance       *money.Money           `protobuf:"bytes,2,opt,name=balance,proto3" json:"balance,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SetAccountAnchorRequest) Reset() {
-	*x = SetAccountAnchorRequest{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SetAccountAnchorRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SetAccountAnchorRequest) ProtoMessage() {}
-
-func (x *SetAccountAnchorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SetAccountAnchorRequest.ProtoReflect.Descriptor instead.
-func (*SetAccountAnchorRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *SetAccountAnchorRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SetAccountAnchorRequest) GetBalance() *money.Money {
-	if x != nil {
-		return x.Balance
-	}
-	return nil
-}
-
-type SetAccountAnchorResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AffectedRows  int64                  `protobuf:"varint,1,opt,name=affected_rows,json=affectedRows,proto3" json:"affected_rows,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SetAccountAnchorResponse) Reset() {
-	*x = SetAccountAnchorResponse{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SetAccountAnchorResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SetAccountAnchorResponse) ProtoMessage() {}
-
-func (x *SetAccountAnchorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SetAccountAnchorResponse.ProtoReflect.Descriptor instead.
-func (*SetAccountAnchorResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *SetAccountAnchorResponse) GetAffectedRows() int64 {
-	if x != nil {
-		return x.AffectedRows
-	}
-	return 0
-}
-
-type GetAccountBalanceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountBalanceRequest) Reset() {
-	*x = GetAccountBalanceRequest{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountBalanceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountBalanceRequest) ProtoMessage() {}
-
-func (x *GetAccountBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountBalanceRequest.ProtoReflect.Descriptor instead.
-func (*GetAccountBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *GetAccountBalanceRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type GetAccountBalanceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Balance       *money.Money           `protobuf:"bytes,1,opt,name=balance,proto3" json:"balance,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountBalanceResponse) Reset() {
-	*x = GetAccountBalanceResponse{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountBalanceResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountBalanceResponse) ProtoMessage() {}
-
-func (x *GetAccountBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountBalanceResponse.ProtoReflect.Descriptor instead.
-func (*GetAccountBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *GetAccountBalanceResponse) GetBalance() *money.Money {
-	if x != nil {
-		return x.Balance
-	}
-	return nil
-}
-
-type GetAccountsCountRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountsCountRequest) Reset() {
-	*x = GetAccountsCountRequest{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountsCountRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountsCountRequest) ProtoMessage() {}
-
-func (x *GetAccountsCountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountsCountRequest.ProtoReflect.Descriptor instead.
-func (*GetAccountsCountRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *GetAccountsCountRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type GetAccountsCountResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountsCountResponse) Reset() {
-	*x = GetAccountsCountResponse{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountsCountResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountsCountResponse) ProtoMessage() {}
-
-func (x *GetAccountsCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountsCountResponse.ProtoReflect.Descriptor instead.
-func (*GetAccountsCountResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *GetAccountsCountResponse) GetCount() int64 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
-}
-
-type SyncAccountBalancesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     int64                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SyncAccountBalancesRequest) Reset() {
-	*x = SyncAccountBalancesRequest{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SyncAccountBalancesRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SyncAccountBalancesRequest) ProtoMessage() {}
-
-func (x *SyncAccountBalancesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SyncAccountBalancesRequest.ProtoReflect.Descriptor instead.
-func (*SyncAccountBalancesRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *SyncAccountBalancesRequest) GetAccountId() int64 {
-	if x != nil {
-		return x.AccountId
-	}
-	return 0
-}
-
-type SyncAccountBalancesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SyncAccountBalancesResponse) Reset() {
-	*x = SyncAccountBalancesResponse{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SyncAccountBalancesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SyncAccountBalancesResponse) ProtoMessage() {}
-
-func (x *SyncAccountBalancesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SyncAccountBalancesResponse.ProtoReflect.Descriptor instead.
-func (*SyncAccountBalancesResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{17}
-}
-
-type GetAnchorBalanceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAnchorBalanceRequest) Reset() {
-	*x = GetAnchorBalanceRequest{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAnchorBalanceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAnchorBalanceRequest) ProtoMessage() {}
-
-func (x *GetAnchorBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAnchorBalanceRequest.ProtoReflect.Descriptor instead.
-func (*GetAnchorBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *GetAnchorBalanceRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type GetAnchorBalanceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AnchorBalance *money.Money           `protobuf:"bytes,1,opt,name=anchor_balance,json=anchorBalance,proto3" json:"anchor_balance,omitempty"`
-	Currency      string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAnchorBalanceResponse) Reset() {
-	*x = GetAnchorBalanceResponse{}
-	mi := &file_arian_v1_account_services_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAnchorBalanceResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAnchorBalanceResponse) ProtoMessage() {}
-
-func (x *GetAnchorBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_account_services_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAnchorBalanceResponse.ProtoReflect.Descriptor instead.
-func (*GetAnchorBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_account_services_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *GetAnchorBalanceResponse) GetAnchorBalance() *money.Money {
-	if x != nil {
-		return x.AnchorBalance
-	}
-	return nil
-}
-
-func (x *GetAnchorBalanceResponse) GetCurrency() string {
-	if x != nil {
-		return x.Currency
-	}
-	return ""
-}
-
 var File_arian_v1_account_services_proto protoreflect.FileDescriptor
 
 const file_arian_v1_account_services_proto_rawDesc = "" +
@@ -1113,48 +657,20 @@ const file_arian_v1_account_services_proto_rawDesc = "" +
 	"\x06_aliasB\x0e\n" +
 	"\f_anchor_dateB\x11\n" +
 	"\x0f_anchor_balanceB\x10\n" +
-	"\x0e_main_currency\"D\n" +
-	"\x15UpdateAccountResponse\x12+\n" +
-	"\aaccount\x18\x01 \x01(\v2\x11.arian.v1.AccountR\aaccount\"R\n" +
+	"\x0e_main_currency\"\x17\n" +
+	"\x15UpdateAccountResponse\"R\n" +
 	"\x14DeleteAccountRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x17\n" +
 	"\x02id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"<\n" +
 	"\x15DeleteAccountResponse\x12#\n" +
-	"\raffected_rows\x18\x01 \x01(\x03R\faffectedRows\"`\n" +
-	"\x17SetAccountAnchorRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\x12,\n" +
-	"\abalance\x18\x02 \x01(\v2\x12.google.type.MoneyR\abalance\"?\n" +
-	"\x18SetAccountAnchorResponse\x12#\n" +
-	"\raffected_rows\x18\x01 \x01(\x03R\faffectedRows\"3\n" +
-	"\x18GetAccountBalanceRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"I\n" +
-	"\x19GetAccountBalanceResponse\x12,\n" +
-	"\abalance\x18\x01 \x01(\v2\x12.google.type.MoneyR\abalance\"<\n" +
-	"\x17GetAccountsCountRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\"0\n" +
-	"\x18GetAccountsCountResponse\x12\x14\n" +
-	"\x05count\x18\x01 \x01(\x03R\x05count\"D\n" +
-	"\x1aSyncAccountBalancesRequest\x12&\n" +
-	"\n" +
-	"account_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\taccountId\"\x1d\n" +
-	"\x1bSyncAccountBalancesResponse\"2\n" +
-	"\x17GetAnchorBalanceRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"q\n" +
-	"\x18GetAnchorBalanceResponse\x129\n" +
-	"\x0eanchor_balance\x18\x01 \x01(\v2\x12.google.type.MoneyR\ranchorBalance\x12\x1a\n" +
-	"\bcurrency\x18\x02 \x01(\tR\bcurrency2\xf1\x06\n" +
+	"\raffected_rows\x18\x01 \x01(\x03R\faffectedRows2\x9e\x03\n" +
 	"\x0eAccountService\x12M\n" +
 	"\fListAccounts\x12\x1d.arian.v1.ListAccountsRequest\x1a\x1e.arian.v1.ListAccountsResponse\x12G\n" +
 	"\n" +
 	"GetAccount\x12\x1b.arian.v1.GetAccountRequest\x1a\x1c.arian.v1.GetAccountResponse\x12P\n" +
 	"\rCreateAccount\x12\x1e.arian.v1.CreateAccountRequest\x1a\x1f.arian.v1.CreateAccountResponse\x12P\n" +
 	"\rUpdateAccount\x12\x1e.arian.v1.UpdateAccountRequest\x1a\x1f.arian.v1.UpdateAccountResponse\x12P\n" +
-	"\rDeleteAccount\x12\x1e.arian.v1.DeleteAccountRequest\x1a\x1f.arian.v1.DeleteAccountResponse\x12Y\n" +
-	"\x10SetAccountAnchor\x12!.arian.v1.SetAccountAnchorRequest\x1a\".arian.v1.SetAccountAnchorResponse\x12\\\n" +
-	"\x11GetAccountBalance\x12\".arian.v1.GetAccountBalanceRequest\x1a#.arian.v1.GetAccountBalanceResponse\x12Y\n" +
-	"\x10GetAnchorBalance\x12!.arian.v1.GetAnchorBalanceRequest\x1a\".arian.v1.GetAnchorBalanceResponse\x12Y\n" +
-	"\x10GetAccountsCount\x12!.arian.v1.GetAccountsCountRequest\x1a\".arian.v1.GetAccountsCountResponse\x12b\n" +
-	"\x13SyncAccountBalances\x12$.arian.v1.SyncAccountBalancesRequest\x1a%.arian.v1.SyncAccountBalancesResponseB\x91\x01\n" +
+	"\rDeleteAccount\x12\x1e.arian.v1.DeleteAccountRequest\x1a\x1f.arian.v1.DeleteAccountResponseB\x91\x01\n" +
 	"\fcom.arian.v1B\x14AccountServicesProtoP\x01Z*arian-parser/internal/gen/arian/v1;arianv1\xa2\x02\x03AXX\xaa\x02\bArian.V1\xca\x02\bArian\\V1\xe2\x02\x14Arian\\V1\\GPBMetadata\xea\x02\tArian::V1b\x06proto3"
 
 var (
@@ -1169,73 +685,49 @@ func file_arian_v1_account_services_proto_rawDescGZIP() []byte {
 	return file_arian_v1_account_services_proto_rawDescData
 }
 
-var file_arian_v1_account_services_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_arian_v1_account_services_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_arian_v1_account_services_proto_goTypes = []any{
-	(*ListAccountsRequest)(nil),         // 0: arian.v1.ListAccountsRequest
-	(*ListAccountsResponse)(nil),        // 1: arian.v1.ListAccountsResponse
-	(*GetAccountRequest)(nil),           // 2: arian.v1.GetAccountRequest
-	(*GetAccountResponse)(nil),          // 3: arian.v1.GetAccountResponse
-	(*CreateAccountRequest)(nil),        // 4: arian.v1.CreateAccountRequest
-	(*CreateAccountResponse)(nil),       // 5: arian.v1.CreateAccountResponse
-	(*UpdateAccountRequest)(nil),        // 6: arian.v1.UpdateAccountRequest
-	(*UpdateAccountResponse)(nil),       // 7: arian.v1.UpdateAccountResponse
-	(*DeleteAccountRequest)(nil),        // 8: arian.v1.DeleteAccountRequest
-	(*DeleteAccountResponse)(nil),       // 9: arian.v1.DeleteAccountResponse
-	(*SetAccountAnchorRequest)(nil),     // 10: arian.v1.SetAccountAnchorRequest
-	(*SetAccountAnchorResponse)(nil),    // 11: arian.v1.SetAccountAnchorResponse
-	(*GetAccountBalanceRequest)(nil),    // 12: arian.v1.GetAccountBalanceRequest
-	(*GetAccountBalanceResponse)(nil),   // 13: arian.v1.GetAccountBalanceResponse
-	(*GetAccountsCountRequest)(nil),     // 14: arian.v1.GetAccountsCountRequest
-	(*GetAccountsCountResponse)(nil),    // 15: arian.v1.GetAccountsCountResponse
-	(*SyncAccountBalancesRequest)(nil),  // 16: arian.v1.SyncAccountBalancesRequest
-	(*SyncAccountBalancesResponse)(nil), // 17: arian.v1.SyncAccountBalancesResponse
-	(*GetAnchorBalanceRequest)(nil),     // 18: arian.v1.GetAnchorBalanceRequest
-	(*GetAnchorBalanceResponse)(nil),    // 19: arian.v1.GetAnchorBalanceResponse
-	(*Account)(nil),                     // 20: arian.v1.Account
-	(AccountType)(0),                    // 21: arian.v1.AccountType
-	(*money.Money)(nil),                 // 22: google.type.Money
-	(*fieldmaskpb.FieldMask)(nil),       // 23: google.protobuf.FieldMask
-	(*timestamppb.Timestamp)(nil),       // 24: google.protobuf.Timestamp
+	(*ListAccountsRequest)(nil),   // 0: arian.v1.ListAccountsRequest
+	(*ListAccountsResponse)(nil),  // 1: arian.v1.ListAccountsResponse
+	(*GetAccountRequest)(nil),     // 2: arian.v1.GetAccountRequest
+	(*GetAccountResponse)(nil),    // 3: arian.v1.GetAccountResponse
+	(*CreateAccountRequest)(nil),  // 4: arian.v1.CreateAccountRequest
+	(*CreateAccountResponse)(nil), // 5: arian.v1.CreateAccountResponse
+	(*UpdateAccountRequest)(nil),  // 6: arian.v1.UpdateAccountRequest
+	(*UpdateAccountResponse)(nil), // 7: arian.v1.UpdateAccountResponse
+	(*DeleteAccountRequest)(nil),  // 8: arian.v1.DeleteAccountRequest
+	(*DeleteAccountResponse)(nil), // 9: arian.v1.DeleteAccountResponse
+	(*Account)(nil),               // 10: arian.v1.Account
+	(AccountType)(0),              // 11: arian.v1.AccountType
+	(*money.Money)(nil),           // 12: google.type.Money
+	(*fieldmaskpb.FieldMask)(nil), // 13: google.protobuf.FieldMask
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
 }
 var file_arian_v1_account_services_proto_depIdxs = []int32{
-	20, // 0: arian.v1.ListAccountsResponse.accounts:type_name -> arian.v1.Account
-	20, // 1: arian.v1.GetAccountResponse.account:type_name -> arian.v1.Account
-	21, // 2: arian.v1.CreateAccountRequest.type:type_name -> arian.v1.AccountType
-	22, // 3: arian.v1.CreateAccountRequest.anchor_balance:type_name -> google.type.Money
-	20, // 4: arian.v1.CreateAccountResponse.account:type_name -> arian.v1.Account
-	23, // 5: arian.v1.UpdateAccountRequest.update_mask:type_name -> google.protobuf.FieldMask
-	21, // 6: arian.v1.UpdateAccountRequest.account_type:type_name -> arian.v1.AccountType
-	24, // 7: arian.v1.UpdateAccountRequest.anchor_date:type_name -> google.protobuf.Timestamp
-	22, // 8: arian.v1.UpdateAccountRequest.anchor_balance:type_name -> google.type.Money
-	20, // 9: arian.v1.UpdateAccountResponse.account:type_name -> arian.v1.Account
-	22, // 10: arian.v1.SetAccountAnchorRequest.balance:type_name -> google.type.Money
-	22, // 11: arian.v1.GetAccountBalanceResponse.balance:type_name -> google.type.Money
-	22, // 12: arian.v1.GetAnchorBalanceResponse.anchor_balance:type_name -> google.type.Money
-	0,  // 13: arian.v1.AccountService.ListAccounts:input_type -> arian.v1.ListAccountsRequest
-	2,  // 14: arian.v1.AccountService.GetAccount:input_type -> arian.v1.GetAccountRequest
-	4,  // 15: arian.v1.AccountService.CreateAccount:input_type -> arian.v1.CreateAccountRequest
-	6,  // 16: arian.v1.AccountService.UpdateAccount:input_type -> arian.v1.UpdateAccountRequest
-	8,  // 17: arian.v1.AccountService.DeleteAccount:input_type -> arian.v1.DeleteAccountRequest
-	10, // 18: arian.v1.AccountService.SetAccountAnchor:input_type -> arian.v1.SetAccountAnchorRequest
-	12, // 19: arian.v1.AccountService.GetAccountBalance:input_type -> arian.v1.GetAccountBalanceRequest
-	18, // 20: arian.v1.AccountService.GetAnchorBalance:input_type -> arian.v1.GetAnchorBalanceRequest
-	14, // 21: arian.v1.AccountService.GetAccountsCount:input_type -> arian.v1.GetAccountsCountRequest
-	16, // 22: arian.v1.AccountService.SyncAccountBalances:input_type -> arian.v1.SyncAccountBalancesRequest
-	1,  // 23: arian.v1.AccountService.ListAccounts:output_type -> arian.v1.ListAccountsResponse
-	3,  // 24: arian.v1.AccountService.GetAccount:output_type -> arian.v1.GetAccountResponse
-	5,  // 25: arian.v1.AccountService.CreateAccount:output_type -> arian.v1.CreateAccountResponse
-	7,  // 26: arian.v1.AccountService.UpdateAccount:output_type -> arian.v1.UpdateAccountResponse
-	9,  // 27: arian.v1.AccountService.DeleteAccount:output_type -> arian.v1.DeleteAccountResponse
-	11, // 28: arian.v1.AccountService.SetAccountAnchor:output_type -> arian.v1.SetAccountAnchorResponse
-	13, // 29: arian.v1.AccountService.GetAccountBalance:output_type -> arian.v1.GetAccountBalanceResponse
-	19, // 30: arian.v1.AccountService.GetAnchorBalance:output_type -> arian.v1.GetAnchorBalanceResponse
-	15, // 31: arian.v1.AccountService.GetAccountsCount:output_type -> arian.v1.GetAccountsCountResponse
-	17, // 32: arian.v1.AccountService.SyncAccountBalances:output_type -> arian.v1.SyncAccountBalancesResponse
-	23, // [23:33] is the sub-list for method output_type
-	13, // [13:23] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	10, // 0: arian.v1.ListAccountsResponse.accounts:type_name -> arian.v1.Account
+	10, // 1: arian.v1.GetAccountResponse.account:type_name -> arian.v1.Account
+	11, // 2: arian.v1.CreateAccountRequest.type:type_name -> arian.v1.AccountType
+	12, // 3: arian.v1.CreateAccountRequest.anchor_balance:type_name -> google.type.Money
+	10, // 4: arian.v1.CreateAccountResponse.account:type_name -> arian.v1.Account
+	13, // 5: arian.v1.UpdateAccountRequest.update_mask:type_name -> google.protobuf.FieldMask
+	11, // 6: arian.v1.UpdateAccountRequest.account_type:type_name -> arian.v1.AccountType
+	14, // 7: arian.v1.UpdateAccountRequest.anchor_date:type_name -> google.protobuf.Timestamp
+	12, // 8: arian.v1.UpdateAccountRequest.anchor_balance:type_name -> google.type.Money
+	0,  // 9: arian.v1.AccountService.ListAccounts:input_type -> arian.v1.ListAccountsRequest
+	2,  // 10: arian.v1.AccountService.GetAccount:input_type -> arian.v1.GetAccountRequest
+	4,  // 11: arian.v1.AccountService.CreateAccount:input_type -> arian.v1.CreateAccountRequest
+	6,  // 12: arian.v1.AccountService.UpdateAccount:input_type -> arian.v1.UpdateAccountRequest
+	8,  // 13: arian.v1.AccountService.DeleteAccount:input_type -> arian.v1.DeleteAccountRequest
+	1,  // 14: arian.v1.AccountService.ListAccounts:output_type -> arian.v1.ListAccountsResponse
+	3,  // 15: arian.v1.AccountService.GetAccount:output_type -> arian.v1.GetAccountResponse
+	5,  // 16: arian.v1.AccountService.CreateAccount:output_type -> arian.v1.CreateAccountResponse
+	7,  // 17: arian.v1.AccountService.UpdateAccount:output_type -> arian.v1.UpdateAccountResponse
+	9,  // 18: arian.v1.AccountService.DeleteAccount:output_type -> arian.v1.DeleteAccountResponse
+	14, // [14:19] is the sub-list for method output_type
+	9,  // [9:14] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_arian_v1_account_services_proto_init() }
@@ -1253,7 +745,7 @@ func file_arian_v1_account_services_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arian_v1_account_services_proto_rawDesc), len(file_arian_v1_account_services_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   20,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

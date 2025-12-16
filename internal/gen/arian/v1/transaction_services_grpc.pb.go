@@ -19,21 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TransactionService_ListTransactions_FullMethodName             = "/arian.v1.TransactionService/ListTransactions"
-	TransactionService_GetTransaction_FullMethodName               = "/arian.v1.TransactionService/GetTransaction"
-	TransactionService_CreateTransaction_FullMethodName            = "/arian.v1.TransactionService/CreateTransaction"
-	TransactionService_UpdateTransaction_FullMethodName            = "/arian.v1.TransactionService/UpdateTransaction"
-	TransactionService_DeleteTransaction_FullMethodName            = "/arian.v1.TransactionService/DeleteTransaction"
-	TransactionService_BulkDeleteTransactions_FullMethodName       = "/arian.v1.TransactionService/BulkDeleteTransactions"
-	TransactionService_CategorizeTransaction_FullMethodName        = "/arian.v1.TransactionService/CategorizeTransaction"
-	TransactionService_SearchTransactions_FullMethodName           = "/arian.v1.TransactionService/SearchTransactions"
-	TransactionService_GetTransactionsByAccount_FullMethodName     = "/arian.v1.TransactionService/GetTransactionsByAccount"
-	TransactionService_GetUncategorizedTransactions_FullMethodName = "/arian.v1.TransactionService/GetUncategorizedTransactions"
-	TransactionService_BulkCategorizeTransactions_FullMethodName   = "/arian.v1.TransactionService/BulkCategorizeTransactions"
-	TransactionService_GetTransactionCountByAccount_FullMethodName = "/arian.v1.TransactionService/GetTransactionCountByAccount"
-	TransactionService_FindCandidateTransactions_FullMethodName    = "/arian.v1.TransactionService/FindCandidateTransactions"
-	TransactionService_IdentifyMerchant_FullMethodName             = "/arian.v1.TransactionService/IdentifyMerchant"
-	TransactionService_SetTransactionReceipt_FullMethodName        = "/arian.v1.TransactionService/SetTransactionReceipt"
+	TransactionService_ListTransactions_FullMethodName       = "/arian.v1.TransactionService/ListTransactions"
+	TransactionService_GetTransaction_FullMethodName         = "/arian.v1.TransactionService/GetTransaction"
+	TransactionService_CreateTransaction_FullMethodName      = "/arian.v1.TransactionService/CreateTransaction"
+	TransactionService_UpdateTransaction_FullMethodName      = "/arian.v1.TransactionService/UpdateTransaction"
+	TransactionService_DeleteTransaction_FullMethodName      = "/arian.v1.TransactionService/DeleteTransaction"
+	TransactionService_CategorizeTransactions_FullMethodName = "/arian.v1.TransactionService/CategorizeTransactions"
 )
 
 // TransactionServiceClient is the client API for TransactionService service.
@@ -45,16 +36,7 @@ type TransactionServiceClient interface {
 	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
 	UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error)
 	DeleteTransaction(ctx context.Context, in *DeleteTransactionRequest, opts ...grpc.CallOption) (*DeleteTransactionResponse, error)
-	BulkDeleteTransactions(ctx context.Context, in *BulkDeleteTransactionsRequest, opts ...grpc.CallOption) (*BulkDeleteTransactionsResponse, error)
-	CategorizeTransaction(ctx context.Context, in *CategorizeTransactionRequest, opts ...grpc.CallOption) (*CategorizeTransactionResponse, error)
-	SearchTransactions(ctx context.Context, in *SearchTransactionsRequest, opts ...grpc.CallOption) (*SearchTransactionsResponse, error)
-	GetTransactionsByAccount(ctx context.Context, in *GetTransactionsByAccountRequest, opts ...grpc.CallOption) (*GetTransactionsByAccountResponse, error)
-	GetUncategorizedTransactions(ctx context.Context, in *GetUncategorizedTransactionsRequest, opts ...grpc.CallOption) (*GetUncategorizedTransactionsResponse, error)
-	BulkCategorizeTransactions(ctx context.Context, in *BulkCategorizeTransactionsRequest, opts ...grpc.CallOption) (*BulkCategorizeTransactionsResponse, error)
-	GetTransactionCountByAccount(ctx context.Context, in *GetTransactionCountByAccountRequest, opts ...grpc.CallOption) (*GetTransactionCountByAccountResponse, error)
-	FindCandidateTransactions(ctx context.Context, in *FindCandidateTransactionsRequest, opts ...grpc.CallOption) (*FindCandidateTransactionsResponse, error)
-	IdentifyMerchant(ctx context.Context, in *IdentifyMerchantRequest, opts ...grpc.CallOption) (*IdentifyMerchantResponse, error)
-	SetTransactionReceipt(ctx context.Context, in *SetTransactionReceiptRequest, opts ...grpc.CallOption) (*SetTransactionReceiptResponse, error)
+	CategorizeTransactions(ctx context.Context, in *CategorizeTransactionsRequest, opts ...grpc.CallOption) (*CategorizeTransactionsResponse, error)
 }
 
 type transactionServiceClient struct {
@@ -115,100 +97,10 @@ func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *De
 	return out, nil
 }
 
-func (c *transactionServiceClient) BulkDeleteTransactions(ctx context.Context, in *BulkDeleteTransactionsRequest, opts ...grpc.CallOption) (*BulkDeleteTransactionsResponse, error) {
+func (c *transactionServiceClient) CategorizeTransactions(ctx context.Context, in *CategorizeTransactionsRequest, opts ...grpc.CallOption) (*CategorizeTransactionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BulkDeleteTransactionsResponse)
-	err := c.cc.Invoke(ctx, TransactionService_BulkDeleteTransactions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) CategorizeTransaction(ctx context.Context, in *CategorizeTransactionRequest, opts ...grpc.CallOption) (*CategorizeTransactionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CategorizeTransactionResponse)
-	err := c.cc.Invoke(ctx, TransactionService_CategorizeTransaction_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) SearchTransactions(ctx context.Context, in *SearchTransactionsRequest, opts ...grpc.CallOption) (*SearchTransactionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchTransactionsResponse)
-	err := c.cc.Invoke(ctx, TransactionService_SearchTransactions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) GetTransactionsByAccount(ctx context.Context, in *GetTransactionsByAccountRequest, opts ...grpc.CallOption) (*GetTransactionsByAccountResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTransactionsByAccountResponse)
-	err := c.cc.Invoke(ctx, TransactionService_GetTransactionsByAccount_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) GetUncategorizedTransactions(ctx context.Context, in *GetUncategorizedTransactionsRequest, opts ...grpc.CallOption) (*GetUncategorizedTransactionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUncategorizedTransactionsResponse)
-	err := c.cc.Invoke(ctx, TransactionService_GetUncategorizedTransactions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) BulkCategorizeTransactions(ctx context.Context, in *BulkCategorizeTransactionsRequest, opts ...grpc.CallOption) (*BulkCategorizeTransactionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BulkCategorizeTransactionsResponse)
-	err := c.cc.Invoke(ctx, TransactionService_BulkCategorizeTransactions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) GetTransactionCountByAccount(ctx context.Context, in *GetTransactionCountByAccountRequest, opts ...grpc.CallOption) (*GetTransactionCountByAccountResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTransactionCountByAccountResponse)
-	err := c.cc.Invoke(ctx, TransactionService_GetTransactionCountByAccount_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) FindCandidateTransactions(ctx context.Context, in *FindCandidateTransactionsRequest, opts ...grpc.CallOption) (*FindCandidateTransactionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FindCandidateTransactionsResponse)
-	err := c.cc.Invoke(ctx, TransactionService_FindCandidateTransactions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) IdentifyMerchant(ctx context.Context, in *IdentifyMerchantRequest, opts ...grpc.CallOption) (*IdentifyMerchantResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IdentifyMerchantResponse)
-	err := c.cc.Invoke(ctx, TransactionService_IdentifyMerchant_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) SetTransactionReceipt(ctx context.Context, in *SetTransactionReceiptRequest, opts ...grpc.CallOption) (*SetTransactionReceiptResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SetTransactionReceiptResponse)
-	err := c.cc.Invoke(ctx, TransactionService_SetTransactionReceipt_FullMethodName, in, out, cOpts...)
+	out := new(CategorizeTransactionsResponse)
+	err := c.cc.Invoke(ctx, TransactionService_CategorizeTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -224,16 +116,7 @@ type TransactionServiceServer interface {
 	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
 	UpdateTransaction(context.Context, *UpdateTransactionRequest) (*UpdateTransactionResponse, error)
 	DeleteTransaction(context.Context, *DeleteTransactionRequest) (*DeleteTransactionResponse, error)
-	BulkDeleteTransactions(context.Context, *BulkDeleteTransactionsRequest) (*BulkDeleteTransactionsResponse, error)
-	CategorizeTransaction(context.Context, *CategorizeTransactionRequest) (*CategorizeTransactionResponse, error)
-	SearchTransactions(context.Context, *SearchTransactionsRequest) (*SearchTransactionsResponse, error)
-	GetTransactionsByAccount(context.Context, *GetTransactionsByAccountRequest) (*GetTransactionsByAccountResponse, error)
-	GetUncategorizedTransactions(context.Context, *GetUncategorizedTransactionsRequest) (*GetUncategorizedTransactionsResponse, error)
-	BulkCategorizeTransactions(context.Context, *BulkCategorizeTransactionsRequest) (*BulkCategorizeTransactionsResponse, error)
-	GetTransactionCountByAccount(context.Context, *GetTransactionCountByAccountRequest) (*GetTransactionCountByAccountResponse, error)
-	FindCandidateTransactions(context.Context, *FindCandidateTransactionsRequest) (*FindCandidateTransactionsResponse, error)
-	IdentifyMerchant(context.Context, *IdentifyMerchantRequest) (*IdentifyMerchantResponse, error)
-	SetTransactionReceipt(context.Context, *SetTransactionReceiptRequest) (*SetTransactionReceiptResponse, error)
+	CategorizeTransactions(context.Context, *CategorizeTransactionsRequest) (*CategorizeTransactionsResponse, error)
 }
 
 // UnimplementedTransactionServiceServer should be embedded to have
@@ -258,35 +141,8 @@ func (UnimplementedTransactionServiceServer) UpdateTransaction(context.Context, 
 func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *DeleteTransactionRequest) (*DeleteTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) BulkDeleteTransactions(context.Context, *BulkDeleteTransactionsRequest) (*BulkDeleteTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BulkDeleteTransactions not implemented")
-}
-func (UnimplementedTransactionServiceServer) CategorizeTransaction(context.Context, *CategorizeTransactionRequest) (*CategorizeTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CategorizeTransaction not implemented")
-}
-func (UnimplementedTransactionServiceServer) SearchTransactions(context.Context, *SearchTransactionsRequest) (*SearchTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SearchTransactions not implemented")
-}
-func (UnimplementedTransactionServiceServer) GetTransactionsByAccount(context.Context, *GetTransactionsByAccountRequest) (*GetTransactionsByAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionsByAccount not implemented")
-}
-func (UnimplementedTransactionServiceServer) GetUncategorizedTransactions(context.Context, *GetUncategorizedTransactionsRequest) (*GetUncategorizedTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUncategorizedTransactions not implemented")
-}
-func (UnimplementedTransactionServiceServer) BulkCategorizeTransactions(context.Context, *BulkCategorizeTransactionsRequest) (*BulkCategorizeTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BulkCategorizeTransactions not implemented")
-}
-func (UnimplementedTransactionServiceServer) GetTransactionCountByAccount(context.Context, *GetTransactionCountByAccountRequest) (*GetTransactionCountByAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionCountByAccount not implemented")
-}
-func (UnimplementedTransactionServiceServer) FindCandidateTransactions(context.Context, *FindCandidateTransactionsRequest) (*FindCandidateTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindCandidateTransactions not implemented")
-}
-func (UnimplementedTransactionServiceServer) IdentifyMerchant(context.Context, *IdentifyMerchantRequest) (*IdentifyMerchantResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IdentifyMerchant not implemented")
-}
-func (UnimplementedTransactionServiceServer) SetTransactionReceipt(context.Context, *SetTransactionReceiptRequest) (*SetTransactionReceiptResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetTransactionReceipt not implemented")
+func (UnimplementedTransactionServiceServer) CategorizeTransactions(context.Context, *CategorizeTransactionsRequest) (*CategorizeTransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CategorizeTransactions not implemented")
 }
 func (UnimplementedTransactionServiceServer) testEmbeddedByValue() {}
 
@@ -398,182 +254,20 @@ func _TransactionService_DeleteTransaction_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_BulkDeleteTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BulkDeleteTransactionsRequest)
+func _TransactionService_CategorizeTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CategorizeTransactionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).BulkDeleteTransactions(ctx, in)
+		return srv.(TransactionServiceServer).CategorizeTransactions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TransactionService_BulkDeleteTransactions_FullMethodName,
+		FullMethod: TransactionService_CategorizeTransactions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).BulkDeleteTransactions(ctx, req.(*BulkDeleteTransactionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_CategorizeTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CategorizeTransactionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).CategorizeTransaction(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_CategorizeTransaction_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CategorizeTransaction(ctx, req.(*CategorizeTransactionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_SearchTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchTransactionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).SearchTransactions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_SearchTransactions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).SearchTransactions(ctx, req.(*SearchTransactionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_GetTransactionsByAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTransactionsByAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetTransactionsByAccount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_GetTransactionsByAccount_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionsByAccount(ctx, req.(*GetTransactionsByAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_GetUncategorizedTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUncategorizedTransactionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetUncategorizedTransactions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_GetUncategorizedTransactions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetUncategorizedTransactions(ctx, req.(*GetUncategorizedTransactionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_BulkCategorizeTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BulkCategorizeTransactionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).BulkCategorizeTransactions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_BulkCategorizeTransactions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).BulkCategorizeTransactions(ctx, req.(*BulkCategorizeTransactionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_GetTransactionCountByAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTransactionCountByAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetTransactionCountByAccount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_GetTransactionCountByAccount_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionCountByAccount(ctx, req.(*GetTransactionCountByAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_FindCandidateTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindCandidateTransactionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).FindCandidateTransactions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_FindCandidateTransactions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).FindCandidateTransactions(ctx, req.(*FindCandidateTransactionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_IdentifyMerchant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentifyMerchantRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).IdentifyMerchant(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_IdentifyMerchant_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).IdentifyMerchant(ctx, req.(*IdentifyMerchantRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_SetTransactionReceipt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetTransactionReceiptRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).SetTransactionReceipt(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TransactionService_SetTransactionReceipt_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).SetTransactionReceipt(ctx, req.(*SetTransactionReceiptRequest))
+		return srv.(TransactionServiceServer).CategorizeTransactions(ctx, req.(*CategorizeTransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -606,44 +300,8 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TransactionService_DeleteTransaction_Handler,
 		},
 		{
-			MethodName: "BulkDeleteTransactions",
-			Handler:    _TransactionService_BulkDeleteTransactions_Handler,
-		},
-		{
-			MethodName: "CategorizeTransaction",
-			Handler:    _TransactionService_CategorizeTransaction_Handler,
-		},
-		{
-			MethodName: "SearchTransactions",
-			Handler:    _TransactionService_SearchTransactions_Handler,
-		},
-		{
-			MethodName: "GetTransactionsByAccount",
-			Handler:    _TransactionService_GetTransactionsByAccount_Handler,
-		},
-		{
-			MethodName: "GetUncategorizedTransactions",
-			Handler:    _TransactionService_GetUncategorizedTransactions_Handler,
-		},
-		{
-			MethodName: "BulkCategorizeTransactions",
-			Handler:    _TransactionService_BulkCategorizeTransactions_Handler,
-		},
-		{
-			MethodName: "GetTransactionCountByAccount",
-			Handler:    _TransactionService_GetTransactionCountByAccount_Handler,
-		},
-		{
-			MethodName: "FindCandidateTransactions",
-			Handler:    _TransactionService_FindCandidateTransactions_Handler,
-		},
-		{
-			MethodName: "IdentifyMerchant",
-			Handler:    _TransactionService_IdentifyMerchant_Handler,
-		},
-		{
-			MethodName: "SetTransactionReceipt",
-			Handler:    _TransactionService_SetTransactionReceipt_Handler,
+			MethodName: "CategorizeTransactions",
+			Handler:    _TransactionService_CategorizeTransactions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

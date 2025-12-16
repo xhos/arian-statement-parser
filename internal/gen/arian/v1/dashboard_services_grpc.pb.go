@@ -19,34 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DashboardService_GetDashboardSummary_FullMethodName  = "/arian.v1.DashboardService/GetDashboardSummary"
-	DashboardService_GetTrendData_FullMethodName         = "/arian.v1.DashboardService/GetTrendData"
-	DashboardService_GetMonthlyComparison_FullMethodName = "/arian.v1.DashboardService/GetMonthlyComparison"
-	DashboardService_GetTopCategories_FullMethodName     = "/arian.v1.DashboardService/GetTopCategories"
-	DashboardService_GetTopMerchants_FullMethodName      = "/arian.v1.DashboardService/GetTopMerchants"
-	DashboardService_GetAccountSummary_FullMethodName    = "/arian.v1.DashboardService/GetAccountSummary"
-	DashboardService_GetAccountBalances_FullMethodName   = "/arian.v1.DashboardService/GetAccountBalances"
-	DashboardService_GetSpendingTrends_FullMethodName    = "/arian.v1.DashboardService/GetSpendingTrends"
-	DashboardService_GetTotalBalance_FullMethodName      = "/arian.v1.DashboardService/GetTotalBalance"
-	DashboardService_GetTotalDebt_FullMethodName         = "/arian.v1.DashboardService/GetTotalDebt"
-	DashboardService_GetNetBalance_FullMethodName        = "/arian.v1.DashboardService/GetNetBalance"
+	DashboardService_GetDashboardSummary_FullMethodName           = "/arian.v1.DashboardService/GetDashboardSummary"
+	DashboardService_GetMonthlyComparison_FullMethodName          = "/arian.v1.DashboardService/GetMonthlyComparison"
+	DashboardService_GetTopCategories_FullMethodName              = "/arian.v1.DashboardService/GetTopCategories"
+	DashboardService_GetTopMerchants_FullMethodName               = "/arian.v1.DashboardService/GetTopMerchants"
+	DashboardService_GetSpendingTrends_FullMethodName             = "/arian.v1.DashboardService/GetSpendingTrends"
+	DashboardService_GetFinancialSummary_FullMethodName           = "/arian.v1.DashboardService/GetFinancialSummary"
+	DashboardService_GetCategorySpendingComparison_FullMethodName = "/arian.v1.DashboardService/GetCategorySpendingComparison"
+	DashboardService_GetNetWorthHistory_FullMethodName            = "/arian.v1.DashboardService/GetNetWorthHistory"
 )
 
 // DashboardServiceClient is the client API for DashboardService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// analytics and reporting
 type DashboardServiceClient interface {
 	GetDashboardSummary(ctx context.Context, in *GetDashboardSummaryRequest, opts ...grpc.CallOption) (*GetDashboardSummaryResponse, error)
-	GetTrendData(ctx context.Context, in *GetTrendDataRequest, opts ...grpc.CallOption) (*GetTrendDataResponse, error)
 	GetMonthlyComparison(ctx context.Context, in *GetMonthlyComparisonRequest, opts ...grpc.CallOption) (*GetMonthlyComparisonResponse, error)
 	GetTopCategories(ctx context.Context, in *GetTopCategoriesRequest, opts ...grpc.CallOption) (*GetTopCategoriesResponse, error)
 	GetTopMerchants(ctx context.Context, in *GetTopMerchantsRequest, opts ...grpc.CallOption) (*GetTopMerchantsResponse, error)
-	GetAccountSummary(ctx context.Context, in *GetAccountSummaryRequest, opts ...grpc.CallOption) (*GetAccountSummaryResponse, error)
-	GetAccountBalances(ctx context.Context, in *GetAccountBalancesRequest, opts ...grpc.CallOption) (*GetAccountBalancesResponse, error)
 	GetSpendingTrends(ctx context.Context, in *GetSpendingTrendsRequest, opts ...grpc.CallOption) (*GetSpendingTrendsResponse, error)
-	GetTotalBalance(ctx context.Context, in *GetTotalBalanceRequest, opts ...grpc.CallOption) (*GetTotalBalanceResponse, error)
-	GetTotalDebt(ctx context.Context, in *GetTotalDebtRequest, opts ...grpc.CallOption) (*GetTotalDebtResponse, error)
-	GetNetBalance(ctx context.Context, in *GetNetBalanceRequest, opts ...grpc.CallOption) (*GetNetBalanceResponse, error)
+	// combines total balance, debt, and net worth across all accounts
+	GetFinancialSummary(ctx context.Context, in *GetFinancialSummaryRequest, opts ...grpc.CallOption) (*GetFinancialSummaryResponse, error)
+	// compares category spending between current and previous period
+	GetCategorySpendingComparison(ctx context.Context, in *GetCategorySpendingComparisonRequest, opts ...grpc.CallOption) (*GetCategorySpendingComparisonResponse, error)
+	GetNetWorthHistory(ctx context.Context, in *GetNetWorthHistoryRequest, opts ...grpc.CallOption) (*GetNetWorthHistoryResponse, error)
 }
 
 type dashboardServiceClient struct {
@@ -61,16 +59,6 @@ func (c *dashboardServiceClient) GetDashboardSummary(ctx context.Context, in *Ge
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetDashboardSummaryResponse)
 	err := c.cc.Invoke(ctx, DashboardService_GetDashboardSummary_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dashboardServiceClient) GetTrendData(ctx context.Context, in *GetTrendDataRequest, opts ...grpc.CallOption) (*GetTrendDataResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTrendDataResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetTrendData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -107,26 +95,6 @@ func (c *dashboardServiceClient) GetTopMerchants(ctx context.Context, in *GetTop
 	return out, nil
 }
 
-func (c *dashboardServiceClient) GetAccountSummary(ctx context.Context, in *GetAccountSummaryRequest, opts ...grpc.CallOption) (*GetAccountSummaryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetAccountSummaryResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetAccountSummary_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dashboardServiceClient) GetAccountBalances(ctx context.Context, in *GetAccountBalancesRequest, opts ...grpc.CallOption) (*GetAccountBalancesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetAccountBalancesResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetAccountBalances_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dashboardServiceClient) GetSpendingTrends(ctx context.Context, in *GetSpendingTrendsRequest, opts ...grpc.CallOption) (*GetSpendingTrendsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSpendingTrendsResponse)
@@ -137,30 +105,30 @@ func (c *dashboardServiceClient) GetSpendingTrends(ctx context.Context, in *GetS
 	return out, nil
 }
 
-func (c *dashboardServiceClient) GetTotalBalance(ctx context.Context, in *GetTotalBalanceRequest, opts ...grpc.CallOption) (*GetTotalBalanceResponse, error) {
+func (c *dashboardServiceClient) GetFinancialSummary(ctx context.Context, in *GetFinancialSummaryRequest, opts ...grpc.CallOption) (*GetFinancialSummaryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTotalBalanceResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetTotalBalance_FullMethodName, in, out, cOpts...)
+	out := new(GetFinancialSummaryResponse)
+	err := c.cc.Invoke(ctx, DashboardService_GetFinancialSummary_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dashboardServiceClient) GetTotalDebt(ctx context.Context, in *GetTotalDebtRequest, opts ...grpc.CallOption) (*GetTotalDebtResponse, error) {
+func (c *dashboardServiceClient) GetCategorySpendingComparison(ctx context.Context, in *GetCategorySpendingComparisonRequest, opts ...grpc.CallOption) (*GetCategorySpendingComparisonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTotalDebtResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetTotalDebt_FullMethodName, in, out, cOpts...)
+	out := new(GetCategorySpendingComparisonResponse)
+	err := c.cc.Invoke(ctx, DashboardService_GetCategorySpendingComparison_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dashboardServiceClient) GetNetBalance(ctx context.Context, in *GetNetBalanceRequest, opts ...grpc.CallOption) (*GetNetBalanceResponse, error) {
+func (c *dashboardServiceClient) GetNetWorthHistory(ctx context.Context, in *GetNetWorthHistoryRequest, opts ...grpc.CallOption) (*GetNetWorthHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNetBalanceResponse)
-	err := c.cc.Invoke(ctx, DashboardService_GetNetBalance_FullMethodName, in, out, cOpts...)
+	out := new(GetNetWorthHistoryResponse)
+	err := c.cc.Invoke(ctx, DashboardService_GetNetWorthHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -170,18 +138,19 @@ func (c *dashboardServiceClient) GetNetBalance(ctx context.Context, in *GetNetBa
 // DashboardServiceServer is the server API for DashboardService service.
 // All implementations should embed UnimplementedDashboardServiceServer
 // for forward compatibility.
+//
+// analytics and reporting
 type DashboardServiceServer interface {
 	GetDashboardSummary(context.Context, *GetDashboardSummaryRequest) (*GetDashboardSummaryResponse, error)
-	GetTrendData(context.Context, *GetTrendDataRequest) (*GetTrendDataResponse, error)
 	GetMonthlyComparison(context.Context, *GetMonthlyComparisonRequest) (*GetMonthlyComparisonResponse, error)
 	GetTopCategories(context.Context, *GetTopCategoriesRequest) (*GetTopCategoriesResponse, error)
 	GetTopMerchants(context.Context, *GetTopMerchantsRequest) (*GetTopMerchantsResponse, error)
-	GetAccountSummary(context.Context, *GetAccountSummaryRequest) (*GetAccountSummaryResponse, error)
-	GetAccountBalances(context.Context, *GetAccountBalancesRequest) (*GetAccountBalancesResponse, error)
 	GetSpendingTrends(context.Context, *GetSpendingTrendsRequest) (*GetSpendingTrendsResponse, error)
-	GetTotalBalance(context.Context, *GetTotalBalanceRequest) (*GetTotalBalanceResponse, error)
-	GetTotalDebt(context.Context, *GetTotalDebtRequest) (*GetTotalDebtResponse, error)
-	GetNetBalance(context.Context, *GetNetBalanceRequest) (*GetNetBalanceResponse, error)
+	// combines total balance, debt, and net worth across all accounts
+	GetFinancialSummary(context.Context, *GetFinancialSummaryRequest) (*GetFinancialSummaryResponse, error)
+	// compares category spending between current and previous period
+	GetCategorySpendingComparison(context.Context, *GetCategorySpendingComparisonRequest) (*GetCategorySpendingComparisonResponse, error)
+	GetNetWorthHistory(context.Context, *GetNetWorthHistoryRequest) (*GetNetWorthHistoryResponse, error)
 }
 
 // UnimplementedDashboardServiceServer should be embedded to have
@@ -194,9 +163,6 @@ type UnimplementedDashboardServiceServer struct{}
 func (UnimplementedDashboardServiceServer) GetDashboardSummary(context.Context, *GetDashboardSummaryRequest) (*GetDashboardSummaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDashboardSummary not implemented")
 }
-func (UnimplementedDashboardServiceServer) GetTrendData(context.Context, *GetTrendDataRequest) (*GetTrendDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrendData not implemented")
-}
 func (UnimplementedDashboardServiceServer) GetMonthlyComparison(context.Context, *GetMonthlyComparisonRequest) (*GetMonthlyComparisonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMonthlyComparison not implemented")
 }
@@ -206,23 +172,17 @@ func (UnimplementedDashboardServiceServer) GetTopCategories(context.Context, *Ge
 func (UnimplementedDashboardServiceServer) GetTopMerchants(context.Context, *GetTopMerchantsRequest) (*GetTopMerchantsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTopMerchants not implemented")
 }
-func (UnimplementedDashboardServiceServer) GetAccountSummary(context.Context, *GetAccountSummaryRequest) (*GetAccountSummaryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAccountSummary not implemented")
-}
-func (UnimplementedDashboardServiceServer) GetAccountBalances(context.Context, *GetAccountBalancesRequest) (*GetAccountBalancesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAccountBalances not implemented")
-}
 func (UnimplementedDashboardServiceServer) GetSpendingTrends(context.Context, *GetSpendingTrendsRequest) (*GetSpendingTrendsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSpendingTrends not implemented")
 }
-func (UnimplementedDashboardServiceServer) GetTotalBalance(context.Context, *GetTotalBalanceRequest) (*GetTotalBalanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTotalBalance not implemented")
+func (UnimplementedDashboardServiceServer) GetFinancialSummary(context.Context, *GetFinancialSummaryRequest) (*GetFinancialSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFinancialSummary not implemented")
 }
-func (UnimplementedDashboardServiceServer) GetTotalDebt(context.Context, *GetTotalDebtRequest) (*GetTotalDebtResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTotalDebt not implemented")
+func (UnimplementedDashboardServiceServer) GetCategorySpendingComparison(context.Context, *GetCategorySpendingComparisonRequest) (*GetCategorySpendingComparisonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCategorySpendingComparison not implemented")
 }
-func (UnimplementedDashboardServiceServer) GetNetBalance(context.Context, *GetNetBalanceRequest) (*GetNetBalanceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNetBalance not implemented")
+func (UnimplementedDashboardServiceServer) GetNetWorthHistory(context.Context, *GetNetWorthHistoryRequest) (*GetNetWorthHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNetWorthHistory not implemented")
 }
 func (UnimplementedDashboardServiceServer) testEmbeddedByValue() {}
 
@@ -258,24 +218,6 @@ func _DashboardService_GetDashboardSummary_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetDashboardSummary(ctx, req.(*GetDashboardSummaryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DashboardService_GetTrendData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrendDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetTrendData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DashboardService_GetTrendData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetTrendData(ctx, req.(*GetTrendDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -334,42 +276,6 @@ func _DashboardService_GetTopMerchants_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DashboardService_GetAccountSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAccountSummaryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetAccountSummary(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DashboardService_GetAccountSummary_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetAccountSummary(ctx, req.(*GetAccountSummaryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DashboardService_GetAccountBalances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAccountBalancesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetAccountBalances(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DashboardService_GetAccountBalances_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetAccountBalances(ctx, req.(*GetAccountBalancesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DashboardService_GetSpendingTrends_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSpendingTrendsRequest)
 	if err := dec(in); err != nil {
@@ -388,56 +294,56 @@ func _DashboardService_GetSpendingTrends_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DashboardService_GetTotalBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTotalBalanceRequest)
+func _DashboardService_GetFinancialSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFinancialSummaryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetTotalBalance(ctx, in)
+		return srv.(DashboardServiceServer).GetFinancialSummary(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DashboardService_GetTotalBalance_FullMethodName,
+		FullMethod: DashboardService_GetFinancialSummary_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetTotalBalance(ctx, req.(*GetTotalBalanceRequest))
+		return srv.(DashboardServiceServer).GetFinancialSummary(ctx, req.(*GetFinancialSummaryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DashboardService_GetTotalDebt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTotalDebtRequest)
+func _DashboardService_GetCategorySpendingComparison_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCategorySpendingComparisonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetTotalDebt(ctx, in)
+		return srv.(DashboardServiceServer).GetCategorySpendingComparison(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DashboardService_GetTotalDebt_FullMethodName,
+		FullMethod: DashboardService_GetCategorySpendingComparison_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetTotalDebt(ctx, req.(*GetTotalDebtRequest))
+		return srv.(DashboardServiceServer).GetCategorySpendingComparison(ctx, req.(*GetCategorySpendingComparisonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DashboardService_GetNetBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNetBalanceRequest)
+func _DashboardService_GetNetWorthHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNetWorthHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DashboardServiceServer).GetNetBalance(ctx, in)
+		return srv.(DashboardServiceServer).GetNetWorthHistory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DashboardService_GetNetBalance_FullMethodName,
+		FullMethod: DashboardService_GetNetWorthHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DashboardServiceServer).GetNetBalance(ctx, req.(*GetNetBalanceRequest))
+		return srv.(DashboardServiceServer).GetNetWorthHistory(ctx, req.(*GetNetWorthHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -454,10 +360,6 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DashboardService_GetDashboardSummary_Handler,
 		},
 		{
-			MethodName: "GetTrendData",
-			Handler:    _DashboardService_GetTrendData_Handler,
-		},
-		{
 			MethodName: "GetMonthlyComparison",
 			Handler:    _DashboardService_GetMonthlyComparison_Handler,
 		},
@@ -470,28 +372,20 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DashboardService_GetTopMerchants_Handler,
 		},
 		{
-			MethodName: "GetAccountSummary",
-			Handler:    _DashboardService_GetAccountSummary_Handler,
-		},
-		{
-			MethodName: "GetAccountBalances",
-			Handler:    _DashboardService_GetAccountBalances_Handler,
-		},
-		{
 			MethodName: "GetSpendingTrends",
 			Handler:    _DashboardService_GetSpendingTrends_Handler,
 		},
 		{
-			MethodName: "GetTotalBalance",
-			Handler:    _DashboardService_GetTotalBalance_Handler,
+			MethodName: "GetFinancialSummary",
+			Handler:    _DashboardService_GetFinancialSummary_Handler,
 		},
 		{
-			MethodName: "GetTotalDebt",
-			Handler:    _DashboardService_GetTotalDebt_Handler,
+			MethodName: "GetCategorySpendingComparison",
+			Handler:    _DashboardService_GetCategorySpendingComparison_Handler,
 		},
 		{
-			MethodName: "GetNetBalance",
-			Handler:    _DashboardService_GetNetBalance_Handler,
+			MethodName: "GetNetWorthHistory",
+			Handler:    _DashboardService_GetNetWorthHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

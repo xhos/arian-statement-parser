@@ -127,118 +127,6 @@ func (x *GetDashboardSummaryResponse) GetSummary() *DashboardSummary {
 	return nil
 }
 
-type GetTrendDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	StartDate     *date.Date             `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
-	EndDate       *date.Date             `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
-	AccountId     *int64                 `protobuf:"varint,4,opt,name=account_id,json=accountId,proto3,oneof" json:"account_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTrendDataRequest) Reset() {
-	*x = GetTrendDataRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTrendDataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTrendDataRequest) ProtoMessage() {}
-
-func (x *GetTrendDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTrendDataRequest.ProtoReflect.Descriptor instead.
-func (*GetTrendDataRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetTrendDataRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *GetTrendDataRequest) GetStartDate() *date.Date {
-	if x != nil {
-		return x.StartDate
-	}
-	return nil
-}
-
-func (x *GetTrendDataRequest) GetEndDate() *date.Date {
-	if x != nil {
-		return x.EndDate
-	}
-	return nil
-}
-
-func (x *GetTrendDataRequest) GetAccountId() int64 {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
-	}
-	return 0
-}
-
-type GetTrendDataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Trends        []*TrendPoint          `protobuf:"bytes,1,rep,name=trends,proto3" json:"trends,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTrendDataResponse) Reset() {
-	*x = GetTrendDataResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTrendDataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTrendDataResponse) ProtoMessage() {}
-
-func (x *GetTrendDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTrendDataResponse.ProtoReflect.Descriptor instead.
-func (*GetTrendDataResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetTrendDataResponse) GetTrends() []*TrendPoint {
-	if x != nil {
-		return x.Trends
-	}
-	return nil
-}
-
 type GetMonthlyComparisonRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -250,7 +138,7 @@ type GetMonthlyComparisonRequest struct {
 
 func (x *GetMonthlyComparisonRequest) Reset() {
 	*x = GetMonthlyComparisonRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[4]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -262,7 +150,7 @@ func (x *GetMonthlyComparisonRequest) String() string {
 func (*GetMonthlyComparisonRequest) ProtoMessage() {}
 
 func (x *GetMonthlyComparisonRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[4]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -275,7 +163,7 @@ func (x *GetMonthlyComparisonRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMonthlyComparisonRequest.ProtoReflect.Descriptor instead.
 func (*GetMonthlyComparisonRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{4}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetMonthlyComparisonRequest) GetUserId() string {
@@ -308,7 +196,7 @@ type GetMonthlyComparisonResponse struct {
 
 func (x *GetMonthlyComparisonResponse) Reset() {
 	*x = GetMonthlyComparisonResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[5]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -320,7 +208,7 @@ func (x *GetMonthlyComparisonResponse) String() string {
 func (*GetMonthlyComparisonResponse) ProtoMessage() {}
 
 func (x *GetMonthlyComparisonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[5]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -333,7 +221,7 @@ func (x *GetMonthlyComparisonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMonthlyComparisonResponse.ProtoReflect.Descriptor instead.
 func (*GetMonthlyComparisonResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{5}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetMonthlyComparisonResponse) GetComparisons() []*MonthlyComparison {
@@ -355,7 +243,7 @@ type GetTopCategoriesRequest struct {
 
 func (x *GetTopCategoriesRequest) Reset() {
 	*x = GetTopCategoriesRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[6]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -367,7 +255,7 @@ func (x *GetTopCategoriesRequest) String() string {
 func (*GetTopCategoriesRequest) ProtoMessage() {}
 
 func (x *GetTopCategoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[6]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +268,7 @@ func (x *GetTopCategoriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopCategoriesRequest.ProtoReflect.Descriptor instead.
 func (*GetTopCategoriesRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{6}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetTopCategoriesRequest) GetUserId() string {
@@ -420,7 +308,7 @@ type GetTopCategoriesResponse struct {
 
 func (x *GetTopCategoriesResponse) Reset() {
 	*x = GetTopCategoriesResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[7]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -432,7 +320,7 @@ func (x *GetTopCategoriesResponse) String() string {
 func (*GetTopCategoriesResponse) ProtoMessage() {}
 
 func (x *GetTopCategoriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[7]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -445,7 +333,7 @@ func (x *GetTopCategoriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopCategoriesResponse.ProtoReflect.Descriptor instead.
 func (*GetTopCategoriesResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{7}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetTopCategoriesResponse) GetCategories() []*TopCategory {
@@ -467,7 +355,7 @@ type GetTopMerchantsRequest struct {
 
 func (x *GetTopMerchantsRequest) Reset() {
 	*x = GetTopMerchantsRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[8]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -479,7 +367,7 @@ func (x *GetTopMerchantsRequest) String() string {
 func (*GetTopMerchantsRequest) ProtoMessage() {}
 
 func (x *GetTopMerchantsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[8]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +380,7 @@ func (x *GetTopMerchantsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopMerchantsRequest.ProtoReflect.Descriptor instead.
 func (*GetTopMerchantsRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{8}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetTopMerchantsRequest) GetUserId() string {
@@ -532,7 +420,7 @@ type GetTopMerchantsResponse struct {
 
 func (x *GetTopMerchantsResponse) Reset() {
 	*x = GetTopMerchantsResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[9]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -544,7 +432,7 @@ func (x *GetTopMerchantsResponse) String() string {
 func (*GetTopMerchantsResponse) ProtoMessage() {}
 
 func (x *GetTopMerchantsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[9]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -557,132 +445,12 @@ func (x *GetTopMerchantsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopMerchantsResponse.ProtoReflect.Descriptor instead.
 func (*GetTopMerchantsResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{9}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetTopMerchantsResponse) GetMerchants() []*TopMerchant {
 	if x != nil {
 		return x.Merchants
-	}
-	return nil
-}
-
-type GetAccountSummaryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	AccountId     int64                  `protobuf:"varint,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	StartDate     *date.Date             `protobuf:"bytes,3,opt,name=start_date,json=startDate,proto3,oneof" json:"start_date,omitempty"`
-	EndDate       *date.Date             `protobuf:"bytes,4,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountSummaryRequest) Reset() {
-	*x = GetAccountSummaryRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountSummaryRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountSummaryRequest) ProtoMessage() {}
-
-func (x *GetAccountSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountSummaryRequest.ProtoReflect.Descriptor instead.
-func (*GetAccountSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetAccountSummaryRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *GetAccountSummaryRequest) GetAccountId() int64 {
-	if x != nil {
-		return x.AccountId
-	}
-	return 0
-}
-
-func (x *GetAccountSummaryRequest) GetStartDate() *date.Date {
-	if x != nil {
-		return x.StartDate
-	}
-	return nil
-}
-
-func (x *GetAccountSummaryRequest) GetEndDate() *date.Date {
-	if x != nil {
-		return x.EndDate
-	}
-	return nil
-}
-
-type GetAccountSummaryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Summary       *DashboardSummary      `protobuf:"bytes,1,opt,name=summary,proto3" json:"summary,omitempty"`
-	Trends        []*TrendPoint          `protobuf:"bytes,2,rep,name=trends,proto3" json:"trends,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountSummaryResponse) Reset() {
-	*x = GetAccountSummaryResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountSummaryResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountSummaryResponse) ProtoMessage() {}
-
-func (x *GetAccountSummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountSummaryResponse.ProtoReflect.Descriptor instead.
-func (*GetAccountSummaryResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *GetAccountSummaryResponse) GetSummary() *DashboardSummary {
-	if x != nil {
-		return x.Summary
-	}
-	return nil
-}
-
-func (x *GetAccountSummaryResponse) GetTrends() []*TrendPoint {
-	if x != nil {
-		return x.Trends
 	}
 	return nil
 }
@@ -700,7 +468,7 @@ type GetSpendingTrendsRequest struct {
 
 func (x *GetSpendingTrendsRequest) Reset() {
 	*x = GetSpendingTrendsRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[12]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -712,7 +480,7 @@ func (x *GetSpendingTrendsRequest) String() string {
 func (*GetSpendingTrendsRequest) ProtoMessage() {}
 
 func (x *GetSpendingTrendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[12]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -725,7 +493,7 @@ func (x *GetSpendingTrendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSpendingTrendsRequest.ProtoReflect.Descriptor instead.
 func (*GetSpendingTrendsRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{12}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetSpendingTrendsRequest) GetUserId() string {
@@ -772,7 +540,7 @@ type GetSpendingTrendsResponse struct {
 
 func (x *GetSpendingTrendsResponse) Reset() {
 	*x = GetSpendingTrendsResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[13]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +552,7 @@ func (x *GetSpendingTrendsResponse) String() string {
 func (*GetSpendingTrendsResponse) ProtoMessage() {}
 
 func (x *GetSpendingTrendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[13]
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +565,7 @@ func (x *GetSpendingTrendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSpendingTrendsResponse.ProtoReflect.Descriptor instead.
 func (*GetSpendingTrendsResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{13}
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetSpendingTrendsResponse) GetTrends() []*TrendPoint {
@@ -807,28 +575,28 @@ func (x *GetSpendingTrendsResponse) GetTrends() []*TrendPoint {
 	return nil
 }
 
-type GetAccountBalancesRequest struct {
+type GetFinancialSummaryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetAccountBalancesRequest) Reset() {
-	*x = GetAccountBalancesRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[14]
+func (x *GetFinancialSummaryRequest) Reset() {
+	*x = GetFinancialSummaryRequest{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetAccountBalancesRequest) String() string {
+func (x *GetFinancialSummaryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAccountBalancesRequest) ProtoMessage() {}
+func (*GetFinancialSummaryRequest) ProtoMessage() {}
 
-func (x *GetAccountBalancesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[14]
+func (x *GetFinancialSummaryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -839,128 +607,42 @@ func (x *GetAccountBalancesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAccountBalancesRequest.ProtoReflect.Descriptor instead.
-func (*GetAccountBalancesRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{14}
+// Deprecated: Use GetFinancialSummaryRequest.ProtoReflect.Descriptor instead.
+func (*GetFinancialSummaryRequest) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *GetAccountBalancesRequest) GetUserId() string {
+func (x *GetFinancialSummaryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-type GetAccountBalancesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Balances      []*AccountBalance      `protobuf:"bytes,1,rep,name=balances,proto3" json:"balances,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetAccountBalancesResponse) Reset() {
-	*x = GetAccountBalancesResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetAccountBalancesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAccountBalancesResponse) ProtoMessage() {}
-
-func (x *GetAccountBalancesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAccountBalancesResponse.ProtoReflect.Descriptor instead.
-func (*GetAccountBalancesResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *GetAccountBalancesResponse) GetBalances() []*AccountBalance {
-	if x != nil {
-		return x.Balances
-	}
-	return nil
-}
-
-type GetTotalBalanceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTotalBalanceRequest) Reset() {
-	*x = GetTotalBalanceRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTotalBalanceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTotalBalanceRequest) ProtoMessage() {}
-
-func (x *GetTotalBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTotalBalanceRequest.ProtoReflect.Descriptor instead.
-func (*GetTotalBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *GetTotalBalanceRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type GetTotalBalanceResponse struct {
+type GetFinancialSummaryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TotalBalance  *money.Money           `protobuf:"bytes,1,opt,name=total_balance,json=totalBalance,proto3" json:"total_balance,omitempty"`
+	TotalDebt     *money.Money           `protobuf:"bytes,2,opt,name=total_debt,json=totalDebt,proto3" json:"total_debt,omitempty"`
+	NetBalance    *money.Money           `protobuf:"bytes,3,opt,name=net_balance,json=netBalance,proto3" json:"net_balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetTotalBalanceResponse) Reset() {
-	*x = GetTotalBalanceResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[17]
+func (x *GetFinancialSummaryResponse) Reset() {
+	*x = GetFinancialSummaryResponse{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTotalBalanceResponse) String() string {
+func (x *GetFinancialSummaryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTotalBalanceResponse) ProtoMessage() {}
+func (*GetFinancialSummaryResponse) ProtoMessage() {}
 
-func (x *GetTotalBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[17]
+func (x *GetFinancialSummaryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -971,128 +653,57 @@ func (x *GetTotalBalanceResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTotalBalanceResponse.ProtoReflect.Descriptor instead.
-func (*GetTotalBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{17}
+// Deprecated: Use GetFinancialSummaryResponse.ProtoReflect.Descriptor instead.
+func (*GetFinancialSummaryResponse) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetTotalBalanceResponse) GetTotalBalance() *money.Money {
+func (x *GetFinancialSummaryResponse) GetTotalBalance() *money.Money {
 	if x != nil {
 		return x.TotalBalance
 	}
 	return nil
 }
 
-type GetTotalDebtRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTotalDebtRequest) Reset() {
-	*x = GetTotalDebtRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTotalDebtRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTotalDebtRequest) ProtoMessage() {}
-
-func (x *GetTotalDebtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTotalDebtRequest.ProtoReflect.Descriptor instead.
-func (*GetTotalDebtRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *GetTotalDebtRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-type GetTotalDebtResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TotalDebt     *money.Money           `protobuf:"bytes,1,opt,name=total_debt,json=totalDebt,proto3" json:"total_debt,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTotalDebtResponse) Reset() {
-	*x = GetTotalDebtResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTotalDebtResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTotalDebtResponse) ProtoMessage() {}
-
-func (x *GetTotalDebtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTotalDebtResponse.ProtoReflect.Descriptor instead.
-func (*GetTotalDebtResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *GetTotalDebtResponse) GetTotalDebt() *money.Money {
+func (x *GetFinancialSummaryResponse) GetTotalDebt() *money.Money {
 	if x != nil {
 		return x.TotalDebt
 	}
 	return nil
 }
 
-type GetNetBalanceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+func (x *GetFinancialSummaryResponse) GetNetBalance() *money.Money {
+	if x != nil {
+		return x.NetBalance
+	}
+	return nil
 }
 
-func (x *GetNetBalanceRequest) Reset() {
-	*x = GetNetBalanceRequest{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[20]
+type GetCategorySpendingComparisonRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	PeriodType      PeriodType             `protobuf:"varint,2,opt,name=period_type,json=periodType,proto3,enum=arian.v1.PeriodType" json:"period_type,omitempty"`
+	CustomStartDate *date.Date             `protobuf:"bytes,3,opt,name=custom_start_date,json=customStartDate,proto3,oneof" json:"custom_start_date,omitempty"`
+	CustomEndDate   *date.Date             `protobuf:"bytes,4,opt,name=custom_end_date,json=customEndDate,proto3,oneof" json:"custom_end_date,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetCategorySpendingComparisonRequest) Reset() {
+	*x = GetCategorySpendingComparisonRequest{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNetBalanceRequest) String() string {
+func (x *GetCategorySpendingComparisonRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNetBalanceRequest) ProtoMessage() {}
+func (*GetCategorySpendingComparisonRequest) ProtoMessage() {}
 
-func (x *GetNetBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[20]
+func (x *GetCategorySpendingComparisonRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1103,40 +714,62 @@ func (x *GetNetBalanceRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNetBalanceRequest.ProtoReflect.Descriptor instead.
-func (*GetNetBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{20}
+// Deprecated: Use GetCategorySpendingComparisonRequest.ProtoReflect.Descriptor instead.
+func (*GetCategorySpendingComparisonRequest) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetNetBalanceRequest) GetUserId() string {
+func (x *GetCategorySpendingComparisonRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-type GetNetBalanceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	NetBalance    *money.Money           `protobuf:"bytes,1,opt,name=net_balance,json=netBalance,proto3" json:"net_balance,omitempty"`
+func (x *GetCategorySpendingComparisonRequest) GetPeriodType() PeriodType {
+	if x != nil {
+		return x.PeriodType
+	}
+	return PeriodType_PERIOD_TYPE_UNSPECIFIED
+}
+
+func (x *GetCategorySpendingComparisonRequest) GetCustomStartDate() *date.Date {
+	if x != nil {
+		return x.CustomStartDate
+	}
+	return nil
+}
+
+func (x *GetCategorySpendingComparisonRequest) GetCustomEndDate() *date.Date {
+	if x != nil {
+		return x.CustomEndDate
+	}
+	return nil
+}
+
+type CategorySpendingItem struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Category      *Category                   `protobuf:"bytes,1,opt,name=category,proto3,oneof" json:"category,omitempty"`
+	Spending      *CategorySpendingComparison `protobuf:"bytes,2,opt,name=spending,proto3" json:"spending,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetNetBalanceResponse) Reset() {
-	*x = GetNetBalanceResponse{}
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[21]
+func (x *CategorySpendingItem) Reset() {
+	*x = CategorySpendingItem{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetNetBalanceResponse) String() string {
+func (x *CategorySpendingItem) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetNetBalanceResponse) ProtoMessage() {}
+func (*CategorySpendingItem) ProtoMessage() {}
 
-func (x *GetNetBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_dashboard_services_proto_msgTypes[21]
+func (x *CategorySpendingItem) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1147,14 +780,209 @@ func (x *GetNetBalanceResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetNetBalanceResponse.ProtoReflect.Descriptor instead.
-func (*GetNetBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{21}
+// Deprecated: Use CategorySpendingItem.ProtoReflect.Descriptor instead.
+func (*CategorySpendingItem) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *GetNetBalanceResponse) GetNetBalance() *money.Money {
+func (x *CategorySpendingItem) GetCategory() *Category {
 	if x != nil {
-		return x.NetBalance
+		return x.Category
+	}
+	return nil
+}
+
+func (x *CategorySpendingItem) GetSpending() *CategorySpendingComparison {
+	if x != nil {
+		return x.Spending
+	}
+	return nil
+}
+
+type GetCategorySpendingComparisonResponse struct {
+	state          protoimpl.MessageState      `protogen:"open.v1"`
+	CurrentPeriod  *PeriodInfo                 `protobuf:"bytes,1,opt,name=current_period,json=currentPeriod,proto3" json:"current_period,omitempty"`
+	PreviousPeriod *PeriodInfo                 `protobuf:"bytes,2,opt,name=previous_period,json=previousPeriod,proto3" json:"previous_period,omitempty"`
+	Categories     []*CategorySpendingItem     `protobuf:"bytes,3,rep,name=categories,proto3" json:"categories,omitempty"`
+	Uncategorized  *CategorySpendingComparison `protobuf:"bytes,4,opt,name=uncategorized,proto3,oneof" json:"uncategorized,omitempty"`
+	Totals         *CategorySpendingTotals     `protobuf:"bytes,5,opt,name=totals,proto3" json:"totals,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetCategorySpendingComparisonResponse) Reset() {
+	*x = GetCategorySpendingComparisonResponse{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCategorySpendingComparisonResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategorySpendingComparisonResponse) ProtoMessage() {}
+
+func (x *GetCategorySpendingComparisonResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategorySpendingComparisonResponse.ProtoReflect.Descriptor instead.
+func (*GetCategorySpendingComparisonResponse) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetCategorySpendingComparisonResponse) GetCurrentPeriod() *PeriodInfo {
+	if x != nil {
+		return x.CurrentPeriod
+	}
+	return nil
+}
+
+func (x *GetCategorySpendingComparisonResponse) GetPreviousPeriod() *PeriodInfo {
+	if x != nil {
+		return x.PreviousPeriod
+	}
+	return nil
+}
+
+func (x *GetCategorySpendingComparisonResponse) GetCategories() []*CategorySpendingItem {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+func (x *GetCategorySpendingComparisonResponse) GetUncategorized() *CategorySpendingComparison {
+	if x != nil {
+		return x.Uncategorized
+	}
+	return nil
+}
+
+func (x *GetCategorySpendingComparisonResponse) GetTotals() *CategorySpendingTotals {
+	if x != nil {
+		return x.Totals
+	}
+	return nil
+}
+
+type GetNetWorthHistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StartDate     *date.Date             `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
+	EndDate       *date.Date             `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	Granularity   Granularity            `protobuf:"varint,4,opt,name=granularity,proto3,enum=arian.v1.Granularity" json:"granularity,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetNetWorthHistoryRequest) Reset() {
+	*x = GetNetWorthHistoryRequest{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNetWorthHistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNetWorthHistoryRequest) ProtoMessage() {}
+
+func (x *GetNetWorthHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNetWorthHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetNetWorthHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetNetWorthHistoryRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetNetWorthHistoryRequest) GetStartDate() *date.Date {
+	if x != nil {
+		return x.StartDate
+	}
+	return nil
+}
+
+func (x *GetNetWorthHistoryRequest) GetEndDate() *date.Date {
+	if x != nil {
+		return x.EndDate
+	}
+	return nil
+}
+
+func (x *GetNetWorthHistoryRequest) GetGranularity() Granularity {
+	if x != nil {
+		return x.Granularity
+	}
+	return Granularity_GRANULARITY_UNSPECIFIED
+}
+
+type GetNetWorthHistoryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DataPoints    []*NetWorthPoint       `protobuf:"bytes,1,rep,name=data_points,json=dataPoints,proto3" json:"data_points,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetNetWorthHistoryResponse) Reset() {
+	*x = GetNetWorthHistoryResponse{}
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNetWorthHistoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNetWorthHistoryResponse) ProtoMessage() {}
+
+func (x *GetNetWorthHistoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_dashboard_services_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNetWorthHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetNetWorthHistoryResponse) Descriptor() ([]byte, []int) {
+	return file_arian_v1_dashboard_services_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetNetWorthHistoryResponse) GetDataPoints() []*NetWorthPoint {
+	if x != nil {
+		return x.DataPoints
 	}
 	return nil
 }
@@ -1163,7 +991,7 @@ var File_arian_v1_dashboard_services_proto protoreflect.FileDescriptor
 
 const file_arian_v1_dashboard_services_proto_rawDesc = "" +
 	"\n" +
-	"!arian/v1/dashboard_services.proto\x12\barian.v1\x1a\x16arian/v1/account.proto\x1a\x18arian/v1/dashboard.proto\x1a\x16google/type/date.proto\x1a\x17google/type/money.proto\"\xbb\x01\n" +
+	"!arian/v1/dashboard_services.proto\x12\barian.v1\x1a\x16arian/v1/account.proto\x1a\x17arian/v1/category.proto\x1a\x18arian/v1/dashboard.proto\x1a\x14arian/v1/enums.proto\x1a\x16google/type/date.proto\x1a\x17google/type/money.proto\"\xbb\x01\n" +
 	"\x1aGetDashboardSummaryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
 	"\n" +
@@ -1172,17 +1000,7 @@ const file_arian_v1_dashboard_services_proto_rawDesc = "" +
 	"\v_start_dateB\v\n" +
 	"\t_end_date\"S\n" +
 	"\x1bGetDashboardSummaryResponse\x124\n" +
-	"\asummary\x18\x01 \x01(\v2\x1a.arian.v1.DashboardSummaryR\asummary\"\xc1\x01\n" +
-	"\x13GetTrendDataRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x120\n" +
-	"\n" +
-	"start_date\x18\x02 \x01(\v2\x11.google.type.DateR\tstartDate\x12,\n" +
-	"\bend_date\x18\x03 \x01(\v2\x11.google.type.DateR\aendDate\x12\"\n" +
-	"\n" +
-	"account_id\x18\x04 \x01(\x03H\x00R\taccountId\x88\x01\x01B\r\n" +
-	"\v_account_id\"D\n" +
-	"\x14GetTrendDataResponse\x12,\n" +
-	"\x06trends\x18\x01 \x03(\v2\x14.arian.v1.TrendPointR\x06trends\"\x8a\x01\n" +
+	"\asummary\x18\x01 \x01(\v2\x1a.arian.v1.DashboardSummaryR\asummary\"\x8a\x01\n" +
 	"\x1bGetMonthlyComparisonRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
 	"\vmonths_back\x18\x02 \x01(\x05R\n" +
@@ -1215,19 +1033,7 @@ const file_arian_v1_dashboard_services_proto_rawDesc = "" +
 	"\t_end_dateB\b\n" +
 	"\x06_limit\"N\n" +
 	"\x17GetTopMerchantsResponse\x123\n" +
-	"\tmerchants\x18\x01 \x03(\v2\x15.arian.v1.TopMerchantR\tmerchants\"\xd8\x01\n" +
-	"\x18GetAccountSummaryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
-	"\n" +
-	"account_id\x18\x02 \x01(\x03R\taccountId\x125\n" +
-	"\n" +
-	"start_date\x18\x03 \x01(\v2\x11.google.type.DateH\x00R\tstartDate\x88\x01\x01\x121\n" +
-	"\bend_date\x18\x04 \x01(\v2\x11.google.type.DateH\x01R\aendDate\x88\x01\x01B\r\n" +
-	"\v_start_dateB\v\n" +
-	"\t_end_date\"\x7f\n" +
-	"\x19GetAccountSummaryResponse\x124\n" +
-	"\asummary\x18\x01 \x01(\v2\x1a.arian.v1.DashboardSummaryR\asummary\x12,\n" +
-	"\x06trends\x18\x02 \x03(\v2\x14.arian.v1.TrendPointR\x06trends\"\xfc\x01\n" +
+	"\tmerchants\x18\x01 \x03(\v2\x15.arian.v1.TopMerchantR\tmerchants\"\xfc\x01\n" +
 	"\x18GetSpendingTrendsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x120\n" +
 	"\n" +
@@ -1240,37 +1046,54 @@ const file_arian_v1_dashboard_services_proto_rawDesc = "" +
 	"\f_category_idB\r\n" +
 	"\v_account_id\"I\n" +
 	"\x19GetSpendingTrendsResponse\x12,\n" +
-	"\x06trends\x18\x01 \x03(\v2\x14.arian.v1.TrendPointR\x06trends\"4\n" +
-	"\x19GetAccountBalancesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"R\n" +
-	"\x1aGetAccountBalancesResponse\x124\n" +
-	"\bbalances\x18\x01 \x03(\v2\x18.arian.v1.AccountBalanceR\bbalances\"1\n" +
-	"\x16GetTotalBalanceRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"R\n" +
-	"\x17GetTotalBalanceResponse\x127\n" +
-	"\rtotal_balance\x18\x01 \x01(\v2\x12.google.type.MoneyR\ftotalBalance\".\n" +
-	"\x13GetTotalDebtRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"I\n" +
-	"\x14GetTotalDebtResponse\x121\n" +
+	"\x06trends\x18\x01 \x03(\v2\x14.arian.v1.TrendPointR\x06trends\"5\n" +
+	"\x1aGetFinancialSummaryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xbe\x01\n" +
+	"\x1bGetFinancialSummaryResponse\x127\n" +
+	"\rtotal_balance\x18\x01 \x01(\v2\x12.google.type.MoneyR\ftotalBalance\x121\n" +
 	"\n" +
-	"total_debt\x18\x01 \x01(\v2\x12.google.type.MoneyR\ttotalDebt\"/\n" +
-	"\x14GetNetBalanceRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"L\n" +
-	"\x15GetNetBalanceResponse\x123\n" +
-	"\vnet_balance\x18\x01 \x01(\v2\x12.google.type.MoneyR\n" +
-	"netBalance2\xf5\a\n" +
+	"total_debt\x18\x02 \x01(\v2\x12.google.type.MoneyR\ttotalDebt\x123\n" +
+	"\vnet_balance\x18\x03 \x01(\v2\x12.google.type.MoneyR\n" +
+	"netBalance\"\xa4\x02\n" +
+	"$GetCategorySpendingComparisonRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\vperiod_type\x18\x02 \x01(\x0e2\x14.arian.v1.PeriodTypeR\n" +
+	"periodType\x12B\n" +
+	"\x11custom_start_date\x18\x03 \x01(\v2\x11.google.type.DateH\x00R\x0fcustomStartDate\x88\x01\x01\x12>\n" +
+	"\x0fcustom_end_date\x18\x04 \x01(\v2\x11.google.type.DateH\x01R\rcustomEndDate\x88\x01\x01B\x14\n" +
+	"\x12_custom_start_dateB\x12\n" +
+	"\x10_custom_end_date\"\x9a\x01\n" +
+	"\x14CategorySpendingItem\x123\n" +
+	"\bcategory\x18\x01 \x01(\v2\x12.arian.v1.CategoryH\x00R\bcategory\x88\x01\x01\x12@\n" +
+	"\bspending\x18\x02 \x01(\v2$.arian.v1.CategorySpendingComparisonR\bspendingB\v\n" +
+	"\t_category\"\x80\x03\n" +
+	"%GetCategorySpendingComparisonResponse\x12;\n" +
+	"\x0ecurrent_period\x18\x01 \x01(\v2\x14.arian.v1.PeriodInfoR\rcurrentPeriod\x12=\n" +
+	"\x0fprevious_period\x18\x02 \x01(\v2\x14.arian.v1.PeriodInfoR\x0epreviousPeriod\x12>\n" +
+	"\n" +
+	"categories\x18\x03 \x03(\v2\x1e.arian.v1.CategorySpendingItemR\n" +
+	"categories\x12O\n" +
+	"\runcategorized\x18\x04 \x01(\v2$.arian.v1.CategorySpendingComparisonH\x00R\runcategorized\x88\x01\x01\x128\n" +
+	"\x06totals\x18\x05 \x01(\v2 .arian.v1.CategorySpendingTotalsR\x06totalsB\x10\n" +
+	"\x0e_uncategorized\"\xcd\x01\n" +
+	"\x19GetNetWorthHistoryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x120\n" +
+	"\n" +
+	"start_date\x18\x02 \x01(\v2\x11.google.type.DateR\tstartDate\x12,\n" +
+	"\bend_date\x18\x03 \x01(\v2\x11.google.type.DateR\aendDate\x127\n" +
+	"\vgranularity\x18\x04 \x01(\x0e2\x15.arian.v1.GranularityR\vgranularity\"V\n" +
+	"\x1aGetNetWorthHistoryResponse\x128\n" +
+	"\vdata_points\x18\x01 \x03(\v2\x17.arian.v1.NetWorthPointR\n" +
+	"dataPoints2\xb6\x06\n" +
 	"\x10DashboardService\x12b\n" +
-	"\x13GetDashboardSummary\x12$.arian.v1.GetDashboardSummaryRequest\x1a%.arian.v1.GetDashboardSummaryResponse\x12M\n" +
-	"\fGetTrendData\x12\x1d.arian.v1.GetTrendDataRequest\x1a\x1e.arian.v1.GetTrendDataResponse\x12e\n" +
+	"\x13GetDashboardSummary\x12$.arian.v1.GetDashboardSummaryRequest\x1a%.arian.v1.GetDashboardSummaryResponse\x12e\n" +
 	"\x14GetMonthlyComparison\x12%.arian.v1.GetMonthlyComparisonRequest\x1a&.arian.v1.GetMonthlyComparisonResponse\x12Y\n" +
 	"\x10GetTopCategories\x12!.arian.v1.GetTopCategoriesRequest\x1a\".arian.v1.GetTopCategoriesResponse\x12V\n" +
 	"\x0fGetTopMerchants\x12 .arian.v1.GetTopMerchantsRequest\x1a!.arian.v1.GetTopMerchantsResponse\x12\\\n" +
-	"\x11GetAccountSummary\x12\".arian.v1.GetAccountSummaryRequest\x1a#.arian.v1.GetAccountSummaryResponse\x12_\n" +
-	"\x12GetAccountBalances\x12#.arian.v1.GetAccountBalancesRequest\x1a$.arian.v1.GetAccountBalancesResponse\x12\\\n" +
-	"\x11GetSpendingTrends\x12\".arian.v1.GetSpendingTrendsRequest\x1a#.arian.v1.GetSpendingTrendsResponse\x12V\n" +
-	"\x0fGetTotalBalance\x12 .arian.v1.GetTotalBalanceRequest\x1a!.arian.v1.GetTotalBalanceResponse\x12M\n" +
-	"\fGetTotalDebt\x12\x1d.arian.v1.GetTotalDebtRequest\x1a\x1e.arian.v1.GetTotalDebtResponse\x12P\n" +
-	"\rGetNetBalance\x12\x1e.arian.v1.GetNetBalanceRequest\x1a\x1f.arian.v1.GetNetBalanceResponseB\x93\x01\n" +
+	"\x11GetSpendingTrends\x12\".arian.v1.GetSpendingTrendsRequest\x1a#.arian.v1.GetSpendingTrendsResponse\x12b\n" +
+	"\x13GetFinancialSummary\x12$.arian.v1.GetFinancialSummaryRequest\x1a%.arian.v1.GetFinancialSummaryResponse\x12\x80\x01\n" +
+	"\x1dGetCategorySpendingComparison\x12..arian.v1.GetCategorySpendingComparisonRequest\x1a/.arian.v1.GetCategorySpendingComparisonResponse\x12_\n" +
+	"\x12GetNetWorthHistory\x12#.arian.v1.GetNetWorthHistoryRequest\x1a$.arian.v1.GetNetWorthHistoryResponseB\x93\x01\n" +
 	"\fcom.arian.v1B\x16DashboardServicesProtoP\x01Z*arian-parser/internal/gen/arian/v1;arianv1\xa2\x02\x03AXX\xaa\x02\bArian.V1\xca\x02\bArian\\V1\xe2\x02\x14Arian\\V1\\GPBMetadata\xea\x02\tArian::V1b\x06proto3"
 
 var (
@@ -1285,91 +1108,92 @@ func file_arian_v1_dashboard_services_proto_rawDescGZIP() []byte {
 	return file_arian_v1_dashboard_services_proto_rawDescData
 }
 
-var file_arian_v1_dashboard_services_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_arian_v1_dashboard_services_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_arian_v1_dashboard_services_proto_goTypes = []any{
-	(*GetDashboardSummaryRequest)(nil),   // 0: arian.v1.GetDashboardSummaryRequest
-	(*GetDashboardSummaryResponse)(nil),  // 1: arian.v1.GetDashboardSummaryResponse
-	(*GetTrendDataRequest)(nil),          // 2: arian.v1.GetTrendDataRequest
-	(*GetTrendDataResponse)(nil),         // 3: arian.v1.GetTrendDataResponse
-	(*GetMonthlyComparisonRequest)(nil),  // 4: arian.v1.GetMonthlyComparisonRequest
-	(*GetMonthlyComparisonResponse)(nil), // 5: arian.v1.GetMonthlyComparisonResponse
-	(*GetTopCategoriesRequest)(nil),      // 6: arian.v1.GetTopCategoriesRequest
-	(*GetTopCategoriesResponse)(nil),     // 7: arian.v1.GetTopCategoriesResponse
-	(*GetTopMerchantsRequest)(nil),       // 8: arian.v1.GetTopMerchantsRequest
-	(*GetTopMerchantsResponse)(nil),      // 9: arian.v1.GetTopMerchantsResponse
-	(*GetAccountSummaryRequest)(nil),     // 10: arian.v1.GetAccountSummaryRequest
-	(*GetAccountSummaryResponse)(nil),    // 11: arian.v1.GetAccountSummaryResponse
-	(*GetSpendingTrendsRequest)(nil),     // 12: arian.v1.GetSpendingTrendsRequest
-	(*GetSpendingTrendsResponse)(nil),    // 13: arian.v1.GetSpendingTrendsResponse
-	(*GetAccountBalancesRequest)(nil),    // 14: arian.v1.GetAccountBalancesRequest
-	(*GetAccountBalancesResponse)(nil),   // 15: arian.v1.GetAccountBalancesResponse
-	(*GetTotalBalanceRequest)(nil),       // 16: arian.v1.GetTotalBalanceRequest
-	(*GetTotalBalanceResponse)(nil),      // 17: arian.v1.GetTotalBalanceResponse
-	(*GetTotalDebtRequest)(nil),          // 18: arian.v1.GetTotalDebtRequest
-	(*GetTotalDebtResponse)(nil),         // 19: arian.v1.GetTotalDebtResponse
-	(*GetNetBalanceRequest)(nil),         // 20: arian.v1.GetNetBalanceRequest
-	(*GetNetBalanceResponse)(nil),        // 21: arian.v1.GetNetBalanceResponse
-	(*date.Date)(nil),                    // 22: google.type.Date
-	(*DashboardSummary)(nil),             // 23: arian.v1.DashboardSummary
-	(*TrendPoint)(nil),                   // 24: arian.v1.TrendPoint
-	(*MonthlyComparison)(nil),            // 25: arian.v1.MonthlyComparison
-	(*TopCategory)(nil),                  // 26: arian.v1.TopCategory
-	(*TopMerchant)(nil),                  // 27: arian.v1.TopMerchant
-	(*AccountBalance)(nil),               // 28: arian.v1.AccountBalance
-	(*money.Money)(nil),                  // 29: google.type.Money
+	(*GetDashboardSummaryRequest)(nil),            // 0: arian.v1.GetDashboardSummaryRequest
+	(*GetDashboardSummaryResponse)(nil),           // 1: arian.v1.GetDashboardSummaryResponse
+	(*GetMonthlyComparisonRequest)(nil),           // 2: arian.v1.GetMonthlyComparisonRequest
+	(*GetMonthlyComparisonResponse)(nil),          // 3: arian.v1.GetMonthlyComparisonResponse
+	(*GetTopCategoriesRequest)(nil),               // 4: arian.v1.GetTopCategoriesRequest
+	(*GetTopCategoriesResponse)(nil),              // 5: arian.v1.GetTopCategoriesResponse
+	(*GetTopMerchantsRequest)(nil),                // 6: arian.v1.GetTopMerchantsRequest
+	(*GetTopMerchantsResponse)(nil),               // 7: arian.v1.GetTopMerchantsResponse
+	(*GetSpendingTrendsRequest)(nil),              // 8: arian.v1.GetSpendingTrendsRequest
+	(*GetSpendingTrendsResponse)(nil),             // 9: arian.v1.GetSpendingTrendsResponse
+	(*GetFinancialSummaryRequest)(nil),            // 10: arian.v1.GetFinancialSummaryRequest
+	(*GetFinancialSummaryResponse)(nil),           // 11: arian.v1.GetFinancialSummaryResponse
+	(*GetCategorySpendingComparisonRequest)(nil),  // 12: arian.v1.GetCategorySpendingComparisonRequest
+	(*CategorySpendingItem)(nil),                  // 13: arian.v1.CategorySpendingItem
+	(*GetCategorySpendingComparisonResponse)(nil), // 14: arian.v1.GetCategorySpendingComparisonResponse
+	(*GetNetWorthHistoryRequest)(nil),             // 15: arian.v1.GetNetWorthHistoryRequest
+	(*GetNetWorthHistoryResponse)(nil),            // 16: arian.v1.GetNetWorthHistoryResponse
+	(*date.Date)(nil),                             // 17: google.type.Date
+	(*DashboardSummary)(nil),                      // 18: arian.v1.DashboardSummary
+	(*MonthlyComparison)(nil),                     // 19: arian.v1.MonthlyComparison
+	(*TopCategory)(nil),                           // 20: arian.v1.TopCategory
+	(*TopMerchant)(nil),                           // 21: arian.v1.TopMerchant
+	(*TrendPoint)(nil),                            // 22: arian.v1.TrendPoint
+	(*money.Money)(nil),                           // 23: google.type.Money
+	(PeriodType)(0),                               // 24: arian.v1.PeriodType
+	(*Category)(nil),                              // 25: arian.v1.Category
+	(*CategorySpendingComparison)(nil),            // 26: arian.v1.CategorySpendingComparison
+	(*PeriodInfo)(nil),                            // 27: arian.v1.PeriodInfo
+	(*CategorySpendingTotals)(nil),                // 28: arian.v1.CategorySpendingTotals
+	(Granularity)(0),                              // 29: arian.v1.Granularity
+	(*NetWorthPoint)(nil),                         // 30: arian.v1.NetWorthPoint
 }
 var file_arian_v1_dashboard_services_proto_depIdxs = []int32{
-	22, // 0: arian.v1.GetDashboardSummaryRequest.start_date:type_name -> google.type.Date
-	22, // 1: arian.v1.GetDashboardSummaryRequest.end_date:type_name -> google.type.Date
-	23, // 2: arian.v1.GetDashboardSummaryResponse.summary:type_name -> arian.v1.DashboardSummary
-	22, // 3: arian.v1.GetTrendDataRequest.start_date:type_name -> google.type.Date
-	22, // 4: arian.v1.GetTrendDataRequest.end_date:type_name -> google.type.Date
-	24, // 5: arian.v1.GetTrendDataResponse.trends:type_name -> arian.v1.TrendPoint
-	25, // 6: arian.v1.GetMonthlyComparisonResponse.comparisons:type_name -> arian.v1.MonthlyComparison
-	22, // 7: arian.v1.GetTopCategoriesRequest.start_date:type_name -> google.type.Date
-	22, // 8: arian.v1.GetTopCategoriesRequest.end_date:type_name -> google.type.Date
-	26, // 9: arian.v1.GetTopCategoriesResponse.categories:type_name -> arian.v1.TopCategory
-	22, // 10: arian.v1.GetTopMerchantsRequest.start_date:type_name -> google.type.Date
-	22, // 11: arian.v1.GetTopMerchantsRequest.end_date:type_name -> google.type.Date
-	27, // 12: arian.v1.GetTopMerchantsResponse.merchants:type_name -> arian.v1.TopMerchant
-	22, // 13: arian.v1.GetAccountSummaryRequest.start_date:type_name -> google.type.Date
-	22, // 14: arian.v1.GetAccountSummaryRequest.end_date:type_name -> google.type.Date
-	23, // 15: arian.v1.GetAccountSummaryResponse.summary:type_name -> arian.v1.DashboardSummary
-	24, // 16: arian.v1.GetAccountSummaryResponse.trends:type_name -> arian.v1.TrendPoint
-	22, // 17: arian.v1.GetSpendingTrendsRequest.start_date:type_name -> google.type.Date
-	22, // 18: arian.v1.GetSpendingTrendsRequest.end_date:type_name -> google.type.Date
-	24, // 19: arian.v1.GetSpendingTrendsResponse.trends:type_name -> arian.v1.TrendPoint
-	28, // 20: arian.v1.GetAccountBalancesResponse.balances:type_name -> arian.v1.AccountBalance
-	29, // 21: arian.v1.GetTotalBalanceResponse.total_balance:type_name -> google.type.Money
-	29, // 22: arian.v1.GetTotalDebtResponse.total_debt:type_name -> google.type.Money
-	29, // 23: arian.v1.GetNetBalanceResponse.net_balance:type_name -> google.type.Money
-	0,  // 24: arian.v1.DashboardService.GetDashboardSummary:input_type -> arian.v1.GetDashboardSummaryRequest
-	2,  // 25: arian.v1.DashboardService.GetTrendData:input_type -> arian.v1.GetTrendDataRequest
-	4,  // 26: arian.v1.DashboardService.GetMonthlyComparison:input_type -> arian.v1.GetMonthlyComparisonRequest
-	6,  // 27: arian.v1.DashboardService.GetTopCategories:input_type -> arian.v1.GetTopCategoriesRequest
-	8,  // 28: arian.v1.DashboardService.GetTopMerchants:input_type -> arian.v1.GetTopMerchantsRequest
-	10, // 29: arian.v1.DashboardService.GetAccountSummary:input_type -> arian.v1.GetAccountSummaryRequest
-	14, // 30: arian.v1.DashboardService.GetAccountBalances:input_type -> arian.v1.GetAccountBalancesRequest
-	12, // 31: arian.v1.DashboardService.GetSpendingTrends:input_type -> arian.v1.GetSpendingTrendsRequest
-	16, // 32: arian.v1.DashboardService.GetTotalBalance:input_type -> arian.v1.GetTotalBalanceRequest
-	18, // 33: arian.v1.DashboardService.GetTotalDebt:input_type -> arian.v1.GetTotalDebtRequest
-	20, // 34: arian.v1.DashboardService.GetNetBalance:input_type -> arian.v1.GetNetBalanceRequest
-	1,  // 35: arian.v1.DashboardService.GetDashboardSummary:output_type -> arian.v1.GetDashboardSummaryResponse
-	3,  // 36: arian.v1.DashboardService.GetTrendData:output_type -> arian.v1.GetTrendDataResponse
-	5,  // 37: arian.v1.DashboardService.GetMonthlyComparison:output_type -> arian.v1.GetMonthlyComparisonResponse
-	7,  // 38: arian.v1.DashboardService.GetTopCategories:output_type -> arian.v1.GetTopCategoriesResponse
-	9,  // 39: arian.v1.DashboardService.GetTopMerchants:output_type -> arian.v1.GetTopMerchantsResponse
-	11, // 40: arian.v1.DashboardService.GetAccountSummary:output_type -> arian.v1.GetAccountSummaryResponse
-	15, // 41: arian.v1.DashboardService.GetAccountBalances:output_type -> arian.v1.GetAccountBalancesResponse
-	13, // 42: arian.v1.DashboardService.GetSpendingTrends:output_type -> arian.v1.GetSpendingTrendsResponse
-	17, // 43: arian.v1.DashboardService.GetTotalBalance:output_type -> arian.v1.GetTotalBalanceResponse
-	19, // 44: arian.v1.DashboardService.GetTotalDebt:output_type -> arian.v1.GetTotalDebtResponse
-	21, // 45: arian.v1.DashboardService.GetNetBalance:output_type -> arian.v1.GetNetBalanceResponse
-	35, // [35:46] is the sub-list for method output_type
-	24, // [24:35] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	17, // 0: arian.v1.GetDashboardSummaryRequest.start_date:type_name -> google.type.Date
+	17, // 1: arian.v1.GetDashboardSummaryRequest.end_date:type_name -> google.type.Date
+	18, // 2: arian.v1.GetDashboardSummaryResponse.summary:type_name -> arian.v1.DashboardSummary
+	19, // 3: arian.v1.GetMonthlyComparisonResponse.comparisons:type_name -> arian.v1.MonthlyComparison
+	17, // 4: arian.v1.GetTopCategoriesRequest.start_date:type_name -> google.type.Date
+	17, // 5: arian.v1.GetTopCategoriesRequest.end_date:type_name -> google.type.Date
+	20, // 6: arian.v1.GetTopCategoriesResponse.categories:type_name -> arian.v1.TopCategory
+	17, // 7: arian.v1.GetTopMerchantsRequest.start_date:type_name -> google.type.Date
+	17, // 8: arian.v1.GetTopMerchantsRequest.end_date:type_name -> google.type.Date
+	21, // 9: arian.v1.GetTopMerchantsResponse.merchants:type_name -> arian.v1.TopMerchant
+	17, // 10: arian.v1.GetSpendingTrendsRequest.start_date:type_name -> google.type.Date
+	17, // 11: arian.v1.GetSpendingTrendsRequest.end_date:type_name -> google.type.Date
+	22, // 12: arian.v1.GetSpendingTrendsResponse.trends:type_name -> arian.v1.TrendPoint
+	23, // 13: arian.v1.GetFinancialSummaryResponse.total_balance:type_name -> google.type.Money
+	23, // 14: arian.v1.GetFinancialSummaryResponse.total_debt:type_name -> google.type.Money
+	23, // 15: arian.v1.GetFinancialSummaryResponse.net_balance:type_name -> google.type.Money
+	24, // 16: arian.v1.GetCategorySpendingComparisonRequest.period_type:type_name -> arian.v1.PeriodType
+	17, // 17: arian.v1.GetCategorySpendingComparisonRequest.custom_start_date:type_name -> google.type.Date
+	17, // 18: arian.v1.GetCategorySpendingComparisonRequest.custom_end_date:type_name -> google.type.Date
+	25, // 19: arian.v1.CategorySpendingItem.category:type_name -> arian.v1.Category
+	26, // 20: arian.v1.CategorySpendingItem.spending:type_name -> arian.v1.CategorySpendingComparison
+	27, // 21: arian.v1.GetCategorySpendingComparisonResponse.current_period:type_name -> arian.v1.PeriodInfo
+	27, // 22: arian.v1.GetCategorySpendingComparisonResponse.previous_period:type_name -> arian.v1.PeriodInfo
+	13, // 23: arian.v1.GetCategorySpendingComparisonResponse.categories:type_name -> arian.v1.CategorySpendingItem
+	26, // 24: arian.v1.GetCategorySpendingComparisonResponse.uncategorized:type_name -> arian.v1.CategorySpendingComparison
+	28, // 25: arian.v1.GetCategorySpendingComparisonResponse.totals:type_name -> arian.v1.CategorySpendingTotals
+	17, // 26: arian.v1.GetNetWorthHistoryRequest.start_date:type_name -> google.type.Date
+	17, // 27: arian.v1.GetNetWorthHistoryRequest.end_date:type_name -> google.type.Date
+	29, // 28: arian.v1.GetNetWorthHistoryRequest.granularity:type_name -> arian.v1.Granularity
+	30, // 29: arian.v1.GetNetWorthHistoryResponse.data_points:type_name -> arian.v1.NetWorthPoint
+	0,  // 30: arian.v1.DashboardService.GetDashboardSummary:input_type -> arian.v1.GetDashboardSummaryRequest
+	2,  // 31: arian.v1.DashboardService.GetMonthlyComparison:input_type -> arian.v1.GetMonthlyComparisonRequest
+	4,  // 32: arian.v1.DashboardService.GetTopCategories:input_type -> arian.v1.GetTopCategoriesRequest
+	6,  // 33: arian.v1.DashboardService.GetTopMerchants:input_type -> arian.v1.GetTopMerchantsRequest
+	8,  // 34: arian.v1.DashboardService.GetSpendingTrends:input_type -> arian.v1.GetSpendingTrendsRequest
+	10, // 35: arian.v1.DashboardService.GetFinancialSummary:input_type -> arian.v1.GetFinancialSummaryRequest
+	12, // 36: arian.v1.DashboardService.GetCategorySpendingComparison:input_type -> arian.v1.GetCategorySpendingComparisonRequest
+	15, // 37: arian.v1.DashboardService.GetNetWorthHistory:input_type -> arian.v1.GetNetWorthHistoryRequest
+	1,  // 38: arian.v1.DashboardService.GetDashboardSummary:output_type -> arian.v1.GetDashboardSummaryResponse
+	3,  // 39: arian.v1.DashboardService.GetMonthlyComparison:output_type -> arian.v1.GetMonthlyComparisonResponse
+	5,  // 40: arian.v1.DashboardService.GetTopCategories:output_type -> arian.v1.GetTopCategoriesResponse
+	7,  // 41: arian.v1.DashboardService.GetTopMerchants:output_type -> arian.v1.GetTopMerchantsResponse
+	9,  // 42: arian.v1.DashboardService.GetSpendingTrends:output_type -> arian.v1.GetSpendingTrendsResponse
+	11, // 43: arian.v1.DashboardService.GetFinancialSummary:output_type -> arian.v1.GetFinancialSummaryResponse
+	14, // 44: arian.v1.DashboardService.GetCategorySpendingComparison:output_type -> arian.v1.GetCategorySpendingComparisonResponse
+	16, // 45: arian.v1.DashboardService.GetNetWorthHistory:output_type -> arian.v1.GetNetWorthHistoryResponse
+	38, // [38:46] is the sub-list for method output_type
+	30, // [30:38] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_arian_v1_dashboard_services_proto_init() }
@@ -1378,21 +1202,24 @@ func file_arian_v1_dashboard_services_proto_init() {
 		return
 	}
 	file_arian_v1_account_proto_init()
+	file_arian_v1_category_proto_init()
 	file_arian_v1_dashboard_proto_init()
+	file_arian_v1_enums_proto_init()
 	file_arian_v1_dashboard_services_proto_msgTypes[0].OneofWrappers = []any{}
 	file_arian_v1_dashboard_services_proto_msgTypes[2].OneofWrappers = []any{}
 	file_arian_v1_dashboard_services_proto_msgTypes[4].OneofWrappers = []any{}
 	file_arian_v1_dashboard_services_proto_msgTypes[6].OneofWrappers = []any{}
 	file_arian_v1_dashboard_services_proto_msgTypes[8].OneofWrappers = []any{}
-	file_arian_v1_dashboard_services_proto_msgTypes[10].OneofWrappers = []any{}
 	file_arian_v1_dashboard_services_proto_msgTypes[12].OneofWrappers = []any{}
+	file_arian_v1_dashboard_services_proto_msgTypes[13].OneofWrappers = []any{}
+	file_arian_v1_dashboard_services_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arian_v1_dashboard_services_proto_rawDesc), len(file_arian_v1_dashboard_services_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

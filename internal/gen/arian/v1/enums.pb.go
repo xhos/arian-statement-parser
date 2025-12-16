@@ -128,157 +128,111 @@ func (TransactionDirection) EnumDescriptor() ([]byte, []int) {
 	return file_arian_v1_enums_proto_rawDescGZIP(), []int{1}
 }
 
-type ReceiptEngine int32
+type PeriodType int32
 
 const (
-	ReceiptEngine_ENGINE_UNSPECIFIED ReceiptEngine = 0
-	ReceiptEngine_ENGINE_GEMINI      ReceiptEngine = 1
-	ReceiptEngine_ENGINE_LOCAL       ReceiptEngine = 2
+	PeriodType_PERIOD_TYPE_UNSPECIFIED PeriodType = 0
+	PeriodType_PERIOD_TYPE_7_DAYS      PeriodType = 1
+	PeriodType_PERIOD_TYPE_30_DAYS     PeriodType = 2
+	PeriodType_PERIOD_TYPE_90_DAYS     PeriodType = 3
+	PeriodType_PERIOD_TYPE_CUSTOM      PeriodType = 4
 )
 
-// Enum value maps for ReceiptEngine.
+// Enum value maps for PeriodType.
 var (
-	ReceiptEngine_name = map[int32]string{
-		0: "ENGINE_UNSPECIFIED",
-		1: "ENGINE_GEMINI",
-		2: "ENGINE_LOCAL",
+	PeriodType_name = map[int32]string{
+		0: "PERIOD_TYPE_UNSPECIFIED",
+		1: "PERIOD_TYPE_7_DAYS",
+		2: "PERIOD_TYPE_30_DAYS",
+		3: "PERIOD_TYPE_90_DAYS",
+		4: "PERIOD_TYPE_CUSTOM",
 	}
-	ReceiptEngine_value = map[string]int32{
-		"ENGINE_UNSPECIFIED": 0,
-		"ENGINE_GEMINI":      1,
-		"ENGINE_LOCAL":       2,
+	PeriodType_value = map[string]int32{
+		"PERIOD_TYPE_UNSPECIFIED": 0,
+		"PERIOD_TYPE_7_DAYS":      1,
+		"PERIOD_TYPE_30_DAYS":     2,
+		"PERIOD_TYPE_90_DAYS":     3,
+		"PERIOD_TYPE_CUSTOM":      4,
 	}
 )
 
-func (x ReceiptEngine) Enum() *ReceiptEngine {
-	p := new(ReceiptEngine)
+func (x PeriodType) Enum() *PeriodType {
+	p := new(PeriodType)
 	*p = x
 	return p
 }
 
-func (x ReceiptEngine) String() string {
+func (x PeriodType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ReceiptEngine) Descriptor() protoreflect.EnumDescriptor {
+func (PeriodType) Descriptor() protoreflect.EnumDescriptor {
 	return file_arian_v1_enums_proto_enumTypes[2].Descriptor()
 }
 
-func (ReceiptEngine) Type() protoreflect.EnumType {
+func (PeriodType) Type() protoreflect.EnumType {
 	return &file_arian_v1_enums_proto_enumTypes[2]
 }
 
-func (x ReceiptEngine) Number() protoreflect.EnumNumber {
+func (x PeriodType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ReceiptEngine.Descriptor instead.
-func (ReceiptEngine) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use PeriodType.Descriptor instead.
+func (PeriodType) EnumDescriptor() ([]byte, []int) {
 	return file_arian_v1_enums_proto_rawDescGZIP(), []int{2}
 }
 
-type ReceiptParseStatus int32
+type Granularity int32
 
 const (
-	ReceiptParseStatus_PARSE_STATUS_UNSPECIFIED ReceiptParseStatus = 0
-	ReceiptParseStatus_PARSE_STATUS_PENDING     ReceiptParseStatus = 1
-	ReceiptParseStatus_PARSE_STATUS_SUCCESS     ReceiptParseStatus = 2
-	ReceiptParseStatus_PARSE_STATUS_FAILED      ReceiptParseStatus = 3
+	Granularity_GRANULARITY_UNSPECIFIED Granularity = 0
+	Granularity_GRANULARITY_DAY         Granularity = 1
+	Granularity_GRANULARITY_WEEK        Granularity = 2
+	Granularity_GRANULARITY_MONTH       Granularity = 3
 )
 
-// Enum value maps for ReceiptParseStatus.
+// Enum value maps for Granularity.
 var (
-	ReceiptParseStatus_name = map[int32]string{
-		0: "PARSE_STATUS_UNSPECIFIED",
-		1: "PARSE_STATUS_PENDING",
-		2: "PARSE_STATUS_SUCCESS",
-		3: "PARSE_STATUS_FAILED",
+	Granularity_name = map[int32]string{
+		0: "GRANULARITY_UNSPECIFIED",
+		1: "GRANULARITY_DAY",
+		2: "GRANULARITY_WEEK",
+		3: "GRANULARITY_MONTH",
 	}
-	ReceiptParseStatus_value = map[string]int32{
-		"PARSE_STATUS_UNSPECIFIED": 0,
-		"PARSE_STATUS_PENDING":     1,
-		"PARSE_STATUS_SUCCESS":     2,
-		"PARSE_STATUS_FAILED":      3,
+	Granularity_value = map[string]int32{
+		"GRANULARITY_UNSPECIFIED": 0,
+		"GRANULARITY_DAY":         1,
+		"GRANULARITY_WEEK":        2,
+		"GRANULARITY_MONTH":       3,
 	}
 )
 
-func (x ReceiptParseStatus) Enum() *ReceiptParseStatus {
-	p := new(ReceiptParseStatus)
+func (x Granularity) Enum() *Granularity {
+	p := new(Granularity)
 	*p = x
 	return p
 }
 
-func (x ReceiptParseStatus) String() string {
+func (x Granularity) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ReceiptParseStatus) Descriptor() protoreflect.EnumDescriptor {
+func (Granularity) Descriptor() protoreflect.EnumDescriptor {
 	return file_arian_v1_enums_proto_enumTypes[3].Descriptor()
 }
 
-func (ReceiptParseStatus) Type() protoreflect.EnumType {
+func (Granularity) Type() protoreflect.EnumType {
 	return &file_arian_v1_enums_proto_enumTypes[3]
 }
 
-func (x ReceiptParseStatus) Number() protoreflect.EnumNumber {
+func (x Granularity) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ReceiptParseStatus.Descriptor instead.
-func (ReceiptParseStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use Granularity.Descriptor instead.
+func (Granularity) EnumDescriptor() ([]byte, []int) {
 	return file_arian_v1_enums_proto_rawDescGZIP(), []int{3}
-}
-
-type ReceiptLinkStatus int32
-
-const (
-	ReceiptLinkStatus_LINK_STATUS_UNSPECIFIED        ReceiptLinkStatus = 0
-	ReceiptLinkStatus_LINK_STATUS_UNLINKED           ReceiptLinkStatus = 1
-	ReceiptLinkStatus_LINK_STATUS_MATCHED            ReceiptLinkStatus = 2
-	ReceiptLinkStatus_LINK_STATUS_NEEDS_VERIFICATION ReceiptLinkStatus = 3
-)
-
-// Enum value maps for ReceiptLinkStatus.
-var (
-	ReceiptLinkStatus_name = map[int32]string{
-		0: "LINK_STATUS_UNSPECIFIED",
-		1: "LINK_STATUS_UNLINKED",
-		2: "LINK_STATUS_MATCHED",
-		3: "LINK_STATUS_NEEDS_VERIFICATION",
-	}
-	ReceiptLinkStatus_value = map[string]int32{
-		"LINK_STATUS_UNSPECIFIED":        0,
-		"LINK_STATUS_UNLINKED":           1,
-		"LINK_STATUS_MATCHED":            2,
-		"LINK_STATUS_NEEDS_VERIFICATION": 3,
-	}
-)
-
-func (x ReceiptLinkStatus) Enum() *ReceiptLinkStatus {
-	p := new(ReceiptLinkStatus)
-	*p = x
-	return p
-}
-
-func (x ReceiptLinkStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ReceiptLinkStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_arian_v1_enums_proto_enumTypes[4].Descriptor()
-}
-
-func (ReceiptLinkStatus) Type() protoreflect.EnumType {
-	return &file_arian_v1_enums_proto_enumTypes[4]
-}
-
-func (x ReceiptLinkStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ReceiptLinkStatus.Descriptor instead.
-func (ReceiptLinkStatus) EnumDescriptor() ([]byte, []int) {
-	return file_arian_v1_enums_proto_rawDescGZIP(), []int{4}
 }
 
 var File_arian_v1_enums_proto protoreflect.FileDescriptor
@@ -296,21 +250,19 @@ const file_arian_v1_enums_proto_rawDesc = "" +
 	"\x14TransactionDirection\x12\x19\n" +
 	"\x15DIRECTION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12DIRECTION_INCOMING\x10\x01\x12\x16\n" +
-	"\x12DIRECTION_OUTGOING\x10\x02*L\n" +
-	"\rReceiptEngine\x12\x16\n" +
-	"\x12ENGINE_UNSPECIFIED\x10\x00\x12\x11\n" +
-	"\rENGINE_GEMINI\x10\x01\x12\x10\n" +
-	"\fENGINE_LOCAL\x10\x02*\x7f\n" +
-	"\x12ReceiptParseStatus\x12\x1c\n" +
-	"\x18PARSE_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\x14PARSE_STATUS_PENDING\x10\x01\x12\x18\n" +
-	"\x14PARSE_STATUS_SUCCESS\x10\x02\x12\x17\n" +
-	"\x13PARSE_STATUS_FAILED\x10\x03*\x87\x01\n" +
-	"\x11ReceiptLinkStatus\x12\x1b\n" +
-	"\x17LINK_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\x14LINK_STATUS_UNLINKED\x10\x01\x12\x17\n" +
-	"\x13LINK_STATUS_MATCHED\x10\x02\x12\"\n" +
-	"\x1eLINK_STATUS_NEEDS_VERIFICATION\x10\x03B\x87\x01\n" +
+	"\x12DIRECTION_OUTGOING\x10\x02*\x8b\x01\n" +
+	"\n" +
+	"PeriodType\x12\x1b\n" +
+	"\x17PERIOD_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12PERIOD_TYPE_7_DAYS\x10\x01\x12\x17\n" +
+	"\x13PERIOD_TYPE_30_DAYS\x10\x02\x12\x17\n" +
+	"\x13PERIOD_TYPE_90_DAYS\x10\x03\x12\x16\n" +
+	"\x12PERIOD_TYPE_CUSTOM\x10\x04*l\n" +
+	"\vGranularity\x12\x1b\n" +
+	"\x17GRANULARITY_UNSPECIFIED\x10\x00\x12\x13\n" +
+	"\x0fGRANULARITY_DAY\x10\x01\x12\x14\n" +
+	"\x10GRANULARITY_WEEK\x10\x02\x12\x15\n" +
+	"\x11GRANULARITY_MONTH\x10\x03B\x87\x01\n" +
 	"\fcom.arian.v1B\n" +
 	"EnumsProtoP\x01Z*arian-parser/internal/gen/arian/v1;arianv1\xa2\x02\x03AXX\xaa\x02\bArian.V1\xca\x02\bArian\\V1\xe2\x02\x14Arian\\V1\\GPBMetadata\xea\x02\tArian::V1b\x06proto3"
 
@@ -326,13 +278,12 @@ func file_arian_v1_enums_proto_rawDescGZIP() []byte {
 	return file_arian_v1_enums_proto_rawDescData
 }
 
-var file_arian_v1_enums_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_arian_v1_enums_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_arian_v1_enums_proto_goTypes = []any{
 	(AccountType)(0),          // 0: arian.v1.AccountType
 	(TransactionDirection)(0), // 1: arian.v1.TransactionDirection
-	(ReceiptEngine)(0),        // 2: arian.v1.ReceiptEngine
-	(ReceiptParseStatus)(0),   // 3: arian.v1.ReceiptParseStatus
-	(ReceiptLinkStatus)(0),    // 4: arian.v1.ReceiptLinkStatus
+	(PeriodType)(0),           // 2: arian.v1.PeriodType
+	(Granularity)(0),          // 3: arian.v1.Granularity
 }
 var file_arian_v1_enums_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -352,7 +303,7 @@ func file_arian_v1_enums_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arian_v1_enums_proto_rawDesc), len(file_arian_v1_enums_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      4,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
