@@ -1,43 +1,34 @@
 package mapping
 
 import (
-	"encoding/json"
+	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
-)
+	"strings"
 
-// AccountMapping represents a mapping between a statement account number and an ariand account ID
-type AccountMapping struct {
-	StatementAccountNumber string `json:"statement_account_number"`
-	StatementAccountType   string `json:"statement_account_type"`
-	ArianAccountID         string `json:"arian_account_id"`
-	ArianAccountName       string `json:"arian_account_name"`
-}
+	pb "arian-statement-parser/internal/gen/arian/v1"
+)
 
 // Store manages account mappings
 type Store struct {
 	filePath string
-	Mappings []AccountMapping `json:"mappings"`
+	Mappings map[string]string // statement account number -> arian account name
 }
 
 // NewStore creates a new mapping store
 func NewStore() (*Store, error) {
-	homeDir, err := os.UserHomeDir()
+	// Get current working directory
+	cwd, err := os.Getwd()
 	if err != nil {
-		return nil, fmt.Errorf("failed to get home directory: %w", err)
+		return nil, fmt.Errorf("failed to get current directory: %w", err)
 	}
 
-	configDir := filepath.Join(homeDir, ".config", "arian-statement-parser")
-	if err := os.MkdirAll(configDir, 0755); err != nil {
-		return nil, fmt.Errorf("failed to create config directory: %w", err)
-	}
-
-	filePath := filepath.Join(configDir, "account-mappings.json")
+	filePath := filepath.Join(cwd, "account-mappings.txt")
 
 	store := &Store{
 		filePath: filePath,
-		Mappings: []AccountMapping{},
+		Mappings: make(map[string]string),
 	}
 
 	// Load existing mappings if file exists
@@ -52,13 +43,31 @@ func NewStore() (*Store, error) {
 
 // Load reads mappings from disk
 func (s *Store) Load() error {
-	data, err := os.ReadFile(s.filePath)
+	file, err := os.Open(s.filePath)
 	if err != nil {
-		return fmt.Errorf("failed to read mappings file: %w", err)
+		return fmt.Errorf("failed to open mappings file: %w", err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue // Skip empty lines and comments
+		}
+
+		parts := strings.SplitN(line, ":", 2)
+		if len(parts) != 2 {
+			continue // Skip invalid lines
+		}
+
+		statementAccount := strings.TrimSpace(parts[0])
+		arianAccount := strings.TrimSpace(parts[1])
+		s.Mappings[statementAccount] = arianAccount
 	}
 
-	if err := json.Unmarshal(data, &s.Mappings); err != nil {
-		return fmt.Errorf("failed to parse mappings: %w", err)
+	if err := scanner.Err(); err != nil {
+		return fmt.Errorf("failed to read mappings: %w", err)
 	}
 
 	return nil
@@ -66,41 +75,54 @@ func (s *Store) Load() error {
 
 // Save writes mappings to disk
 func (s *Store) Save() error {
-	data, err := json.MarshalIndent(s.Mappings, "", "  ")
+	file, err := os.Create(s.filePath)
 	if err != nil {
-		return fmt.Errorf("failed to marshal mappings: %w", err)
+		return fmt.Errorf("failed to create mappings file: %w", err)
+	}
+	defer file.Close()
+
+	writer := bufio.NewWriter(file)
+	defer writer.Flush()
+
+	// Write header comment
+	_, err = writer.WriteString("# Account mappings: statement_account -> arian_account\n")
+	if err != nil {
+		return fmt.Errorf("failed to write header: %w", err)
 	}
 
-	if err := os.WriteFile(s.filePath, data, 0644); err != nil {
-		return fmt.Errorf("failed to write mappings file: %w", err)
+	// Write mappings in sorted order for consistency
+	for statementAccount, arianAccount := range s.Mappings {
+		_, err = writer.WriteString(fmt.Sprintf("%s: %s\n", statementAccount, arianAccount))
+		if err != nil {
+			return fmt.Errorf("failed to write mapping: %w", err)
+		}
 	}
 
 	return nil
 }
 
 // FindMapping looks up an existing mapping
-func (s *Store) FindMapping(statementAccountNumber, statementAccountType string) *AccountMapping {
-	for i := range s.Mappings {
-		if s.Mappings[i].StatementAccountNumber == statementAccountNumber &&
-			s.Mappings[i].StatementAccountType == statementAccountType {
-			return &s.Mappings[i]
-		}
-	}
-	return nil
+func (s *Store) FindMapping(statementAccountNumber string) string {
+	return s.Mappings[statementAccountNumber]
 }
 
 // AddMapping adds a new mapping
-func (s *Store) AddMapping(mapping AccountMapping) error {
-	// Check if mapping already exists and update it
-	for i := range s.Mappings {
-		if s.Mappings[i].StatementAccountNumber == mapping.StatementAccountNumber &&
-			s.Mappings[i].StatementAccountType == mapping.StatementAccountType {
-			s.Mappings[i] = mapping
-			return s.Save()
+func (s *Store) AddMapping(statementAccountNumber, arianAccountName string) error {
+	s.Mappings[statementAccountNumber] = arianAccountName
+	return s.Save()
+}
+
+// ResolveAccount finds an account by name from a list of accounts
+func (s *Store) ResolveAccount(arianAccountName string, accounts []*pb.Account) *pb.Account {
+	if arianAccountName == "" {
+		return nil
+	}
+
+	for _, account := range accounts {
+		if strings.EqualFold(account.Name, arianAccountName) {
+			return account
 		}
 	}
 
-	// Add new mapping
-	s.Mappings = append(s.Mappings, mapping)
-	return s.Save()
+	return nil
 }

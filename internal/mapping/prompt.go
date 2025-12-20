@@ -14,7 +14,7 @@ const (
 )
 
 // PromptForAccountMapping prompts the user to map a statement account to an existing ariand account
-func PromptForAccountMapping(statementAccountNumber, statementAccountType string, existingAccounts []*pb.Account) (string, bool, error) {
+func PromptForAccountMapping(statementAccountNumber string, existingAccounts []*pb.Account) (string, bool, error) {
 	var selectedOption string
 	isNewAccount := false
 
@@ -36,7 +36,7 @@ func PromptForAccountMapping(statementAccountNumber, statementAccountType string
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[string]().
-				Title(fmt.Sprintf("Found account '%s' (%s) in statement", statementAccountNumber, statementAccountType)).
+				Title(fmt.Sprintf("Found account '%s' in statement", statementAccountNumber)).
 				Description("Map this to:").
 				Options(options...).
 				Value(&selectedOption),

@@ -361,26 +361,133 @@ func (x *GetTransactionResponse) GetTransaction() *Transaction {
 	return nil
 }
 
+type TransactionInput struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccountId     int64                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	TxDate        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=tx_date,json=txDate,proto3" json:"tx_date,omitempty"`
+	TxAmount      *money.Money           `protobuf:"bytes,3,opt,name=tx_amount,json=txAmount,proto3" json:"tx_amount,omitempty"`
+	Direction     TransactionDirection   `protobuf:"varint,4,opt,name=direction,proto3,enum=arian.v1.TransactionDirection" json:"direction,omitempty"`
+	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Merchant      *string                `protobuf:"bytes,6,opt,name=merchant,proto3,oneof" json:"merchant,omitempty"`
+	UserNotes     *string                `protobuf:"bytes,7,opt,name=user_notes,json=userNotes,proto3,oneof" json:"user_notes,omitempty"`
+	CategoryId    *int64                 `protobuf:"varint,8,opt,name=category_id,json=categoryId,proto3,oneof" json:"category_id,omitempty"`
+	ForeignAmount *money.Money           `protobuf:"bytes,9,opt,name=foreign_amount,json=foreignAmount,proto3,oneof" json:"foreign_amount,omitempty"`
+	ExchangeRate  *float64               `protobuf:"fixed64,10,opt,name=exchange_rate,json=exchangeRate,proto3,oneof" json:"exchange_rate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TransactionInput) Reset() {
+	*x = TransactionInput{}
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransactionInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransactionInput) ProtoMessage() {}
+
+func (x *TransactionInput) ProtoReflect() protoreflect.Message {
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransactionInput.ProtoReflect.Descriptor instead.
+func (*TransactionInput) Descriptor() ([]byte, []int) {
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TransactionInput) GetAccountId() int64 {
+	if x != nil {
+		return x.AccountId
+	}
+	return 0
+}
+
+func (x *TransactionInput) GetTxDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TxDate
+	}
+	return nil
+}
+
+func (x *TransactionInput) GetTxAmount() *money.Money {
+	if x != nil {
+		return x.TxAmount
+	}
+	return nil
+}
+
+func (x *TransactionInput) GetDirection() TransactionDirection {
+	if x != nil {
+		return x.Direction
+	}
+	return TransactionDirection_DIRECTION_UNSPECIFIED
+}
+
+func (x *TransactionInput) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *TransactionInput) GetMerchant() string {
+	if x != nil && x.Merchant != nil {
+		return *x.Merchant
+	}
+	return ""
+}
+
+func (x *TransactionInput) GetUserNotes() string {
+	if x != nil && x.UserNotes != nil {
+		return *x.UserNotes
+	}
+	return ""
+}
+
+func (x *TransactionInput) GetCategoryId() int64 {
+	if x != nil && x.CategoryId != nil {
+		return *x.CategoryId
+	}
+	return 0
+}
+
+func (x *TransactionInput) GetForeignAmount() *money.Money {
+	if x != nil {
+		return x.ForeignAmount
+	}
+	return nil
+}
+
+func (x *TransactionInput) GetExchangeRate() float64 {
+	if x != nil && x.ExchangeRate != nil {
+		return *x.ExchangeRate
+	}
+	return 0
+}
+
 type CreateTransactionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	AccountId     int64                  `protobuf:"varint,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	TxDate        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=tx_date,json=txDate,proto3" json:"tx_date,omitempty"`
-	TxAmount      *money.Money           `protobuf:"bytes,4,opt,name=tx_amount,json=txAmount,proto3" json:"tx_amount,omitempty"`
-	Direction     TransactionDirection   `protobuf:"varint,5,opt,name=direction,proto3,enum=arian.v1.TransactionDirection" json:"direction,omitempty"`
-	Description   *string                `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Merchant      *string                `protobuf:"bytes,7,opt,name=merchant,proto3,oneof" json:"merchant,omitempty"`
-	UserNotes     *string                `protobuf:"bytes,8,opt,name=user_notes,json=userNotes,proto3,oneof" json:"user_notes,omitempty"`
-	CategoryId    *int64                 `protobuf:"varint,9,opt,name=category_id,json=categoryId,proto3,oneof" json:"category_id,omitempty"`
-	ForeignAmount *money.Money           `protobuf:"bytes,10,opt,name=foreign_amount,json=foreignAmount,proto3,oneof" json:"foreign_amount,omitempty"`
-	ExchangeRate  *float64               `protobuf:"fixed64,11,opt,name=exchange_rate,json=exchangeRate,proto3,oneof" json:"exchange_rate,omitempty"`
+	Transactions  []*TransactionInput    `protobuf:"bytes,2,rep,name=transactions,proto3" json:"transactions,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateTransactionRequest) Reset() {
 	*x = CreateTransactionRequest{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[4]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -392,7 +499,7 @@ func (x *CreateTransactionRequest) String() string {
 func (*CreateTransactionRequest) ProtoMessage() {}
 
 func (x *CreateTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[4]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,7 +512,7 @@ func (x *CreateTransactionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTransactionRequest.ProtoReflect.Descriptor instead.
 func (*CreateTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{4}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateTransactionRequest) GetUserId() string {
@@ -415,86 +522,24 @@ func (x *CreateTransactionRequest) GetUserId() string {
 	return ""
 }
 
-func (x *CreateTransactionRequest) GetAccountId() int64 {
+func (x *CreateTransactionRequest) GetTransactions() []*TransactionInput {
 	if x != nil {
-		return x.AccountId
-	}
-	return 0
-}
-
-func (x *CreateTransactionRequest) GetTxDate() *timestamppb.Timestamp {
-	if x != nil {
-		return x.TxDate
+		return x.Transactions
 	}
 	return nil
-}
-
-func (x *CreateTransactionRequest) GetTxAmount() *money.Money {
-	if x != nil {
-		return x.TxAmount
-	}
-	return nil
-}
-
-func (x *CreateTransactionRequest) GetDirection() TransactionDirection {
-	if x != nil {
-		return x.Direction
-	}
-	return TransactionDirection_DIRECTION_UNSPECIFIED
-}
-
-func (x *CreateTransactionRequest) GetDescription() string {
-	if x != nil && x.Description != nil {
-		return *x.Description
-	}
-	return ""
-}
-
-func (x *CreateTransactionRequest) GetMerchant() string {
-	if x != nil && x.Merchant != nil {
-		return *x.Merchant
-	}
-	return ""
-}
-
-func (x *CreateTransactionRequest) GetUserNotes() string {
-	if x != nil && x.UserNotes != nil {
-		return *x.UserNotes
-	}
-	return ""
-}
-
-func (x *CreateTransactionRequest) GetCategoryId() int64 {
-	if x != nil && x.CategoryId != nil {
-		return *x.CategoryId
-	}
-	return 0
-}
-
-func (x *CreateTransactionRequest) GetForeignAmount() *money.Money {
-	if x != nil {
-		return x.ForeignAmount
-	}
-	return nil
-}
-
-func (x *CreateTransactionRequest) GetExchangeRate() float64 {
-	if x != nil && x.ExchangeRate != nil {
-		return *x.ExchangeRate
-	}
-	return 0
 }
 
 type CreateTransactionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Transaction   *Transaction           `protobuf:"bytes,1,opt,name=transaction,proto3" json:"transaction,omitempty"`
+	Transactions  []*Transaction         `protobuf:"bytes,1,rep,name=transactions,proto3" json:"transactions,omitempty"`
+	CreatedCount  int32                  `protobuf:"varint,2,opt,name=created_count,json=createdCount,proto3" json:"created_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateTransactionResponse) Reset() {
 	*x = CreateTransactionResponse{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[5]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -506,7 +551,7 @@ func (x *CreateTransactionResponse) String() string {
 func (*CreateTransactionResponse) ProtoMessage() {}
 
 func (x *CreateTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[5]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -519,14 +564,21 @@ func (x *CreateTransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTransactionResponse.ProtoReflect.Descriptor instead.
 func (*CreateTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{5}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CreateTransactionResponse) GetTransaction() *Transaction {
+func (x *CreateTransactionResponse) GetTransactions() []*Transaction {
 	if x != nil {
-		return x.Transaction
+		return x.Transactions
 	}
 	return nil
+}
+
+func (x *CreateTransactionResponse) GetCreatedCount() int32 {
+	if x != nil {
+		return x.CreatedCount
+	}
+	return 0
 }
 
 type UpdateTransactionRequest struct {
@@ -549,7 +601,7 @@ type UpdateTransactionRequest struct {
 
 func (x *UpdateTransactionRequest) Reset() {
 	*x = UpdateTransactionRequest{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[6]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -561,7 +613,7 @@ func (x *UpdateTransactionRequest) String() string {
 func (*UpdateTransactionRequest) ProtoMessage() {}
 
 func (x *UpdateTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[6]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -574,7 +626,7 @@ func (x *UpdateTransactionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTransactionRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{6}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateTransactionRequest) GetUserId() string {
@@ -669,7 +721,7 @@ type UpdateTransactionResponse struct {
 
 func (x *UpdateTransactionResponse) Reset() {
 	*x = UpdateTransactionResponse{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[7]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -681,7 +733,7 @@ func (x *UpdateTransactionResponse) String() string {
 func (*UpdateTransactionResponse) ProtoMessage() {}
 
 func (x *UpdateTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[7]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -694,7 +746,7 @@ func (x *UpdateTransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTransactionResponse.ProtoReflect.Descriptor instead.
 func (*UpdateTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{7}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{8}
 }
 
 type DeleteTransactionRequest struct {
@@ -707,7 +759,7 @@ type DeleteTransactionRequest struct {
 
 func (x *DeleteTransactionRequest) Reset() {
 	*x = DeleteTransactionRequest{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[8]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -719,7 +771,7 @@ func (x *DeleteTransactionRequest) String() string {
 func (*DeleteTransactionRequest) ProtoMessage() {}
 
 func (x *DeleteTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[8]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -732,7 +784,7 @@ func (x *DeleteTransactionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTransactionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{8}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeleteTransactionRequest) GetUserId() string {
@@ -758,7 +810,7 @@ type DeleteTransactionResponse struct {
 
 func (x *DeleteTransactionResponse) Reset() {
 	*x = DeleteTransactionResponse{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[9]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -770,7 +822,7 @@ func (x *DeleteTransactionResponse) String() string {
 func (*DeleteTransactionResponse) ProtoMessage() {}
 
 func (x *DeleteTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[9]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -783,7 +835,7 @@ func (x *DeleteTransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTransactionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{9}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteTransactionResponse) GetAffectedRows() int64 {
@@ -804,7 +856,7 @@ type CategorizeTransactionsRequest struct {
 
 func (x *CategorizeTransactionsRequest) Reset() {
 	*x = CategorizeTransactionsRequest{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[10]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -816,7 +868,7 @@ func (x *CategorizeTransactionsRequest) String() string {
 func (*CategorizeTransactionsRequest) ProtoMessage() {}
 
 func (x *CategorizeTransactionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[10]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,7 +881,7 @@ func (x *CategorizeTransactionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CategorizeTransactionsRequest.ProtoReflect.Descriptor instead.
 func (*CategorizeTransactionsRequest) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{10}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CategorizeTransactionsRequest) GetUserId() string {
@@ -862,7 +914,7 @@ type CategorizeTransactionsResponse struct {
 
 func (x *CategorizeTransactionsResponse) Reset() {
 	*x = CategorizeTransactionsResponse{}
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[11]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -874,7 +926,7 @@ func (x *CategorizeTransactionsResponse) String() string {
 func (*CategorizeTransactionsResponse) ProtoMessage() {}
 
 func (x *CategorizeTransactionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arian_v1_transaction_services_proto_msgTypes[11]
+	mi := &file_arian_v1_transaction_services_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -887,7 +939,7 @@ func (x *CategorizeTransactionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CategorizeTransactionsResponse.ProtoReflect.Descriptor instead.
 func (*CategorizeTransactionsResponse) Descriptor() ([]byte, []int) {
-	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{11}
+	return file_arian_v1_transaction_services_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CategorizeTransactionsResponse) GetAffectedRows() int64 {
@@ -958,31 +1010,34 @@ const file_arian_v1_transaction_services_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x17\n" +
 	"\x02id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"Q\n" +
 	"\x16GetTransactionResponse\x127\n" +
-	"\vtransaction\x18\x01 \x01(\v2\x15.arian.v1.TransactionR\vtransaction\"\xe6\x04\n" +
-	"\x18CreateTransactionRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12&\n" +
+	"\vtransaction\x18\x01 \x01(\v2\x15.arian.v1.TransactionR\vtransaction\"\xbb\x04\n" +
+	"\x10TransactionInput\x12&\n" +
 	"\n" +
-	"account_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\taccountId\x123\n" +
-	"\atx_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x06txDate\x12/\n" +
-	"\ttx_amount\x18\x04 \x01(\v2\x12.google.type.MoneyR\btxAmount\x12<\n" +
-	"\tdirection\x18\x05 \x01(\x0e2\x1e.arian.v1.TransactionDirectionR\tdirection\x12%\n" +
-	"\vdescription\x18\x06 \x01(\tH\x00R\vdescription\x88\x01\x01\x12\x1f\n" +
-	"\bmerchant\x18\a \x01(\tH\x01R\bmerchant\x88\x01\x01\x12\"\n" +
+	"account_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\taccountId\x123\n" +
+	"\atx_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x06txDate\x12/\n" +
+	"\ttx_amount\x18\x03 \x01(\v2\x12.google.type.MoneyR\btxAmount\x12<\n" +
+	"\tdirection\x18\x04 \x01(\x0e2\x1e.arian.v1.TransactionDirectionR\tdirection\x12%\n" +
+	"\vdescription\x18\x05 \x01(\tH\x00R\vdescription\x88\x01\x01\x12\x1f\n" +
+	"\bmerchant\x18\x06 \x01(\tH\x01R\bmerchant\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"user_notes\x18\b \x01(\tH\x02R\tuserNotes\x88\x01\x01\x12$\n" +
-	"\vcategory_id\x18\t \x01(\x03H\x03R\n" +
+	"user_notes\x18\a \x01(\tH\x02R\tuserNotes\x88\x01\x01\x12$\n" +
+	"\vcategory_id\x18\b \x01(\x03H\x03R\n" +
 	"categoryId\x88\x01\x01\x12>\n" +
-	"\x0eforeign_amount\x18\n" +
-	" \x01(\v2\x12.google.type.MoneyH\x04R\rforeignAmount\x88\x01\x01\x12(\n" +
-	"\rexchange_rate\x18\v \x01(\x01H\x05R\fexchangeRate\x88\x01\x01B\x0e\n" +
+	"\x0eforeign_amount\x18\t \x01(\v2\x12.google.type.MoneyH\x04R\rforeignAmount\x88\x01\x01\x12(\n" +
+	"\rexchange_rate\x18\n" +
+	" \x01(\x01H\x05R\fexchangeRate\x88\x01\x01B\x0e\n" +
 	"\f_descriptionB\v\n" +
 	"\t_merchantB\r\n" +
 	"\v_user_notesB\x0e\n" +
 	"\f_category_idB\x11\n" +
 	"\x0f_foreign_amountB\x10\n" +
-	"\x0e_exchange_rate\"T\n" +
-	"\x19CreateTransactionResponse\x127\n" +
-	"\vtransaction\x18\x01 \x01(\v2\x15.arian.v1.TransactionR\vtransaction\"\xcb\x05\n" +
+	"\x0e_exchange_rate\"\x87\x01\n" +
+	"\x18CreateTransactionRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12H\n" +
+	"\ftransactions\x18\x02 \x03(\v2\x1a.arian.v1.TransactionInputB\b\xbaH\x05\x92\x01\x02\b\x01R\ftransactions\"{\n" +
+	"\x19CreateTransactionResponse\x129\n" +
+	"\ftransactions\x18\x01 \x03(\v2\x15.arian.v1.TransactionR\ftransactions\x12#\n" +
+	"\rcreated_count\x18\x02 \x01(\x05R\fcreatedCount\"\xcb\x05\n" +
 	"\x18UpdateTransactionRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x17\n" +
 	"\x02id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\x12;\n" +
@@ -1046,67 +1101,69 @@ func file_arian_v1_transaction_services_proto_rawDescGZIP() []byte {
 	return file_arian_v1_transaction_services_proto_rawDescData
 }
 
-var file_arian_v1_transaction_services_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_arian_v1_transaction_services_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_arian_v1_transaction_services_proto_goTypes = []any{
 	(*ListTransactionsRequest)(nil),        // 0: arian.v1.ListTransactionsRequest
 	(*ListTransactionsResponse)(nil),       // 1: arian.v1.ListTransactionsResponse
 	(*GetTransactionRequest)(nil),          // 2: arian.v1.GetTransactionRequest
 	(*GetTransactionResponse)(nil),         // 3: arian.v1.GetTransactionResponse
-	(*CreateTransactionRequest)(nil),       // 4: arian.v1.CreateTransactionRequest
-	(*CreateTransactionResponse)(nil),      // 5: arian.v1.CreateTransactionResponse
-	(*UpdateTransactionRequest)(nil),       // 6: arian.v1.UpdateTransactionRequest
-	(*UpdateTransactionResponse)(nil),      // 7: arian.v1.UpdateTransactionResponse
-	(*DeleteTransactionRequest)(nil),       // 8: arian.v1.DeleteTransactionRequest
-	(*DeleteTransactionResponse)(nil),      // 9: arian.v1.DeleteTransactionResponse
-	(*CategorizeTransactionsRequest)(nil),  // 10: arian.v1.CategorizeTransactionsRequest
-	(*CategorizeTransactionsResponse)(nil), // 11: arian.v1.CategorizeTransactionsResponse
-	(*timestamppb.Timestamp)(nil),          // 12: google.protobuf.Timestamp
-	(*Cursor)(nil),                         // 13: arian.v1.Cursor
-	(*money.Money)(nil),                    // 14: google.type.Money
-	(TransactionDirection)(0),              // 15: arian.v1.TransactionDirection
-	(*TimeOfDay)(nil),                      // 16: arian.v1.TimeOfDay
-	(*Transaction)(nil),                    // 17: arian.v1.Transaction
-	(*fieldmaskpb.FieldMask)(nil),          // 18: google.protobuf.FieldMask
+	(*TransactionInput)(nil),               // 4: arian.v1.TransactionInput
+	(*CreateTransactionRequest)(nil),       // 5: arian.v1.CreateTransactionRequest
+	(*CreateTransactionResponse)(nil),      // 6: arian.v1.CreateTransactionResponse
+	(*UpdateTransactionRequest)(nil),       // 7: arian.v1.UpdateTransactionRequest
+	(*UpdateTransactionResponse)(nil),      // 8: arian.v1.UpdateTransactionResponse
+	(*DeleteTransactionRequest)(nil),       // 9: arian.v1.DeleteTransactionRequest
+	(*DeleteTransactionResponse)(nil),      // 10: arian.v1.DeleteTransactionResponse
+	(*CategorizeTransactionsRequest)(nil),  // 11: arian.v1.CategorizeTransactionsRequest
+	(*CategorizeTransactionsResponse)(nil), // 12: arian.v1.CategorizeTransactionsResponse
+	(*timestamppb.Timestamp)(nil),          // 13: google.protobuf.Timestamp
+	(*Cursor)(nil),                         // 14: arian.v1.Cursor
+	(*money.Money)(nil),                    // 15: google.type.Money
+	(TransactionDirection)(0),              // 16: arian.v1.TransactionDirection
+	(*TimeOfDay)(nil),                      // 17: arian.v1.TimeOfDay
+	(*Transaction)(nil),                    // 18: arian.v1.Transaction
+	(*fieldmaskpb.FieldMask)(nil),          // 19: google.protobuf.FieldMask
 }
 var file_arian_v1_transaction_services_proto_depIdxs = []int32{
-	12, // 0: arian.v1.ListTransactionsRequest.start_date:type_name -> google.protobuf.Timestamp
-	12, // 1: arian.v1.ListTransactionsRequest.end_date:type_name -> google.protobuf.Timestamp
-	13, // 2: arian.v1.ListTransactionsRequest.cursor:type_name -> arian.v1.Cursor
-	14, // 3: arian.v1.ListTransactionsRequest.amount_min:type_name -> google.type.Money
-	14, // 4: arian.v1.ListTransactionsRequest.amount_max:type_name -> google.type.Money
-	15, // 5: arian.v1.ListTransactionsRequest.direction:type_name -> arian.v1.TransactionDirection
-	16, // 6: arian.v1.ListTransactionsRequest.time_of_day_start:type_name -> arian.v1.TimeOfDay
-	16, // 7: arian.v1.ListTransactionsRequest.time_of_day_end:type_name -> arian.v1.TimeOfDay
-	17, // 8: arian.v1.ListTransactionsResponse.transactions:type_name -> arian.v1.Transaction
-	13, // 9: arian.v1.ListTransactionsResponse.next_cursor:type_name -> arian.v1.Cursor
-	17, // 10: arian.v1.GetTransactionResponse.transaction:type_name -> arian.v1.Transaction
-	12, // 11: arian.v1.CreateTransactionRequest.tx_date:type_name -> google.protobuf.Timestamp
-	14, // 12: arian.v1.CreateTransactionRequest.tx_amount:type_name -> google.type.Money
-	15, // 13: arian.v1.CreateTransactionRequest.direction:type_name -> arian.v1.TransactionDirection
-	14, // 14: arian.v1.CreateTransactionRequest.foreign_amount:type_name -> google.type.Money
-	17, // 15: arian.v1.CreateTransactionResponse.transaction:type_name -> arian.v1.Transaction
-	18, // 16: arian.v1.UpdateTransactionRequest.update_mask:type_name -> google.protobuf.FieldMask
-	12, // 17: arian.v1.UpdateTransactionRequest.tx_date:type_name -> google.protobuf.Timestamp
-	14, // 18: arian.v1.UpdateTransactionRequest.tx_amount:type_name -> google.type.Money
-	15, // 19: arian.v1.UpdateTransactionRequest.direction:type_name -> arian.v1.TransactionDirection
-	14, // 20: arian.v1.UpdateTransactionRequest.foreign_amount:type_name -> google.type.Money
-	0,  // 21: arian.v1.TransactionService.ListTransactions:input_type -> arian.v1.ListTransactionsRequest
-	2,  // 22: arian.v1.TransactionService.GetTransaction:input_type -> arian.v1.GetTransactionRequest
-	4,  // 23: arian.v1.TransactionService.CreateTransaction:input_type -> arian.v1.CreateTransactionRequest
-	6,  // 24: arian.v1.TransactionService.UpdateTransaction:input_type -> arian.v1.UpdateTransactionRequest
-	8,  // 25: arian.v1.TransactionService.DeleteTransaction:input_type -> arian.v1.DeleteTransactionRequest
-	10, // 26: arian.v1.TransactionService.CategorizeTransactions:input_type -> arian.v1.CategorizeTransactionsRequest
-	1,  // 27: arian.v1.TransactionService.ListTransactions:output_type -> arian.v1.ListTransactionsResponse
-	3,  // 28: arian.v1.TransactionService.GetTransaction:output_type -> arian.v1.GetTransactionResponse
-	5,  // 29: arian.v1.TransactionService.CreateTransaction:output_type -> arian.v1.CreateTransactionResponse
-	7,  // 30: arian.v1.TransactionService.UpdateTransaction:output_type -> arian.v1.UpdateTransactionResponse
-	9,  // 31: arian.v1.TransactionService.DeleteTransaction:output_type -> arian.v1.DeleteTransactionResponse
-	11, // 32: arian.v1.TransactionService.CategorizeTransactions:output_type -> arian.v1.CategorizeTransactionsResponse
-	27, // [27:33] is the sub-list for method output_type
-	21, // [21:27] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	13, // 0: arian.v1.ListTransactionsRequest.start_date:type_name -> google.protobuf.Timestamp
+	13, // 1: arian.v1.ListTransactionsRequest.end_date:type_name -> google.protobuf.Timestamp
+	14, // 2: arian.v1.ListTransactionsRequest.cursor:type_name -> arian.v1.Cursor
+	15, // 3: arian.v1.ListTransactionsRequest.amount_min:type_name -> google.type.Money
+	15, // 4: arian.v1.ListTransactionsRequest.amount_max:type_name -> google.type.Money
+	16, // 5: arian.v1.ListTransactionsRequest.direction:type_name -> arian.v1.TransactionDirection
+	17, // 6: arian.v1.ListTransactionsRequest.time_of_day_start:type_name -> arian.v1.TimeOfDay
+	17, // 7: arian.v1.ListTransactionsRequest.time_of_day_end:type_name -> arian.v1.TimeOfDay
+	18, // 8: arian.v1.ListTransactionsResponse.transactions:type_name -> arian.v1.Transaction
+	14, // 9: arian.v1.ListTransactionsResponse.next_cursor:type_name -> arian.v1.Cursor
+	18, // 10: arian.v1.GetTransactionResponse.transaction:type_name -> arian.v1.Transaction
+	13, // 11: arian.v1.TransactionInput.tx_date:type_name -> google.protobuf.Timestamp
+	15, // 12: arian.v1.TransactionInput.tx_amount:type_name -> google.type.Money
+	16, // 13: arian.v1.TransactionInput.direction:type_name -> arian.v1.TransactionDirection
+	15, // 14: arian.v1.TransactionInput.foreign_amount:type_name -> google.type.Money
+	4,  // 15: arian.v1.CreateTransactionRequest.transactions:type_name -> arian.v1.TransactionInput
+	18, // 16: arian.v1.CreateTransactionResponse.transactions:type_name -> arian.v1.Transaction
+	19, // 17: arian.v1.UpdateTransactionRequest.update_mask:type_name -> google.protobuf.FieldMask
+	13, // 18: arian.v1.UpdateTransactionRequest.tx_date:type_name -> google.protobuf.Timestamp
+	15, // 19: arian.v1.UpdateTransactionRequest.tx_amount:type_name -> google.type.Money
+	16, // 20: arian.v1.UpdateTransactionRequest.direction:type_name -> arian.v1.TransactionDirection
+	15, // 21: arian.v1.UpdateTransactionRequest.foreign_amount:type_name -> google.type.Money
+	0,  // 22: arian.v1.TransactionService.ListTransactions:input_type -> arian.v1.ListTransactionsRequest
+	2,  // 23: arian.v1.TransactionService.GetTransaction:input_type -> arian.v1.GetTransactionRequest
+	5,  // 24: arian.v1.TransactionService.CreateTransaction:input_type -> arian.v1.CreateTransactionRequest
+	7,  // 25: arian.v1.TransactionService.UpdateTransaction:input_type -> arian.v1.UpdateTransactionRequest
+	9,  // 26: arian.v1.TransactionService.DeleteTransaction:input_type -> arian.v1.DeleteTransactionRequest
+	11, // 27: arian.v1.TransactionService.CategorizeTransactions:input_type -> arian.v1.CategorizeTransactionsRequest
+	1,  // 28: arian.v1.TransactionService.ListTransactions:output_type -> arian.v1.ListTransactionsResponse
+	3,  // 29: arian.v1.TransactionService.GetTransaction:output_type -> arian.v1.GetTransactionResponse
+	6,  // 30: arian.v1.TransactionService.CreateTransaction:output_type -> arian.v1.CreateTransactionResponse
+	8,  // 31: arian.v1.TransactionService.UpdateTransaction:output_type -> arian.v1.UpdateTransactionResponse
+	10, // 32: arian.v1.TransactionService.DeleteTransaction:output_type -> arian.v1.DeleteTransactionResponse
+	12, // 33: arian.v1.TransactionService.CategorizeTransactions:output_type -> arian.v1.CategorizeTransactionsResponse
+	28, // [28:34] is the sub-list for method output_type
+	22, // [22:28] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_arian_v1_transaction_services_proto_init() }
@@ -1120,14 +1177,14 @@ func file_arian_v1_transaction_services_proto_init() {
 	file_arian_v1_transaction_services_proto_msgTypes[0].OneofWrappers = []any{}
 	file_arian_v1_transaction_services_proto_msgTypes[1].OneofWrappers = []any{}
 	file_arian_v1_transaction_services_proto_msgTypes[4].OneofWrappers = []any{}
-	file_arian_v1_transaction_services_proto_msgTypes[6].OneofWrappers = []any{}
+	file_arian_v1_transaction_services_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arian_v1_transaction_services_proto_rawDesc), len(file_arian_v1_transaction_services_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

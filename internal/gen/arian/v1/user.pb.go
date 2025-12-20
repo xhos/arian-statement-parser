@@ -24,17 +24,16 @@ const (
 )
 
 type User struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Email            string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	DisplayName      *string                `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof" json:"display_name,omitempty"`
-	DefaultAccountId *int64                 `protobuf:"varint,4,opt,name=default_account_id,json=defaultAccountId,proto3,oneof" json:"default_account_id,omitempty"`
-	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	PrimaryCurrency  string                 `protobuf:"bytes,7,opt,name=primary_currency,json=primaryCurrency,proto3" json:"primary_currency,omitempty"`
-	Timezone         string                 `protobuf:"bytes,8,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Email           string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	DisplayName     *string                `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof" json:"display_name,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	PrimaryCurrency string                 `protobuf:"bytes,7,opt,name=primary_currency,json=primaryCurrency,proto3" json:"primary_currency,omitempty"`
+	Timezone        string                 `protobuf:"bytes,8,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
@@ -88,13 +87,6 @@ func (x *User) GetDisplayName() string {
 	return ""
 }
 
-func (x *User) GetDefaultAccountId() int64 {
-	if x != nil && x.DefaultAccountId != nil {
-		return *x.DefaultAccountId
-	}
-	return 0
-}
-
 func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -127,12 +119,11 @@ var File_arian_v1_user_proto protoreflect.FileDescriptor
 
 const file_arian_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x13arian/v1/user.proto\x12\barian.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb4\x03\n" +
+	"\x13arian/v1/user.proto\x12\barian.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe1\x02\n" +
 	"\x04User\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x121\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dH\x00R\vdisplayName\x88\x01\x01\x12:\n" +
-	"\x12default_account_id\x18\x04 \x01(\x03B\a\xbaH\x04\"\x02 \x00H\x01R\x10defaultAccountId\x88\x01\x01\x129\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dH\x00R\vdisplayName\x88\x01\x01\x129\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
@@ -140,8 +131,7 @@ const file_arian_v1_user_proto_rawDesc = "" +
 	"\x10primary_currency\x18\a \x01(\tB\x14\xbaH\x11r\x0f2\n" +
 	"^[A-Z]{3}$\x98\x01\x03R\x0fprimaryCurrency\x12%\n" +
 	"\btimezone\x18\b \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\btimezoneB\x0f\n" +
-	"\r_display_nameB\x15\n" +
-	"\x13_default_account_idB\x86\x01\n" +
+	"\r_display_nameB\x86\x01\n" +
 	"\fcom.arian.v1B\tUserProtoP\x01Z*arian-parser/internal/gen/arian/v1;arianv1\xa2\x02\x03AXX\xaa\x02\bArian.V1\xca\x02\bArian\\V1\xe2\x02\x14Arian\\V1\\GPBMetadata\xea\x02\tArian::V1b\x06proto3"
 
 var (

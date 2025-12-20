@@ -127,44 +127,69 @@ func (c *Client) ListTransactions(userID string, limit int32) ([]*pb.Transaction
 }
 
 func (c *Client) CreateTransaction(userID string, tx *domain.Transaction) error {
+	// Use bulk creation with a single transaction
+	created, errors := c.CreateTransactionsBulk(userID, []*domain.Transaction{tx})
+	if len(errors) > 0 {
+		return errors[0]
+	}
+	if created == 0 {
+		return fmt.Errorf("transaction was not created")
+	}
+	return nil
+}
+
+func (c *Client) CreateTransactionsBulk(userID string, transactions []*domain.Transaction) (int32, []error) {
+	if len(transactions) == 0 {
+		return 0, nil
+	}
+
 	ctx := c.withAuth(context.Background())
 
-	// convert domain transaction to gRPC request
-	req := &pb.CreateTransactionRequest{
-		UserId:    userID,
-		AccountId: int64(tx.AccountID),
-		TxDate:    timestamppb.New(tx.TxDate),
-		TxAmount: &money.Money{
-			CurrencyCode: tx.TxCurrency,
-			Units:        int64(tx.TxAmount),
-			Nanos:        int32((tx.TxAmount - float64(int64(tx.TxAmount))) * 1e9),
-		},
-		Direction: c.convertDirection(tx.TxDirection),
+	// Convert domain transactions to gRPC TransactionInput
+	inputs := make([]*pb.TransactionInput, 0, len(transactions))
+	for _, tx := range transactions {
+		input := &pb.TransactionInput{
+			AccountId: int64(tx.AccountID),
+			TxDate:    timestamppb.New(tx.TxDate),
+			TxAmount: &money.Money{
+				CurrencyCode: tx.TxCurrency,
+				Units:        int64(tx.TxAmount),
+				Nanos:        int32((tx.TxAmount - float64(int64(tx.TxAmount))) * 1e9),
+			},
+			Direction: c.convertDirection(tx.TxDirection),
+		}
+
+		// Optional fields
+		if tx.TxDesc != "" {
+			input.Description = &tx.TxDesc
+		}
+		if tx.Merchant != "" {
+			input.Merchant = &tx.Merchant
+		}
+		if tx.UserNotes != "" {
+			input.UserNotes = &tx.UserNotes
+		}
+
+		inputs = append(inputs, input)
 	}
 
-	// Optional fields
-	if tx.TxDesc != "" {
-		req.Description = &tx.TxDesc
-	}
-	if tx.Merchant != "" {
-		req.Merchant = &tx.Merchant
-	}
-	if tx.UserNotes != "" {
-		req.UserNotes = &tx.UserNotes
+	req := &pb.CreateTransactionRequest{
+		UserId:       userID,
+		Transactions: inputs,
 	}
 
 	resp, err := c.txClient.CreateTransaction(ctx, req)
 	if err != nil {
 		// check for duplicate transaction (conflict)
 		if grpcStatus := status.Code(err); grpcStatus == codes.AlreadyExists {
-			c.log.Info("skipping duplicate transaction")
-			return nil // not a fatal error, just a duplicate
+			c.log.Info("skipping duplicate transactions")
+			return 0, nil // not a fatal error, just duplicates
 		}
-		return fmt.Errorf("failed to create transaction: %w", err)
+		return 0, []error{fmt.Errorf("failed to create transactions: %w", err)}
 	}
 
-	c.log.Info("transaction created successfully", "tx_id", resp.Transaction.Id)
-	return nil
+	c.log.Info("transactions created successfully", "count", resp.CreatedCount)
+	return resp.CreatedCount, nil
 }
 
 // withAuth adds authentication metadata to the context
