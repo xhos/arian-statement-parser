@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os/exec"
+	"path/filepath"
 	"time"
 
 	"arian-statement-parser/internal/domain"
@@ -53,17 +54,27 @@ func NewPythonParser() *PythonParser {
 
 func (p *PythonParser) ParseStatements(pdfPath string, configPath string) (*ParseResult, []*domain.Transaction, error) {
 	// Build command args with JSON format
-	args := []string{"run", "python", "main.py", "../" + pdfPath, "--format", "json"}
+	// Only prepend ../ if the path is relative
+	pythonPdfPath := pdfPath
+	if !filepath.IsAbs(pdfPath) {
+		pythonPdfPath = "../" + pdfPath
+	}
+
+	args := []string{"run", "python", "main.py", pythonPdfPath, "--format", "json"}
 	if configPath != "" {
-		args = append(args, "--config", "../"+configPath)
+		pythonConfigPath := configPath
+		if !filepath.IsAbs(configPath) {
+			pythonConfigPath = "../" + configPath
+		}
+		args = append(args, "--config", pythonConfigPath)
 	}
 
 	// Execute Python script with uv from the rbc-statement-parser directory
 	cmd := exec.Command(p.pythonPath, args...)
 	cmd.Dir = "rbc-statement-parser" // Set working directory
-	output, err := cmd.Output()
+	output, err := cmd.CombinedOutput()
 	if err != nil {
-		return nil, nil, fmt.Errorf("failed to execute Python parser: %w", err)
+		return nil, nil, fmt.Errorf("failed to execute Python parser: %w\nOutput: %s", err, string(output))
 	}
 
 	// Parse JSON output

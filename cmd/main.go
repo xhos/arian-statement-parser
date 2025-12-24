@@ -179,7 +179,7 @@ func main() {
 			if isNewAccount {
 				// Create new account
 				accountType := convertToAccountType(tx.StatementAccountType)
-				newAccount, err := arianClient.CreateAccount(userID, accountName, "RBC", accountType)
+				newAccount, err := arianClient.CreateAccount(userID, accountName, "RBC", accountType, "CAD")
 				if err != nil {
 					log.Fatalf("create account failed: %v", err)
 				}

@@ -595,6 +595,7 @@ type UpdateTransactionRequest struct {
 	CategoryId    *int64                 `protobuf:"varint,10,opt,name=category_id,json=categoryId,proto3,oneof" json:"category_id,omitempty"`
 	ForeignAmount *money.Money           `protobuf:"bytes,11,opt,name=foreign_amount,json=foreignAmount,proto3,oneof" json:"foreign_amount,omitempty"`
 	ExchangeRate  *float64               `protobuf:"fixed64,12,opt,name=exchange_rate,json=exchangeRate,proto3,oneof" json:"exchange_rate,omitempty"`
+	AccountId     *int64                 `protobuf:"varint,13,opt,name=account_id,json=accountId,proto3,oneof" json:"account_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -709,6 +710,13 @@ func (x *UpdateTransactionRequest) GetForeignAmount() *money.Money {
 func (x *UpdateTransactionRequest) GetExchangeRate() float64 {
 	if x != nil && x.ExchangeRate != nil {
 		return *x.ExchangeRate
+	}
+	return 0
+}
+
+func (x *UpdateTransactionRequest) GetAccountId() int64 {
+	if x != nil && x.AccountId != nil {
+		return *x.AccountId
 	}
 	return 0
 }
@@ -1037,7 +1045,7 @@ const file_arian_v1_transaction_services_proto_rawDesc = "" +
 	"\ftransactions\x18\x02 \x03(\v2\x1a.arian.v1.TransactionInputB\b\xbaH\x05\x92\x01\x02\b\x01R\ftransactions\"{\n" +
 	"\x19CreateTransactionResponse\x129\n" +
 	"\ftransactions\x18\x01 \x03(\v2\x15.arian.v1.TransactionR\ftransactions\x12#\n" +
-	"\rcreated_count\x18\x02 \x01(\x05R\fcreatedCount\"\xcb\x05\n" +
+	"\rcreated_count\x18\x02 \x01(\x05R\fcreatedCount\"\x87\x06\n" +
 	"\x18UpdateTransactionRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x17\n" +
 	"\x02id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\x12;\n" +
@@ -1054,7 +1062,9 @@ const file_arian_v1_transaction_services_proto_rawDesc = "" +
 	" \x01(\x03H\x06R\n" +
 	"categoryId\x88\x01\x01\x12>\n" +
 	"\x0eforeign_amount\x18\v \x01(\v2\x12.google.type.MoneyH\aR\rforeignAmount\x88\x01\x01\x12(\n" +
-	"\rexchange_rate\x18\f \x01(\x01H\bR\fexchangeRate\x88\x01\x01B\n" +
+	"\rexchange_rate\x18\f \x01(\x01H\bR\fexchangeRate\x88\x01\x01\x12+\n" +
+	"\n" +
+	"account_id\x18\r \x01(\x03B\a\xbaH\x04\"\x02 \x00H\tR\taccountId\x88\x01\x01B\n" +
 	"\n" +
 	"\b_tx_dateB\f\n" +
 	"\n" +
@@ -1066,7 +1076,8 @@ const file_arian_v1_transaction_services_proto_rawDesc = "" +
 	"\v_user_notesB\x0e\n" +
 	"\f_category_idB\x11\n" +
 	"\x0f_foreign_amountB\x10\n" +
-	"\x0e_exchange_rate\"\x1b\n" +
+	"\x0e_exchange_rateB\r\n" +
+	"\v_account_id\"\x1b\n" +
 	"\x19UpdateTransactionResponse\"Y\n" +
 	"\x18DeleteTransactionRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x1a\n" +

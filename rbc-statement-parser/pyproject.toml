@@ -8,8 +8,8 @@ dependencies = [
 	"beautifulsoup4",
 ]
 
-[tool.uv]
-dev-dependencies = ["ruff"]
+[dependency-groups]
+dev = ["ruff"]
 
 [tool.ruff]
 indent-width = 2

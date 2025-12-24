@@ -136,6 +136,10 @@ const (
 	PeriodType_PERIOD_TYPE_30_DAYS     PeriodType = 2
 	PeriodType_PERIOD_TYPE_90_DAYS     PeriodType = 3
 	PeriodType_PERIOD_TYPE_CUSTOM      PeriodType = 4
+	PeriodType_PERIOD_TYPE_3_MONTHS    PeriodType = 5
+	PeriodType_PERIOD_TYPE_6_MONTHS    PeriodType = 6
+	PeriodType_PERIOD_TYPE_1_YEAR      PeriodType = 7
+	PeriodType_PERIOD_TYPE_ALL_TIME    PeriodType = 8
 )
 
 // Enum value maps for PeriodType.
@@ -146,6 +150,10 @@ var (
 		2: "PERIOD_TYPE_30_DAYS",
 		3: "PERIOD_TYPE_90_DAYS",
 		4: "PERIOD_TYPE_CUSTOM",
+		5: "PERIOD_TYPE_3_MONTHS",
+		6: "PERIOD_TYPE_6_MONTHS",
+		7: "PERIOD_TYPE_1_YEAR",
+		8: "PERIOD_TYPE_ALL_TIME",
 	}
 	PeriodType_value = map[string]int32{
 		"PERIOD_TYPE_UNSPECIFIED": 0,
@@ -153,6 +161,10 @@ var (
 		"PERIOD_TYPE_30_DAYS":     2,
 		"PERIOD_TYPE_90_DAYS":     3,
 		"PERIOD_TYPE_CUSTOM":      4,
+		"PERIOD_TYPE_3_MONTHS":    5,
+		"PERIOD_TYPE_6_MONTHS":    6,
+		"PERIOD_TYPE_1_YEAR":      7,
+		"PERIOD_TYPE_ALL_TIME":    8,
 	}
 )
 
@@ -250,14 +262,18 @@ const file_arian_v1_enums_proto_rawDesc = "" +
 	"\x14TransactionDirection\x12\x19\n" +
 	"\x15DIRECTION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12DIRECTION_INCOMING\x10\x01\x12\x16\n" +
-	"\x12DIRECTION_OUTGOING\x10\x02*\x8b\x01\n" +
+	"\x12DIRECTION_OUTGOING\x10\x02*\xf1\x01\n" +
 	"\n" +
 	"PeriodType\x12\x1b\n" +
 	"\x17PERIOD_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12PERIOD_TYPE_7_DAYS\x10\x01\x12\x17\n" +
 	"\x13PERIOD_TYPE_30_DAYS\x10\x02\x12\x17\n" +
 	"\x13PERIOD_TYPE_90_DAYS\x10\x03\x12\x16\n" +
-	"\x12PERIOD_TYPE_CUSTOM\x10\x04*l\n" +
+	"\x12PERIOD_TYPE_CUSTOM\x10\x04\x12\x18\n" +
+	"\x14PERIOD_TYPE_3_MONTHS\x10\x05\x12\x18\n" +
+	"\x14PERIOD_TYPE_6_MONTHS\x10\x06\x12\x16\n" +
+	"\x12PERIOD_TYPE_1_YEAR\x10\a\x12\x18\n" +
+	"\x14PERIOD_TYPE_ALL_TIME\x10\b*l\n" +
 	"\vGranularity\x12\x1b\n" +
 	"\x17GRANULARITY_UNSPECIFIED\x10\x00\x12\x13\n" +
 	"\x0fGRANULARITY_DAY\x10\x01\x12\x14\n" +

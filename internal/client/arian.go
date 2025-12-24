@@ -90,14 +90,20 @@ func (c *Client) GetAccounts(userID string) ([]*pb.Account, error) {
 	return resp.Accounts, nil
 }
 
-func (c *Client) CreateAccount(userID, accountName, bank string, accountType pb.AccountType) (*pb.Account, error) {
+func (c *Client) CreateAccount(userID, accountName, bank string, accountType pb.AccountType, mainCurrency string) (*pb.Account, error) {
 	ctx := c.withAuth(context.Background())
 
 	req := &pb.CreateAccountRequest{
-		UserId: userID,
-		Name:   accountName,
-		Bank:   bank,
-		Type:   accountType,
+		UserId:       userID,
+		Name:         accountName,
+		Bank:         bank,
+		Type:         accountType,
+		MainCurrency: mainCurrency,
+		AnchorBalance: &money.Money{
+			CurrencyCode: mainCurrency,
+			Units:        0,
+			Nanos:        0,
+		},
 	}
 
 	resp, err := c.accountClient.CreateAccount(ctx, req)
