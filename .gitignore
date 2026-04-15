@@ -1,6 +1,4 @@
 # Devenv
-.devenv*
-devenv.local.nix
 .direnv
 .pre-commit-config.yaml
 
@@ -13,3 +11,5 @@ account-mappings.txt
 __pycache__/
 .uv-cache/
 .ruff_cache/
+
+result/
