@@ -56,6 +56,7 @@
         env.UV_CACHE_DIR = ".uv-cache";
         packages = with pkgs; [
           go
+          air
           python3
           buf
           ruff
@@ -71,7 +72,7 @@
           '')
 
           (writeShellScriptBin "run" ''
-            go run cmd/main.go
+            exec ${air}/bin/air -build.cmd "go build -o ./tmp/main ./cmd/main.go" -build.bin ./tmp/main
           '')
 
           (writeShellScriptBin "fmt" ''
